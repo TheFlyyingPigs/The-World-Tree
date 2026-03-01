@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bftqq2syj7664"]
+
+[ext_resource type="Script" uid="uid://bxqq3l150xbtp" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Script" uid="uid://qnck7cjv4cy7" path="res://Scripts/input_component.gd" id="2_6t5aa"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
+height = 2.1347656
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_cvnsp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06738281, 0)
+shape = SubResource("CapsuleShape3D_f60y1")
+
+[node name="Pivot" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81571466, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Pivot"]
+
+[node name="InputComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_6t5aa")
+metadata/_custom_type_script = "uid://qnck7cjv4cy7"
