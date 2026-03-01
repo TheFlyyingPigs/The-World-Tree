@@ -1,4 +1,4 @@
-class_name Movement_Component extends Node
+class_name MovementComponent extends Node
 
 @export var body : CharacterBody3D
 @export var speed := 2.5

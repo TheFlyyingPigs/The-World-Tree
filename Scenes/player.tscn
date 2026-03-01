@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bftqq2syj7664"]
+[gd_scene load_steps=6 format=3 uid="uid://bftqq2syj7664"]
 
 [ext_resource type="Script" uid="uid://bxqq3l150xbtp" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://qnck7cjv4cy7" path="res://Scripts/input_component.gd" id="2_6t5aa"]
 [ext_resource type="Script" uid="uid://bshe62toj41q8" path="res://Scripts/movement_component.gd" id="3_6t5aa"]
+[ext_resource type="Script" uid="uid://fyfst4gf418a" path="res://Scripts/camera_component.gd" id="4_vgqql"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
 height = 2.1347656
@@ -24,8 +25,17 @@ unique_name_in_owner = true
 script = ExtResource("2_6t5aa")
 metadata/_custom_type_script = "uid://qnck7cjv4cy7"
 
-[node name="Movement_Component" type="Node" parent="." node_paths=PackedStringArray("body")]
+[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("body")]
 unique_name_in_owner = true
 script = ExtResource("3_6t5aa")
 body = NodePath("..")
 metadata/_custom_type_script = "uid://bshe62toj41q8"
+
+[node name="CameraComponent" type="Node" parent="." node_paths=PackedStringArray("body", "camera_pivot")]
+unique_name_in_owner = true
+script = ExtResource("4_vgqql")
+body = NodePath("..")
+camera_pivot = NodePath("../Pivot")
+metadata/_custom_type_script = "uid://fyfst4gf418a"
+
+[connection signal="mouse_movement" from="InputComponent" to="." method="on_mouse_movement"]
