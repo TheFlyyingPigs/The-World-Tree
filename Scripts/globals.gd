@@ -7,9 +7,10 @@ enum ItemType {
 	SCRAP_METAL
 }
 
-var item_count := []
+var inventory := []
 
 func add_item(type : ItemType):
-	item_count.append(type)
+	inventory.append(type)
 	print("Picked up " +str(type))
 	# ADD GUI INDICATION THAT THIS HAPPENED
+	

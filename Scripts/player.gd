@@ -8,7 +8,7 @@ extends CharacterBody3D
 var can_interact := true
 
 func _physics_process(delta: float) -> void:
-	# UPDATE INPUTS
+	# UPDATE INPUTSw
 	input_component.tick()
 	
 	# UPDATE MOVEMENT DIRECTION
@@ -16,15 +16,18 @@ func _physics_process(delta: float) -> void:
 	movement_component.sprinting = input_component.sprint_pressed
 	# MOVE
 	movement_component.tick(delta)
-
+	
+# MOUSE MOVEMENT
 func on_mouse_movement() -> void:
 	camera_component.tick(input_component.mouse_event)
 
+# INTERACT
 func on_interact() -> void:
 	if can_interact:
 		interact_component.try_interact()
 		$InteractTimer.start()
 		can_interact = false
 
+# LETS PLAYER INTERACT
 func _on_interact_timer_timeout() -> void:
 	can_interact = true
