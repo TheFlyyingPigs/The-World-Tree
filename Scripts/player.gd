@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var movement_component = %MovementComponent
 @onready var camera_component = %CameraComponent
 @onready var interact_component = %InteractComponent
+@onready var camera_anims := $CameraAnims
 
 var can_interact := true
 
@@ -17,6 +18,13 @@ func _physics_process(delta: float) -> void:
 	# MOVE
 	movement_component.tick(delta)
 	
+	if movement_component.direction == Vector2.ZERO:
+		camera_anims.current_animation = "idle"
+	else:
+		if movement_component.sprinting == false:
+			camera_anims.current_animation = "walking"
+		else:
+			camera_anims.current_animation = "running"
 
 # MOUSE MOVEMENT
 func on_mouse_movement() -> void:

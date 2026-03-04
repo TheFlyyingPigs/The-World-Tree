@@ -4,6 +4,8 @@ class_name CameraComponent extends Node
 @export var camera_pivot : Marker3D
 @export var camera : Camera3D
 
+var screen_shaking
+
 var camera_rotation :=  Vector2(0,0)
 
 const LOWEST_CAMERA_ROTATION = -1.5
@@ -43,6 +45,6 @@ func _physics_process(delta: float) -> void:
 		camera.v_offset = noise.get_noise_2d(0,shake_time) * shake_intensity
 		
 		shake_intensity = max(shake_intensity - shake_decay * delta, 0)
-	else:
-		camera.h_offset = lerp(camera.h_offset, 0.0, 10.5 * delta)
-		camera.v_offset = lerp(camera.v_offset, 0.0, 10.5 * delta)
+	#else:
+		#camera.h_offset = lerp(camera.h_offset, 0.0, 10.5 * delta)
+		#camera.v_offset = lerp(camera.v_offset, 0.0, 10.5 * delta)

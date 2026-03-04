@@ -11,8 +11,6 @@ var inventory := []
 
 func add_item(type : ItemType):
 	inventory.append(type)
-	print("Picked up " +str(type))
-	# ADD GUI INDICATION THAT THIS HAPPENED
 	
 
 func _ready() -> void:
