@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Bad Game Idea Jam"
-run/main_scene="uid://dpvggwnhs5wgj"
+run/main_scene="uid://b04xakd0pv2cx"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
 [autoload]
@@ -22,6 +22,12 @@ Gui="*res://Scripts/gui_handler.gd"
 [display]
 
 window/size/mode=4
+
+[global_group]
+
+gui=""
+player=""
+camera_comp=""
 
 [input]
 
@@ -61,6 +67,7 @@ interact={
 
 3d_physics/layer_1="Base"
 3d_physics/layer_2="Interactable"
+3d_physics/layer_3="Player"
 
 [physics]
 

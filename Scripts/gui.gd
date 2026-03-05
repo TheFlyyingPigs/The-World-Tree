@@ -1,24 +1,25 @@
 extends Control
 
-@onready var anim := $AnimationPlayer
-@onready var alert_label := $AlertPivot/AlertLabel
-@onready var crosshair := $Crosshair
 
-var current_screen : Control
 
 func alert(type : Globals.ItemType):
+	var anim := $AnimationPlayer
+	var alert_label := $AlertPivot/AlertLabel
 	match type:
 		Globals.ItemType.WATER: alert_label.text = "Found  Water" # CHANGE PICTURE / DISPLAY
 		# ADD THE REST OF THE RESOURCES
 	
 	anim.play("alert")
 
-@onready var menus := $Menus
-@onready var pause_menu := $Menus/PauseMenu
-@onready var main_menu := $Menus/MainMenu
-@onready var upgrade_menu
+
+var current_screen : Control
 
 func show_screen(type : Gui.ScreenType):
+	var crosshair := $Crosshair
+	var menus := $Menus
+	var pause_menu := $Menus/PauseMenu
+	var main_menu := $Menus/MainMenu
+	var upgrade_menu
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	menus.visible = true
 	crosshair.visible = false
@@ -33,9 +34,12 @@ func show_screen(type : Gui.ScreenType):
 		Gui.ScreenType.UPGRADE: 
 			upgrade_menu.visible = true
 			current_screen = upgrade_menu
+	
 
 
 func resume() -> void:
+	var crosshair := $Crosshair
+	var menus := $Menus
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	get_tree().paused = false

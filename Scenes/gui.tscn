@@ -94,7 +94,7 @@ _data = {
 &"alert": SubResource("Animation_m6o0h")
 }
 
-[node name="Gui" type="Control"]
+[node name="Gui" type="Control" groups=["gui"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -146,6 +146,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PauseMenu" type="Control" parent="Menus"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -186,6 +187,7 @@ text = "Quit
 "
 
 [node name="MainMenu" type="Control" parent="Menus"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

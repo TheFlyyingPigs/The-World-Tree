@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://b04xakd0pv2cx"]
+
+[ext_resource type="PackedScene" uid="uid://bftqq2syj7664" path="res://Scenes/player.tscn" id="1_mntln"]
+[ext_resource type="PackedScene" uid="uid://bwxxn76xj3ic0" path="res://Scenes/gui.tscn" id="2_5l7jk"]
+[ext_resource type="PackedScene" uid="uid://csoau7mpja14x" path="res://Scenes/level_transitioner.tscn" id="3_jgd3w"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i5bjo"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_go701"]
+sky_material = SubResource("ProceduralSkyMaterial_i5bjo")
+
+[sub_resource type="Environment" id="Environment_yimsw"]
+background_mode = 2
+sky = SubResource("Sky_go701")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="inside_world" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yimsw")
+
+[node name="Player" parent="." instance=ExtResource("1_mntln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.6604302)
+
+[node name="Gui" parent="." instance=ExtResource("2_5l7jk")]
+process_mode = 3
+
+[node name="LevelTransitioner" parent="." instance=ExtResource("3_jgd3w")]
+connected_level = 1
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6805115, -2.2783208)
+size = Vector3(6.3095703, 5.773987, 6.7001953)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6805115, -2.2783208)
+operation = 2
+size = Vector3(5.4384766, 5.279297, 5.972412)

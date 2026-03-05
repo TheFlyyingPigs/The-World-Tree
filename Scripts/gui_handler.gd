@@ -1,7 +1,7 @@
 extends Node
 
-@onready var gui := get_node("/root/world/Gui")
-@onready var camera := get_node("/root/world/Player/CameraComponent")
+
+
 
 
 enum ScreenType{
@@ -11,10 +11,13 @@ enum ScreenType{
 }
 
 func alert(type):
+	var gui := get_tree().get_first_node_in_group("gui")
 	gui.alert(type)
 
 func show_screen(type):
+	var gui := get_tree().get_first_node_in_group("gui")
 	gui.show_screen(type)
 
 func screen_shake(intensity, time):
+	var camera :CameraComponent= get_tree().get_first_node_in_group("camera_comp")
 	camera.screen_shake(intensity,time)

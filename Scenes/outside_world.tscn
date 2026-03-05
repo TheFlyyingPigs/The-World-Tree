@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://cklblqchlc32c"]
+
+[ext_resource type="PackedScene" uid="uid://bftqq2syj7664" path="res://Scenes/player.tscn" id="1_l60d6"]
+[ext_resource type="PackedScene" uid="uid://dum1yujii1ubv" path="res://ResourceDeposits/resource_deposit.tscn" id="2_cjcjx"]
+[ext_resource type="Resource" uid="uid://de5575og4qhkh" path="res://ResourceDeposits/WaterDeposit.tres" id="3_patlc"]
+[ext_resource type="PackedScene" uid="uid://bwxxn76xj3ic0" path="res://Scenes/gui.tscn" id="4_g4qxf"]
+[ext_resource type="PackedScene" uid="uid://csoau7mpja14x" path="res://Scenes/level_transitioner.tscn" id="5_cjcjx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q17te"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_patlc"]
+sky_material = SubResource("ProceduralSkyMaterial_q17te")
+
+[sub_resource type="Environment" id="Environment_22iqp"]
+background_mode = 2
+sky = SubResource("Sky_patlc")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_neogm"]
+size = Vector3(45, 1, 45)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgo3i"]
+albedo_color = Color(0.5724594, 0.42118913, 0.25229722, 1)
+
+[node name="outside_world" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_22iqp")
+
+[node name="Player" parent="." instance=ExtResource("1_l60d6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6582623)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3156095, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_neogm")
+material = SubResource("StandardMaterial3D_fgo3i")
+
+[node name="ResourceDeposit" parent="." instance=ExtResource("2_cjcjx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.439461, 0, -11.299494)
+deposit_type = ExtResource("3_patlc")
+
+[node name="ResourceDeposit2" parent="." instance=ExtResource("2_cjcjx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6356516, 0, -10.085516)
+deposit_type = ExtResource("3_patlc")
+
+[node name="ResourceDeposit3" parent="." instance=ExtResource("2_cjcjx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.611724, 0, -8.855211)
+deposit_type = ExtResource("3_patlc")
+
+[node name="ResourceDeposit4" parent="." instance=ExtResource("2_cjcjx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.013264, 0, -2.1665392)
+deposit_type = ExtResource("3_patlc")
+
+[node name="Gui" parent="." instance=ExtResource("4_g4qxf")]
+process_mode = 3
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6805115, 3.3725343)
+size = Vector3(6.3095703, 5.773987, 6.7001953)
+
+[node name="LevelTransitioner" parent="." instance=ExtResource("5_cjcjx")]
