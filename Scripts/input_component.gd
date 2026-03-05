@@ -24,3 +24,6 @@ func _input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("interact"):
 		interact.emit()
+	
+	if Input.is_action_just_pressed("ui_cancel"):
+		Gui.show_screen(Gui.ScreenType.PAUSE)

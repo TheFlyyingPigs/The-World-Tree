@@ -15,3 +15,4 @@ func add_item(type : ItemType):
 
 func _ready() -> void:
 	randomize()
+	

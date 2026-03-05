@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bwxxn76xj3ic0"]
 
-[ext_resource type="Script" uid="uid://dwsao5hvj6lcw" path="res://gui.gd" id="1_qyd3e"]
+[ext_resource type="Script" uid="uid://dwsao5hvj6lcw" path="res://Scripts/gui.gd" id="1_qyd3e"]
 
 [sub_resource type="Gradient" id="Gradient_bm56d"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -8,6 +8,45 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_n5m23"]
 gradient = SubResource("Gradient_bm56d")
 width = 1
+
+[sub_resource type="Animation" id="Animation_8kag3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AlertPivot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AlertPivot:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AlertPivot/AlertLabel:visible_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_m6o0h"]
 resource_name = "alert"
@@ -47,45 +86,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 1.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_8kag3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AlertPivot:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AlertPivot:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AlertPivot/AlertLabel:visible_ratio")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3w84o"]
@@ -135,3 +135,97 @@ texture = SubResource("GradientTexture1D_n5m23")
 libraries = {
 &"": SubResource("AnimationLibrary_3w84o")
 }
+
+[node name="Menus" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseMenu" type="Control" parent="Menus"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Menus/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.009513358, 0.027822204, 0.009516657, 0.5921569)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menus/PauseMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43055555
+anchor_top = 0.28549382
+anchor_right = 0.5763889
+anchor_bottom = 0.72993827
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PauseResume" type="Button" parent="Menus/PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Resume
+"
+
+[node name="PauseQuit" type="Button" parent="Menus/PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[node name="MainMenu" type="Control" parent="Menus"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Menus/MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1639036, 0.3246505, 0.17414343, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menus/MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43055555
+anchor_top = 0.28549382
+anchor_right = 0.5763889
+anchor_bottom = 0.72993827
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MainPlay" type="Button" parent="Menus/MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Play
+"
+
+[node name="MainQuit" type="Button" parent="Menus/MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[connection signal="pressed" from="Menus/PauseMenu/VBoxContainer/PauseResume" to="." method="resume"]
+[connection signal="pressed" from="Menus/PauseMenu/VBoxContainer/PauseQuit" to="." method="quit"]
+[connection signal="pressed" from="Menus/MainMenu/VBoxContainer/MainPlay" to="." method="resume"]
+[connection signal="pressed" from="Menus/MainMenu/VBoxContainer/MainQuit" to="." method="quit"]
