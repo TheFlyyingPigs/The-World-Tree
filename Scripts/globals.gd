@@ -36,7 +36,17 @@ func _deferred_switch_scene(id):
 	var new_scene
 	match id:
 		LevelID.INSIDE: new_scene = load("res://Scenes/inside_world.tscn")
-		LevelID.OUTSIDE: new_scene = load("res://Scenes/outside_world.tscn")
+		LevelID.OUTSIDE: 
+			new_scene = load("res://Scenes/outside_world.tscn")
+			outside_timer_run()
 	current_scene = new_scene.instantiate()
 	get_tree().root.add_child(current_scene)
 	get_tree().current_scene = current_scene
+	
+
+var timer_length := 360
+var time_left := 360
+
+func outside_timer_run():
+	await get_tree().create_timer(0.1).timeout
+	get_tree().get_first_node_in_group("player").outside_timer_run()

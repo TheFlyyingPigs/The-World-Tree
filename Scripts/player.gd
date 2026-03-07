@@ -6,6 +6,8 @@ extends CharacterBody3D
 @onready var interact_component = %InteractComponent
 @onready var camera_anims := $CameraAnims
 @onready var anim_pivot = $Pivot/AnimPivot
+@onready var outside_timer := $OutsideTimer
+@onready var timer_component := $TimerComponent
 
 var can_interact := true
 
@@ -38,6 +40,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		anim_pivot.rotation.z = lerp_angle(anim_pivot.rotation.z,deg_to_rad(0), 0.035)
 	
+	print(Globals.time_left)
+
 # MOUSE MOVEMENT
 func on_mouse_movement() -> void:
 	camera_component.tick(input_component.mouse_event)
@@ -52,3 +56,6 @@ func on_interact() -> void:
 # LETS PLAYER INTERACT
 func _on_interact_timer_timeout() -> void:
 	can_interact = true
+
+func outside_timer_run():
+	timer_component.outside_timer_run()

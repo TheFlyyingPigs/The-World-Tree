@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bftqq2syj7664"]
+[gd_scene load_steps=13 format=3 uid="uid://bftqq2syj7664"]
 
 [ext_resource type="Script" uid="uid://bxqq3l150xbtp" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://qnck7cjv4cy7" path="res://Scripts/input_component.gd" id="2_6t5aa"]
 [ext_resource type="Script" uid="uid://bshe62toj41q8" path="res://Scripts/movement_component.gd" id="3_6t5aa"]
 [ext_resource type="Script" uid="uid://fyfst4gf418a" path="res://Scripts/camera_component.gd" id="4_vgqql"]
 [ext_resource type="Script" uid="uid://b7q3l56ryo8qg" path="res://Scripts/interact_component.gd" id="5_fkybt"]
+[ext_resource type="Script" uid="uid://v05n5ock65wg" path="res://Scripts/timer_component.gd" id="6_x3wgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
 height = 2.1347656
@@ -131,6 +132,14 @@ metadata/_custom_type_script = "uid://b7q3l56ryo8qg"
 
 [node name="InteractTimer" type="Timer" parent="."]
 wait_time = 0.5
+one_shot = true
+
+[node name="TimerComponent" type="Node" parent="." node_paths=PackedStringArray("timer")]
+script = ExtResource("6_x3wgy")
+timer = NodePath("../OutsideTimer")
+metadata/_custom_type_script = "uid://v05n5ock65wg"
+
+[node name="OutsideTimer" type="Timer" parent="."]
 one_shot = true
 
 [connection signal="interact" from="InputComponent" to="." method="on_interact"]

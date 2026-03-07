@@ -1,9 +1,6 @@
 extends Node
 
 
-
-
-
 enum ScreenType{
 	PAUSE,
 	MAIN_MENU,
@@ -21,3 +18,7 @@ func show_screen(type):
 func screen_shake(intensity, time):
 	var camera :CameraComponent= get_tree().get_first_node_in_group("camera_comp")
 	camera.screen_shake(intensity,time)
+
+func update_timer_bar():
+	var gui := get_tree().get_first_node_in_group("gui")
+	gui.update_timer_bar()

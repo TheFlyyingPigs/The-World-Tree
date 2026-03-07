@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwxxn76xj3ic0"]
+[gd_scene load_steps=8 format=3 uid="uid://bwxxn76xj3ic0"]
 
 [ext_resource type="Script" uid="uid://dwsao5hvj6lcw" path="res://Scripts/gui.gd" id="1_qyd3e"]
+[ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="2_bm56d"]
 
 [sub_resource type="Gradient" id="Gradient_bm56d"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -14,7 +15,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AlertPivot:scale")
+tracks/0/path = NodePath("CanvasLayer/AlertPivot:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -26,7 +27,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AlertPivot:visible")
+tracks/1/path = NodePath("CanvasLayer/AlertPivot:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -38,7 +39,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AlertPivot/AlertLabel:visible_ratio")
+tracks/2/path = NodePath("CanvasLayer/AlertPivot/AlertLabel:visible_ratio")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -54,7 +55,7 @@ length = 3.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AlertPivot:scale")
+tracks/0/path = NodePath("CanvasLayer/AlertPivot:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -66,7 +67,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AlertPivot:visible")
+tracks/1/path = NodePath("CanvasLayer/AlertPivot:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -78,7 +79,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AlertPivot/AlertLabel:visible_ratio")
+tracks/2/path = NodePath("CanvasLayer/AlertPivot/AlertLabel:visible_ratio")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -103,10 +104,24 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qyd3e")
 
-[node name="AlertPivot" type="Marker2D" parent="."]
-position = Vector2(950, 95)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="AlertLabel" type="Label" parent="AlertPivot"]
+[node name="TimerProgress" type="TextureProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 1116.0
+offset_top = 43.0
+offset_right = 1180.0
+offset_bottom = 107.0
+scale = Vector2(1.6172758, 1.6172758)
+max_value = 360.0
+fill_mode = 5
+texture_progress = ExtResource("2_bm56d")
+
+[node name="AlertPivot" type="Marker2D" parent="CanvasLayer"]
+position = Vector2(639.5, 63)
+
+[node name="AlertLabel" type="Label" parent="CanvasLayer/AlertPivot"]
+unique_name_in_owner = true
 offset_left = -47.0
 offset_top = -12.0
 offset_right = 52.0
@@ -116,8 +131,8 @@ uppercase = true
 visible_characters = 0
 visible_ratio = 0.0
 
-[node name="Crosshair" type="TextureRect" parent="."]
-layout_mode = 1
+[node name="Crosshair" type="TextureRect" parent="CanvasLayer"]
+unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -131,12 +146,25 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_n5m23")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_3w84o")
 }
 
-[node name="Menus" type="Control" parent="."]
+[node name="Menus" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer/Menus"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -145,16 +173,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PauseMenu" type="Control" parent="Menus"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Menus/PauseMenu"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Menus/PauseMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -163,7 +182,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.009513358, 0.027822204, 0.009516657, 0.5921569)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menus/PauseMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Menus/PauseMenu"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.43055555
@@ -176,17 +195,18 @@ theme_override_constants/separation = 25
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="PauseResume" type="Button" parent="Menus/PauseMenu/VBoxContainer"]
+[node name="PauseResume" type="Button" parent="CanvasLayer/Menus/PauseMenu/VBoxContainer"]
 layout_mode = 2
 text = "Resume
 "
 
-[node name="PauseQuit" type="Button" parent="Menus/PauseMenu/VBoxContainer"]
+[node name="PauseQuit" type="Button" parent="CanvasLayer/Menus/PauseMenu/VBoxContainer"]
 layout_mode = 2
 text = "Quit
 "
 
-[node name="MainMenu" type="Control" parent="Menus"]
+[node name="MainMenu" type="Control" parent="CanvasLayer/Menus"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -195,7 +215,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Menus/MainMenu"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Menus/MainMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -204,7 +224,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.1639036, 0.3246505, 0.17414343, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menus/MainMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Menus/MainMenu"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.43055555
@@ -217,17 +237,17 @@ theme_override_constants/separation = 25
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="MainPlay" type="Button" parent="Menus/MainMenu/VBoxContainer"]
+[node name="MainPlay" type="Button" parent="CanvasLayer/Menus/MainMenu/VBoxContainer"]
 layout_mode = 2
 text = "Play
 "
 
-[node name="MainQuit" type="Button" parent="Menus/MainMenu/VBoxContainer"]
+[node name="MainQuit" type="Button" parent="CanvasLayer/Menus/MainMenu/VBoxContainer"]
 layout_mode = 2
 text = "Quit
 "
 
-[connection signal="pressed" from="Menus/PauseMenu/VBoxContainer/PauseResume" to="." method="resume"]
-[connection signal="pressed" from="Menus/PauseMenu/VBoxContainer/PauseQuit" to="." method="quit"]
-[connection signal="pressed" from="Menus/MainMenu/VBoxContainer/MainPlay" to="." method="resume"]
-[connection signal="pressed" from="Menus/MainMenu/VBoxContainer/MainQuit" to="." method="quit"]
+[connection signal="pressed" from="CanvasLayer/Menus/PauseMenu/VBoxContainer/PauseResume" to="." method="resume"]
+[connection signal="pressed" from="CanvasLayer/Menus/PauseMenu/VBoxContainer/PauseQuit" to="." method="quit"]
+[connection signal="pressed" from="CanvasLayer/Menus/MainMenu/VBoxContainer/MainPlay" to="." method="resume"]
+[connection signal="pressed" from="CanvasLayer/Menus/MainMenu/VBoxContainer/MainQuit" to="." method="quit"]

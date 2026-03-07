@@ -1,6 +1,9 @@
-[gd_resource type="Resource" script_class="DepositType" load_steps=5 format=3 uid="uid://de5575og4qhkh"]
+[gd_resource type="Resource" script_class="DepositType" load_steps=6 format=3 uid="uid://de5575og4qhkh"]
 
 [ext_resource type="Script" uid="uid://drfc2dahc1go0" path="res://ResourceDeposits/DepositType.gd" id="1_10gsm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_10gsm"]
+size = Vector3(4, 0.2, 4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10gsm"]
 albedo_color = Color(0.10123358, 0.6043704, 0.7957899, 1)
@@ -15,5 +18,6 @@ albedo_color = Color(0.14509805, 0.6117647, 0.81960785, 1)
 script = ExtResource("1_10gsm")
 mesh = SubResource("PlaneMesh_seto0")
 mesh_material = SubResource("StandardMaterial3D_seto0")
+collision_shape = SubResource("BoxShape3D_10gsm")
 particle_color = Color(0.14425087, 0.6106728, 0.8210763, 1)
 metadata/_custom_type_script = "uid://drfc2dahc1go0"

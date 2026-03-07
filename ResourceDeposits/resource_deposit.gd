@@ -10,6 +10,7 @@ func _ready() -> void:
 	$GPUParticles3D.draw_pass_1.surface_set_material(0, material)
 	$MeshInstance3D.mesh = deposit_type.mesh
 	$MeshInstance3D.set_surface_override_material(0, deposit_type.mesh_material)
+	$CollisionShape3D.shape = deposit_type.collision_shape
 
 func interact():
 	Globals.add_item(deposit_type.resource_type)

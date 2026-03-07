@@ -1,7 +1,19 @@
-[gd_resource type="Resource" script_class="DepositType" load_steps=2 format=3 uid="uid://c5f5eu5tud0dj"]
+[gd_resource type="Resource" script_class="DepositType" load_steps=5 format=3 uid="uid://c5f5eu5tud0dj"]
 
 [ext_resource type="Script" uid="uid://drfc2dahc1go0" path="res://ResourceDeposits/DepositType.gd" id="1_363mk"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_363mk"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_363mk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_marlj"]
+albedo_color = Color(0.45898986, 0.25422588, 0.12545943, 1)
+
 [resource]
 script = ExtResource("1_363mk")
+mesh = SubResource("SphereMesh_363mk")
+mesh_material = SubResource("StandardMaterial3D_marlj")
+collision_shape = SubResource("SphereShape3D_363mk")
+resource_type = 2
+particle_color = Color(0.42273512, 0.22212192, 0.03978353, 1)
 metadata/_custom_type_script = "uid://drfc2dahc1go0"
