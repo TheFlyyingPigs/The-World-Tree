@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bwxxn76xj3ic0"]
 
-[ext_resource type="Script" uid="uid://dwsao5hvj6lcw" path="res://Scripts/gui.gd" id="1_qyd3e"]
+[ext_resource type="Script" uid="uid://dwsao5hvj6lcw" path="res://Scripts/Visuals/gui.gd" id="1_qyd3e"]
 [ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="2_bm56d"]
 
 [sub_resource type="Gradient" id="Gradient_bm56d"]

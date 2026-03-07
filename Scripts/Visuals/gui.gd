@@ -1,13 +1,25 @@
 extends Control
+'
+handles the gui actions
+'
 
 @onready var timer_bar := %TimerProgress
 
 func update_timer_bar():
+	'
+	updates the progress bar for the outside timer
+	'
 	timer_bar.max_value = Globals.timer_length
 	timer_bar.value = Globals.time_left
 
 
 func alert(type : Globals.ItemType):
+	'
+	shows an alert for an item being picked
+	
+	arguments:
+		type: the type of item being picked up
+	'
 	var anim := %AnimationPlayer
 	var alert_label := %AlertLabel
 	match type:
@@ -20,7 +32,13 @@ func alert(type : Globals.ItemType):
 var current_screen : Control
 
 func show_screen(type : Gui.ScreenType):
-	var crosshair := %Crosshair
+	'
+	shows a screen
+	
+	arguments: 
+		type: the screen to show
+	'
+	var crosshair := %Crosshair #FIXME Variables not found every time the function is run!
 	var menus := %Menus
 	var pause_menu := %PauseMenu
 	var main_menu := %MainMenu
@@ -43,6 +61,9 @@ func show_screen(type : Gui.ScreenType):
 
 
 func resume() -> void:
+	'
+	unpauses the game
+	'
 	var crosshair := %Crosshair
 	var menus := %Menus
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -57,4 +78,7 @@ func resume() -> void:
 
 
 func quit() -> void:
+	'
+	quits the game
+	'
 	get_tree().quit()

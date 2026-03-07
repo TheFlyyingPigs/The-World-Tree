@@ -1,7 +1,11 @@
 extends Node
 
+'
+passes on functions to the gui.gd script
+so they can be used globally
+'
 
-enum ScreenType{
+enum ScreenType{ # CONTAINS ALL TYPES OF MENUS/SCREENS
 	PAUSE,
 	MAIN_MENU,
 	UPGRADE

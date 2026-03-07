@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+
+# ONREADY VARIABLES
 @onready var input_component = %InputComponent
 @onready var movement_component = %MovementComponent
 @onready var camera_component = %CameraComponent
@@ -9,11 +11,16 @@ extends CharacterBody3D
 @onready var outside_timer := $OutsideTimer
 @onready var timer_component := $TimerComponent
 
+# VARIABLES
 var can_interact := true
 
+# CONSTANTS
 const MAX_SWAY = 2.5
 
 func _physics_process(delta: float) -> void:
+	'
+	processes the components that need to happen every frame
+	'
 	# UPDATE INPUTSw
 	input_component.tick()
 	
@@ -40,14 +47,20 @@ func _physics_process(delta: float) -> void:
 	else:
 		anim_pivot.rotation.z = lerp_angle(anim_pivot.rotation.z,deg_to_rad(0), 0.035)
 	
-	print(Globals.time_left)
 
 # MOUSE MOVEMENT
 func on_mouse_movement() -> void:
+	'
+	processes the camera_component
+	'
 	camera_component.tick(input_component.mouse_event)
 
 # INTERACT
 func on_interact() -> void:
+	'
+	Checks if you are looking at an interactable object,
+	then interacts with it
+	'
 	if can_interact:
 		interact_component.try_interact()
 		$InteractTimer.start()
@@ -55,7 +68,13 @@ func on_interact() -> void:
 
 # LETS PLAYER INTERACT
 func _on_interact_timer_timeout() -> void:
+	'
+	lets player interact after 0.5 seconds
+	'
 	can_interact = true
 
 func outside_timer_run():
+	'
+	passes outside_timer_run() to the timer_component
+	'
 	timer_component.outside_timer_run()

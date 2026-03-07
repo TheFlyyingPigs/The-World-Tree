@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="DepositType" load_steps=6 format=3 uid="uid://de5575og4qhkh"]
 
-[ext_resource type="Script" uid="uid://drfc2dahc1go0" path="res://ResourceDeposits/DepositType.gd" id="1_10gsm"]
+[ext_resource type="Script" uid="uid://drfc2dahc1go0" path="res://Scripts/Resource_Deposits/DepositType.gd" id="1_10gsm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_10gsm"]
 size = Vector3(4, 0.2, 4)

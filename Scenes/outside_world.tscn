@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://cklblqchlc32c"]
 
 [ext_resource type="PackedScene" uid="uid://bftqq2syj7664" path="res://Scenes/player.tscn" id="1_l60d6"]
-[ext_resource type="PackedScene" uid="uid://dum1yujii1ubv" path="res://ResourceDeposits/resource_deposit.tscn" id="2_cjcjx"]
-[ext_resource type="Resource" uid="uid://de5575og4qhkh" path="res://ResourceDeposits/WaterDeposit.tres" id="3_patlc"]
+[ext_resource type="PackedScene" uid="uid://dum1yujii1ubv" path="res://Resource_Deposits/resource_deposit.tscn" id="2_cjcjx"]
+[ext_resource type="Resource" uid="uid://de5575og4qhkh" path="res://Resource_Deposits/WaterDeposit.tres" id="3_patlc"]
 [ext_resource type="PackedScene" uid="uid://bwxxn76xj3ic0" path="res://Scenes/gui.tscn" id="4_g4qxf"]
 [ext_resource type="PackedScene" uid="uid://csoau7mpja14x" path="res://Scenes/level_transitioner.tscn" id="5_cjcjx"]
 

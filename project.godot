@@ -18,7 +18,7 @@ boot_splash/show_image=false
 [autoload]
 
 Globals="*res://Scripts/globals.gd"
-Gui="*res://Scripts/gui_handler.gd"
+Gui="*res://Scripts/Visuals/gui_handler.gd"
 
 [debug]
 
