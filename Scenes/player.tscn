@@ -197,7 +197,7 @@ transform = Transform3D(1, 0, 0, 0, 1.0000002, 1.8626451e-09, 0, 0, 1, 0, 0, 0)
 v_offset = -0.0008849621
 
 [node name="RayCast3D" type="RayCast3D" parent="Pivot/AnimPivot"]
-target_position = Vector3(0, 0, -3.59)
+target_position = Vector3(0, 0, -5)
 collision_mask = 2
 
 [node name="InputComponent" type="Node" parent="."]

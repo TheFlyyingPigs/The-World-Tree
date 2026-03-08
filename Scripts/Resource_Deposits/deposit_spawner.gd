@@ -12,7 +12,9 @@ func _ready() -> void:
 	var placed_resource = load("res://Resource_Deposits/resource_deposit.tscn").instantiate()
 	placed_resource.deposit_type = spawner_type.possible_deposits[rng.rand_weighted(spawner_type.weights)]
 	
-	get_tree().root.add_child(placed_resource)
+	await Globals.scene_loaded
+	
+	Globals.current_scene.add_child(placed_resource)
 	placed_resource.global_position = self.global_position
 	placed_resource.rotation.y = rng.randi_range(-180,180)
 	

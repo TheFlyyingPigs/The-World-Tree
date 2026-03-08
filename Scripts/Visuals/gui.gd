@@ -40,9 +40,11 @@ func alert(type : Globals.ItemType):
 	'
 	
 	match type:
-		Globals.ItemType.WATER: alert_label.text = "Found  Water" 
+		Globals.ItemType.WATER: alert_label.text = "Found Water" 
+		Globals.ItemType.DIRT: alert_label.text = "Found dirt"
 		#TODO ADD THE REST OF THE RESOURCES
 		Globals.ItemType.DIED: alert_label.text = "Lost all on-hand resources"
+	
 	anim.play("alert")
 
 

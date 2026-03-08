@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwxxn76xj3ic0"]
+[gd_scene load_steps=12 format=3 uid="uid://bwxxn76xj3ic0"]
 
 [ext_resource type="Script" uid="uid://dwsao5hvj6lcw" path="res://Scripts/Visuals/gui.gd" id="1_qyd3e"]
 [ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="2_bm56d"]
+[ext_resource type="Shader" uid="uid://5g32sl1r6jse" path="res://Assets/VFX/vhs.gdshader" id="3_n5m23"]
 
 [sub_resource type="Gradient" id="Gradient_bm56d"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -15,66 +16,42 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/AlertPivot:scale")
+tracks/0/path = NodePath("CanvasLayer/AlertLabel:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/AlertPivot:visible")
+tracks/1/path = NodePath("CanvasLayer/BlackScreen:color:a")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasLayer/AlertPivot/AlertLabel:visible_ratio")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CanvasLayer/BlackScreen:color:a")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_bm56d"]
-resource_name = "fade_to_black"
-length = 0.15
+[sub_resource type="Animation" id="Animation_m6o0h"]
+resource_name = "alert"
+length = 3.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/BlackScreen:color:a")
+tracks/0/path = NodePath("CanvasLayer/AlertLabel:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.4, 3.1, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 1.0]
+"values": [0.0, 1.0, 1.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_n5m23"]
@@ -93,44 +70,20 @@ tracks/0/keys = {
 "values": [1.0, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_m6o0h"]
-resource_name = "alert"
-length = 3.5
+[sub_resource type="Animation" id="Animation_bm56d"]
+resource_name = "fade_to_black"
+length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/AlertPivot:scale")
+tracks/0/path = NodePath("CanvasLayer/BlackScreen:color:a")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/AlertPivot:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 3.5),
+"times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasLayer/AlertPivot/AlertLabel:visible_ratio")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4, 3.1, 3.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 1.0, 1.0, 0.0]
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3w84o"]
@@ -140,6 +93,31 @@ _data = {
 &"fade_in": SubResource("Animation_n5m23"),
 &"fade_out": SubResource("Animation_bm56d")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m6o0h"]
+shader = ExtResource("3_n5m23")
+shader_parameter/brightness = 0.9050000429875
+shader_parameter/contrast = 1.08
+shader_parameter/saturation = 1.1
+shader_parameter/gamma = 1.10000004573023
+shader_parameter/curvature = 0.02000000095
+shader_parameter/corner_soften = 0.02000000095
+shader_parameter/vignette = 0.02000000095
+shader_parameter/scanline_strength = 0.0
+shader_parameter/scanline_density = 0.5
+shader_parameter/interlace_strength = 0.2
+shader_parameter/mask_strength = 0.22
+shader_parameter/mask_scale = 1.0
+shader_parameter/chroma_offset_px = 1.6
+shader_parameter/luma_smear_px = 1.0000000475
+shader_parameter/jitter_px = 1.8
+shader_parameter/wobble_px = 1.5
+shader_parameter/tape_noise = 0.22
+shader_parameter/tape_lines = 0.35
+shader_parameter/roll_speed = 0.1
+shader_parameter/roll_strength = 0.15
+shader_parameter/glow_strength = 0.25
+shader_parameter/glow_threshold = 0.65
 
 [node name="Gui" type="Control" groups=["gui"]]
 layout_mode = 3
@@ -164,15 +142,12 @@ max_value = 360.0
 fill_mode = 5
 texture_progress = ExtResource("2_bm56d")
 
-[node name="AlertPivot" type="Marker2D" parent="CanvasLayer"]
-position = Vector2(639.5, 63)
-
-[node name="AlertLabel" type="Label" parent="CanvasLayer/AlertPivot"]
+[node name="AlertLabel" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
-offset_left = -505.5
-offset_top = -12.0
-offset_right = 510.5
-offset_bottom = 11.0
+offset_left = 134.0
+offset_top = 51.0
+offset_right = 1150.0
+offset_bottom = 74.0
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
@@ -270,6 +245,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="VHSShader" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_m6o0h")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="pressed" from="CanvasLayer/Menus/PauseMenu/VBoxContainer/PauseResume" to="." method="resume"]
 [connection signal="pressed" from="CanvasLayer/Menus/PauseMenu/VBoxContainer/PauseQuit" to="." method="quit"]
