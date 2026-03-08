@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SpawnerType" load_steps=4 format=3 uid="uid://vf1uyivxts6x"]
+
+[ext_resource type="Resource" uid="uid://de5575og4qhkh" path="res://Resource_Deposits/WaterDeposit.tres" id="1_2fauy"]
+[ext_resource type="Script" uid="uid://dgxcc277p2e5x" path="res://Scripts/Resource_Deposits/spawner_type.gd" id="1_bh6q5"]
+[ext_resource type="Resource" uid="uid://c5f5eu5tud0dj" path="res://Resource_Deposits/DirtDeposit.tres" id="2_fcqhd"]
+
+[resource]
+script = ExtResource("1_bh6q5")
+possible_deposits = [ExtResource("1_2fauy"), ExtResource("2_fcqhd")]
+weights = PackedFloat32Array(1, 1)
+metadata/_custom_type_script = "uid://dgxcc277p2e5x"

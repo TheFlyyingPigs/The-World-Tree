@@ -5,7 +5,7 @@ handles player death
 
 func die():
 	'
-	switches levels when died
+	switches levels and deletes resources when player dies
 	'
 	for i in Globals.found_this_run:
 		Globals.inventory.erase(i)

@@ -48,7 +48,7 @@ func alert(type : Globals.ItemType):
 
 var current_screen : Control
 
-@onready var crosshair := %Crosshair #FIXME Variables not found every time the function is run!
+@onready var crosshair := %Crosshair
 @onready var menus := %Menus
 @onready var pause_menu := %PauseMenu
 @onready var upgrade_menu
