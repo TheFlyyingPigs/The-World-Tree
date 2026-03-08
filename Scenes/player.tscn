@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bftqq2syj7664"]
+[gd_scene load_steps=17 format=3 uid="uid://bftqq2syj7664"]
 
 [ext_resource type="Script" uid="uid://bxqq3l150xbtp" path="res://Scripts/Player/player.gd" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://qnck7cjv4cy7" path="res://Scripts/Player/input_component.gd" id="2_6t5aa"]
 [ext_resource type="Script" uid="uid://bshe62toj41q8" path="res://Scripts/Player/movement_component.gd" id="3_6t5aa"]
 [ext_resource type="Script" uid="uid://fyfst4gf418a" path="res://Scripts/Player/camera_component.gd" id="4_vgqql"]
+[ext_resource type="Script" uid="uid://bpatlnmhdphmq" path="res://Scripts/Player/camera_bob_component.gd" id="5_f1ek2"]
 [ext_resource type="Script" uid="uid://b7q3l56ryo8qg" path="res://Scripts/Player/interact_component.gd" id="5_fkybt"]
 [ext_resource type="Script" uid="uid://v05n5ock65wg" path="res://Scripts/Player/timer_component.gd" id="6_x3wgy"]
 [ext_resource type="Script" uid="uid://beiofmic6gdsp" path="res://Scripts/Player/death_component.gd" id="7_3smsa"]
@@ -37,6 +38,76 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0.010471975, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_f1ek2"]
+resource_name = "die"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/AnimPivot:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6000001, 0.70000005, 1.1000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.35806072, -0.30086488), Vector3(0, -0.35806072, -0.30086488), Vector3(1.1920929e-07, -0.7875929, -1.3031995)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/AnimPivot:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.43333334, 0.76666677, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.010471975, 0, 0), Vector3(0.15882497, 0, 0), Vector3(0.019198623, 0, 0), Vector3(0.10471976, 0, 0), Vector3(-1.7453293, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gui")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.05),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fade_out"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DeathComponent")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"die"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_motion_overide"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_fkybt"]
@@ -88,62 +159,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0.03, 0), Vector3(1.5653204e-05, 0, 0), Vector3(0, -0.03, 0), Vector3(9.093247e-05, 0, 0), Vector3(0, 0.03, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_f1ek2"]
-resource_name = "die"
-length = 1.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/AnimPivot:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6000001, 0.70000005, 1.1000001),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.35806072, -0.30086488), Vector3(0, -0.35806072, -0.30086488), Vector3(1.1920929e-07, -0.7875929, -1.3031995)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/AnimPivot:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.43333334, 0.76666677, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.010471975, 0, 0), Vector3(0.15882497, 0, 0), Vector3(0.019198623, 0, 0), Vector3(0.10471976, 0, 0), Vector3(-1.7453293, 0, 0)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Gui")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"fade_out"
-}]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("DeathComponent")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(1.2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"die"
-}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f1ek2"]
@@ -206,6 +221,14 @@ body = NodePath("..")
 camera_pivot = NodePath("../Pivot")
 camera = NodePath("../Pivot/AnimPivot/Camera3D")
 metadata/_custom_type_script = "uid://fyfst4gf418a"
+
+[node name="CameraBobComponent" type="Node" parent="." node_paths=PackedStringArray("camera_anims", "anim_pivot", "movement_component", "input_component")]
+script = ExtResource("5_f1ek2")
+camera_anims = NodePath("../CameraAnims")
+anim_pivot = NodePath("../Pivot/AnimPivot")
+movement_component = NodePath("../MovementComponent")
+input_component = NodePath("../InputComponent")
+metadata/_custom_type_script = "uid://bpatlnmhdphmq"
 
 [node name="InteractComponent" type="Node" parent="." node_paths=PackedStringArray("raycast")]
 unique_name_in_owner = true

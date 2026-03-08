@@ -10,43 +10,32 @@ extends CharacterBody3D
 @onready var anim_pivot = $Pivot/AnimPivot
 @onready var outside_timer := $OutsideTimer
 @onready var timer_component := $TimerComponent
+@onready var camera_bob_component := $CameraBobComponent
 
 # VARIABLES
 var can_interact := true
+var motion_overide := false
 
-# CONSTANTS
-const MAX_SWAY = 2.5
+func _ready() -> void:
+	await Globals.scene_loaded
+	Gui.fade_in()
 
 func _physics_process(delta: float) -> void:
 	'
 	processes the components that need to happen every frame
 	'
-	# UPDATE INPUTSw
+	# UPDATE INPUTS
 	input_component.tick()
 	
-	# UPDATE MOVEMENT DIRECTION
-	movement_component.direction = input_component.move_dir
-	movement_component.sprinting = input_component.sprint_pressed
-	# MOVE
-	movement_component.tick(delta)
-	
-	# CAMERA BOB
-	if movement_component.direction == Vector2.ZERO:
-		camera_anims.current_animation = "idle"
-	else:
-		if movement_component.sprinting == false:
-			camera_anims.current_animation = "walking"
-		else:
-			camera_anims.current_animation = "running"
-	
-	# CAMERA SWAY
-	if input_component.move_dir.x > 0:
-		anim_pivot.rotation.z = lerp_angle(anim_pivot.rotation.z,deg_to_rad(-MAX_SWAY), 0.035)
-	elif input_component.move_dir.x < 0:
-		anim_pivot.rotation.z = lerp_angle(anim_pivot.rotation.z,deg_to_rad(MAX_SWAY), 0.035)
-	else:
-		anim_pivot.rotation.z = lerp_angle(anim_pivot.rotation.z,deg_to_rad(0), 0.035)
-	
+	if not motion_overide:
+		# UPDATE MOVEMENT DIRECTION
+		movement_component.direction = input_component.move_dir
+		movement_component.sprinting = input_component.sprint_pressed
+		# MOVE
+		movement_component.tick(delta)
+		
+		# CAMERA BOB AND SWAY
+		camera_bob_component.tick()
 
 # MOUSE MOVEMENT
 func on_mouse_movement() -> void:
@@ -84,4 +73,12 @@ func died() -> void:
 	'
 	runs the dying anim
 	'
+	motion_overide = true
 	camera_anims.play("die")
+
+
+func reset_motion_overide():
+	'
+	lets the player continue to move
+	'
+	motion_overide = false

@@ -31,7 +31,6 @@ func _ready() -> void:
 	'
 	Sets up game
 	- sets current level
-	- shows main menu
 	- randomizes seed that random numbers use to generate
 	'
 	get_tree().scene_changed.connect(done_loading)
@@ -41,7 +40,9 @@ func _ready() -> void:
 	randomize()
 	
 
+# SCENE CHANGE RELATED
 var loaded := false
+signal scene_loaded
 
 func done_loading():
 	'
@@ -52,6 +53,7 @@ func done_loading():
 func switch_level(id:LevelID):
 	call_deferred("_deferred_switch_scene",id)
 	loaded = false
+	
 
 func _deferred_switch_scene(id):
 	'
@@ -60,7 +62,6 @@ func _deferred_switch_scene(id):
 	Arguments:
 		id: the id of the level being switched to
 	'
-	
 	current_scene.free()
 	var new_scene
 	match id:
@@ -71,14 +72,21 @@ func _deferred_switch_scene(id):
 		LevelID.MAIN_MENU:
 			new_scene = load("res://Scenes/main_menu.tscn")
 	current_scene = new_scene.instantiate()
+	current_scene.ready.connect(scene_initialized)
 	get_tree().root.add_child(current_scene)
 	get_tree().current_scene = current_scene
+
+
+func scene_initialized():
+	'
+	sends a signal when the scene is fully loaded
+	'
 	Gui.scene_switched()
-	await get_tree().create_timer(0.05).timeout
 	loaded = true
+	scene_loaded.emit()
 
 # TIMER VARIABLES
-var timer_length := 360 # Written in seconds
+var timer_length := 10 # Written in seconds
 var time_left := 360
 
 func outside_timer_run():

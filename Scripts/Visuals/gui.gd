@@ -3,6 +3,9 @@ extends Control
 handles the gui actions
 '
 
+func _ready() -> void:
+	$CanvasLayer/BlackScreen.color = Color(0,0,0,1)
+
 @onready var timer_bar := %TimerProgress
 
 func update_timer_bar():
@@ -11,6 +14,7 @@ func update_timer_bar():
 	'
 	timer_bar.max_value = Globals.timer_length
 	timer_bar.value = Globals.time_left
+	
 
 func fade_out():
 	'
