@@ -20,13 +20,16 @@ func fade_out():
 	'
 	fades screen to black
 	'
-	%AnimationPlayer.play("fade_out")
+	%ScreenFader.play("fade_out")
 
 func fade_in():
 	'
 	fades screen from black
 	'
-	%AnimationPlayer.play("fade_in")
+	%ScreenFader.play("fade_in")
+
+@onready var anim := %AlertPlayer
+@onready var alert_label := %AlertLabel
 
 func alert(type : Globals.ItemType):
 	'
@@ -35,12 +38,11 @@ func alert(type : Globals.ItemType):
 	arguments:
 		type: the type of item being picked up
 	'
-	var anim := %AnimationPlayer
-	var alert_label := %AlertLabel
-	match type:
-		Globals.ItemType.WATER: alert_label.text = "Found  Water" # CHANGE PICTURE / DISPLAY
-		# ADD THE REST OF THE RESOURCES
 	
+	match type:
+		Globals.ItemType.WATER: alert_label.text = "Found  Water" 
+		#TODO ADD THE REST OF THE RESOURCES
+		Globals.ItemType.DIED: alert_label.text = "Lost all on-hand resources"
 	anim.play("alert")
 
 

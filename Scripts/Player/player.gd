@@ -16,9 +16,6 @@ extends CharacterBody3D
 var can_interact := true
 var motion_overide := false
 
-func _ready() -> void:
-	await Globals.scene_loaded
-	Gui.fade_in()
 
 func _physics_process(delta: float) -> void:
 	'
