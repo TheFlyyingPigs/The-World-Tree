@@ -14,7 +14,16 @@ func update_timer_bar():
 	'
 	timer_bar.max_value = Globals.timer_length
 	timer_bar.value = Globals.time_left
-	
+
+@onready var stamina_bar := %StaminaProgress
+
+func update_stamina_bar(value):
+	'
+	updates the progress bar for stamina
+	arguments:
+		value: the stamina value the bar should update to
+	'
+	stamina_bar.value = value
 
 func fade_out():
 	'

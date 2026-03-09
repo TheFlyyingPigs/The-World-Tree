@@ -205,13 +205,14 @@ unique_name_in_owner = true
 script = ExtResource("2_6t5aa")
 metadata/_custom_type_script = "uid://qnck7cjv4cy7"
 
-[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("body")]
+[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("body", "timer")]
 unique_name_in_owner = true
 script = ExtResource("3_6t5aa")
 body = NodePath("..")
 walking_speed = 225.0
 sprinting_speed = 330.0
 air_control = 4.0
+timer = NodePath("../StaminaTimer")
 metadata/_custom_type_script = "uid://bshe62toj41q8"
 
 [node name="CameraComponent" type="Node" parent="." node_paths=PackedStringArray("body", "camera_pivot", "camera") groups=["camera_comp"]]
@@ -256,6 +257,10 @@ metadata/_custom_type_script = "uid://beiofmic6gdsp"
 [node name="Gui" parent="." instance=ExtResource("8_8erm5")]
 process_mode = 3
 mouse_filter = 2
+
+[node name="StaminaTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
 
 [connection signal="interact" from="InputComponent" to="." method="on_interact"]
 [connection signal="mouse_movement" from="InputComponent" to="." method="on_mouse_movement"]

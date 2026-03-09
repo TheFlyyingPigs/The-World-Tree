@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://dmsmp3dru00c6" path="res://Scripts/Visuals/main_menu.gd" id="1_28flt"]
 [ext_resource type="Shader" uid="uid://5g32sl1r6jse" path="res://Assets/VFX/vhs.gdshader" id="2_48xlc"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ehe0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_48xlc"]
 shader = ExtResource("2_48xlc")
-shader_parameter/brightness = 0.9050000429875
+shader_parameter/brightness = 0.7670000364325
 shader_parameter/contrast = 1.08
 shader_parameter/saturation = 1.1
 shader_parameter/gamma = 1.10000004573023
@@ -19,12 +19,12 @@ shader_parameter/mask_strength = 0.22
 shader_parameter/mask_scale = 1.0
 shader_parameter/chroma_offset_px = 1.6
 shader_parameter/luma_smear_px = 1.0000000475
-shader_parameter/jitter_px = 1.8
-shader_parameter/wobble_px = 1.5
-shader_parameter/tape_noise = 0.22
-shader_parameter/tape_lines = 0.35
-shader_parameter/roll_speed = 0.1
-shader_parameter/roll_strength = 0.15
+shader_parameter/jitter_px = 0.6000000285
+shader_parameter/wobble_px = 2.000000095
+shader_parameter/tape_noise = 0.110000005225
+shader_parameter/tape_lines = 0.0
+shader_parameter/roll_speed = 0.250000011875
+shader_parameter/roll_strength = 0.250000011875
 shader_parameter/glow_strength = 0.25
 shader_parameter/glow_threshold = 0.65
 
@@ -73,7 +73,7 @@ text = "Quit
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="VHSShader" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_1ehe0")
+material = SubResource("ShaderMaterial_48xlc")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

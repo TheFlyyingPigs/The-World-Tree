@@ -8,10 +8,15 @@ Defines the movement for the player character
 @export var walking_speed := 145.0
 @export var sprinting_speed := 220.0
 @export var air_control := 1.0
+@export var timer : Timer
 
 # VARIABLES
 var direction : Vector2
 var sprinting := false
+var stamina := 50
+
+# CONSTANTS
+const MAX_STAMINA = 50
 
 func tick(delta :float) -> void:
 	'
@@ -31,7 +36,7 @@ func get_speed() -> float:
 	'
 	Returns the current speed of the player
 	'
-	if sprinting:
+	if sprinting && stamina > 0:
 		if body.is_on_floor():
 			return sprinting_speed
 		else:
@@ -41,3 +46,25 @@ func get_speed() -> float:
 			return walking_speed
 		else:
 			return walking_speed/air_control
+
+func update_stamina():
+	'
+	updates the stamina value depending on if the player is sprinting or not
+	'
+	if sprinting:
+		if stamina > 0:
+			stamina -= 2
+			Gui.update_stamina_bar(stamina)
+			timer.start()
+	elif stamina < MAX_STAMINA:
+		stamina += 1
+		timer.start()
+		Gui.update_stamina_bar(stamina)
+
+func _ready() -> void:
+	'
+	connects the timer signal to the update stamina func
+	'
+	timer.timeout.connect(update_stamina)
+	await Globals.scene_loaded
+	Gui.update_stamina_bar(stamina)

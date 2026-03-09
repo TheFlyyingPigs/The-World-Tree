@@ -29,6 +29,10 @@ func update_timer_bar():
 	if Globals.loaded:
 		gui.update_timer_bar()
 
+func update_stamina_bar(value):
+	if Globals.loaded:
+		gui.update_stamina_bar(value)
+
 func fade_out():
 	if Globals.loaded:
 		gui.fade_out()
