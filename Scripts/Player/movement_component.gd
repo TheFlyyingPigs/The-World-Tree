@@ -15,6 +15,7 @@ var direction : Vector2
 var sprinting := false
 var stamina := 50
 
+
 # CONSTANTS
 const MAX_STAMINA = 50
 
@@ -51,7 +52,7 @@ func update_stamina():
 	'
 	updates the stamina value depending on if the player is sprinting or not
 	'
-	if sprinting:
+	if sprinting && not direction == Vector2.ZERO:
 		if stamina > 0:
 			stamina -= 2
 			Gui.update_stamina_bar(stamina)

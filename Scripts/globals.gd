@@ -47,7 +47,7 @@ func _ready() -> void:
 var loaded := false
 signal scene_loaded
 var died := false
-
+var current_scene_id : LevelID
 
 func switch_level(id:LevelID):
 	call_deferred("_deferred_switch_scene",id)
@@ -64,12 +64,17 @@ func _deferred_switch_scene(id):
 	current_scene.free()
 	var new_scene
 	match id:
-		LevelID.INSIDE: new_scene = load("res://Scenes/inside_world.tscn")
+		LevelID.INSIDE: 
+			new_scene = load("res://Scenes/inside_world.tscn")
+			current_scene_id = LevelID.INSIDE
 		LevelID.OUTSIDE: 
 			new_scene = load("res://Scenes/outside_world.tscn")
 			outside_timer_run()
+			current_scene_id = LevelID.OUTSIDE
 		LevelID.MAIN_MENU:
 			new_scene = load("res://Scenes/main_menu.tscn")
+			current_scene_id = LevelID.MAIN_MENU
+	
 	current_scene = new_scene.instantiate()
 	current_scene.ready.connect(scene_initialized)
 	get_tree().root.add_child(current_scene)

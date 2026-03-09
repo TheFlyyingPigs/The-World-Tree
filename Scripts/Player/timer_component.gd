@@ -16,5 +16,8 @@ func _process(_delta: float) -> void:
 	'
 	updates global time_left var and gui progress bar
 	'
-	Globals.time_left = int(timer.time_left)
+	if Globals.current_scene_id == Globals.LevelID.OUTSIDE:
+		Globals.time_left = int(timer.time_left)
+	else:
+		Globals.time_left = Globals.timer_length
 	Gui.update_timer_bar()

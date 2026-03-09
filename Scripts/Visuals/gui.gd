@@ -23,7 +23,7 @@ func update_stamina_bar(value):
 	arguments:
 		value: the stamina value the bar should update to
 	'
-	stamina_bar.value = value
+	create_tween().tween_property(stamina_bar,"value",value,0.075)
 
 func fade_out():
 	'
