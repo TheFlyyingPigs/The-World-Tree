@@ -3,10 +3,23 @@ extends Control
 handles the gui actions
 '
 
+# VARIABLES
+var current_screen : Control
+
+@onready var crosshair := %Crosshair
+@onready var menus := %Menus
+@onready var pause_menu := %PauseMenu
+@onready var upgrade_menu
+
+@onready var timer_bar := %TimerProgress
+@onready var stamina_bar := %StaminaProgress
+@onready var anim := %AlertPlayer
+@onready var alert_label := %AlertLabel
+
+
 func _ready() -> void:
 	$CanvasLayer/BlackScreen.color = Color(0,0,0,1)
 
-@onready var timer_bar := %TimerProgress
 
 func update_timer_bar():
 	'
@@ -15,7 +28,6 @@ func update_timer_bar():
 	timer_bar.max_value = Globals.timer_length
 	timer_bar.value = Globals.time_left
 
-@onready var stamina_bar := %StaminaProgress
 
 func update_stamina_bar(value):
 	'
@@ -37,8 +49,6 @@ func fade_in():
 	'
 	%ScreenFader.play("fade_in")
 
-@onready var anim := %AlertPlayer
-@onready var alert_label := %AlertLabel
 
 func alert(type : Globals.ItemType):
 	'
@@ -57,12 +67,6 @@ func alert(type : Globals.ItemType):
 	anim.play("alert")
 
 
-var current_screen : Control
-
-@onready var crosshair := %Crosshair
-@onready var menus := %Menus
-@onready var pause_menu := %PauseMenu
-@onready var upgrade_menu
 
 func show_screen(type : Gui.ScreenType):
 	'

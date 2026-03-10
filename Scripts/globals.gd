@@ -12,6 +12,24 @@ enum ItemType { # CONTAINS ALL TYPES OF RESOURCES
 var inventory := [] # CONTAINS ALL ITEMS
 var found_this_run := [] # CONTAINS ALL ITEMS FOUND THIS RUN
 
+# SCENE CHANGE IDENTIFIERS
+var current_scene = null
+var loaded := false
+signal scene_loaded
+var died := false
+var current_scene_id : LevelID
+
+enum LevelID{ # CONTAINS ALL SCENES THAT CAN BE SWITCHED TO
+	INSIDE,
+	OUTSIDE,
+	MAIN_MENU
+}
+
+# TIMER VARIABLES
+var timer_length := 120 # Written in seconds
+var time_left := 360
+
+
 func add_item(type : ItemType):
 	'
 	Adds an item to the inventory array
@@ -23,14 +41,7 @@ func add_item(type : ItemType):
 	inventory.append(type)
 	
 
-enum LevelID{ # CONTAINS ALL SCENES THAT CAN BE SWITCHED TO
-	INSIDE,
-	OUTSIDE,
-	MAIN_MENU
-}
 
-
-var current_scene = null
 func _ready() -> void:
 	'
 	Sets up game
@@ -43,11 +54,6 @@ func _ready() -> void:
 	randomize()
 	
 
-# SCENE CHANGE RELATED
-var loaded := false
-signal scene_loaded
-var died := false
-var current_scene_id : LevelID
 
 func switch_level(id:LevelID):
 	call_deferred("_deferred_switch_scene",id)
@@ -93,9 +99,6 @@ func scene_initialized():
 		Gui.alert(Globals.ItemType.DIED)
 		died = false
 
-# TIMER VARIABLES
-var timer_length := 120 # Written in seconds
-var time_left := 360
 
 func outside_timer_run():
 	'

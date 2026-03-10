@@ -11,6 +11,15 @@ enum ScreenType{ # CONTAINS ALL TYPES OF MENUS/SCREENS
 	UPGRADE
 }
 
+@onready var gui 
+@onready var camera 
+
+func scene_switched():
+	'
+	set the variables every time the scene is switched
+	'
+	gui = get_tree().get_first_node_in_group("gui")
+	camera = get_tree().get_first_node_in_group("camera_comp")
 
 
 func alert(type):
@@ -40,13 +49,3 @@ func fade_out():
 func fade_in():
 	if Globals.loaded:
 		gui.fade_in()
-
-@onready var gui 
-@onready var camera 
-
-func scene_switched():
-	'
-	set the variables every time the scene is switched
-	'
-	gui = get_tree().get_first_node_in_group("gui")
-	camera = get_tree().get_first_node_in_group("camera_comp")
