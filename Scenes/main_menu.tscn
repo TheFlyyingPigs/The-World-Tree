@@ -81,5 +81,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="pressed" from="VBoxContainer/MainPlay" to="." method="play"]
 [connection signal="pressed" from="VBoxContainer/MainQuit" to="." method="quit"]

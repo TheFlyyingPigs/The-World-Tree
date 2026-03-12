@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b04xakd0pv2cx"]
+[gd_scene load_steps=7 format=3 uid="uid://b04xakd0pv2cx"]
 
 [ext_resource type="PackedScene" uid="uid://bftqq2syj7664" path="res://Scenes/player.tscn" id="1_mntln"]
 [ext_resource type="PackedScene" uid="uid://csoau7mpja14x" path="res://Scenes/level_transitioner.tscn" id="3_jgd3w"]
+[ext_resource type="AudioStream" uid="uid://c2f52r53eu14" path="res://Assets/SFX/Ambience/PLACE_sandstorm.mp3" id="3_mntln"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i5bjo"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -42,3 +43,11 @@ size = Vector3(6.3095703, 5.773987, 6.7001953)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6805115, -2.2783208)
 operation = 2
 size = Vector3(5.4384766, 5.279297, 5.972412)
+
+[node name="AmbienceSounds" type="AudioStreamPlayer" parent="."]
+
+[node name="MuffledOutsideSounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mntln")
+volume_db = -47.582
+autoplay = true
+parameters/looping = true

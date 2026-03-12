@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cklblqchlc32c"]
+[gd_scene load_steps=12 format=3 uid="uid://cklblqchlc32c"]
 
 [ext_resource type="PackedScene" uid="uid://bftqq2syj7664" path="res://Scenes/player.tscn" id="1_l60d6"]
+[ext_resource type="AudioStream" uid="uid://c2f52r53eu14" path="res://Assets/SFX/Ambience/PLACE_sandstorm.mp3" id="2_cjcjx"]
 [ext_resource type="Script" uid="uid://bdkp8v3kk11lc" path="res://Scripts/Resource_Deposits/deposit_spawner.gd" id="3_l60d6"]
 [ext_resource type="Resource" uid="uid://vf1uyivxts6x" path="res://Resource_Deposits/CloseSpawner.tres" id="4_cjcjx"]
 [ext_resource type="PackedScene" uid="uid://csoau7mpja14x" path="res://Scenes/level_transitioner.tscn" id="5_cjcjx"]
@@ -13,10 +14,18 @@ ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 sky_material = SubResource("ProceduralSkyMaterial_q17te")
 
 [sub_resource type="Environment" id="Environment_22iqp"]
-background_mode = 2
+background_mode = 1
+background_color = Color(0.9643293, 0.5003335, 0.33877057, 1)
+background_energy_multiplier = 0.2
 sky = SubResource("Sky_patlc")
 tonemap_mode = 2
-glow_enabled = true
+fog_enabled = true
+volumetric_fog_enabled = true
+
+[sub_resource type="FogMaterial" id="FogMaterial_g4qxf"]
+density = 0.2055
+albedo = Color(0.81304073, 0.646325, 0.4356786, 1)
+edge_fade = 0.06597558
 
 [sub_resource type="BoxMesh" id="BoxMesh_neogm"]
 size = Vector3(45, 1, 45)
@@ -28,13 +37,26 @@ albedo_color = Color(0.5724594, 0.42118913, 0.25229722, 1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_energy = 0.75
+light_indirect_energy = 0.2
+light_volumetric_fog_energy = 0.7
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_22iqp")
 
+[node name="FogVolume" type="FogVolume" parent="."]
+shape = 4
+material = SubResource("FogMaterial_g4qxf")
+
 [node name="Player" parent="." instance=ExtResource("1_l60d6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6582623)
+
+[node name="AmbienceSounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_cjcjx")
+volume_db = -17.05
+autoplay = true
+parameters/looping = true
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3156095, 0)
@@ -83,3 +105,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.319304, 0, 1.6299024)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.7843436, 0.6203267, 0, -0.6203267, 0.7843436, 0, 4.5781584, 0.03809619)
+light_volumetric_fog_energy = 16.0
+spot_range = 7.416045

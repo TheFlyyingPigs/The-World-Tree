@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dum1yujii1ubv"]
+[gd_scene load_steps=12 format=3 uid="uid://dum1yujii1ubv"]
 
 [ext_resource type="Script" uid="uid://2flmqe8likxl" path="res://Scripts/Resource_Deposits/resource_deposit.gd" id="1_iuuqq"]
 [ext_resource type="Material" uid="uid://t7tq7y4mpui" path="res://Resource_Deposits/DepositParticle.tres" id="2_iuuqq"]
+[ext_resource type="AudioStream" uid="uid://ceto42ly0f5r0" path="res://Assets/SFX/PLACE_find_resource.wav" id="3_ofyhk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_equij"]
 radius = 1.2267792
@@ -84,6 +85,21 @@ tracks/2/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BreakSounds")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_ofyhk")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8542l"]
 _data = {
@@ -121,3 +137,7 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_8542l")
 }
+
+[node name="BreakSounds" type="AudioStreamPlayer3D" parent="."]
+volume_db = -7.653
+bus = &"Sound Effects"

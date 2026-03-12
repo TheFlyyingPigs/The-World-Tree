@@ -1,11 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://bftqq2syj7664"]
+[gd_scene load_steps=22 format=3 uid="uid://bftqq2syj7664"]
 
 [ext_resource type="Script" uid="uid://bxqq3l150xbtp" path="res://Scripts/Player/player.gd" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://qnck7cjv4cy7" path="res://Scripts/Player/input_component.gd" id="2_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://b3cc70iiy5rvc" path="res://Assets/SFX/Footsteps/PLACE_footstep1.ogg" id="2_7dp3o"]
 [ext_resource type="Script" uid="uid://bshe62toj41q8" path="res://Scripts/Player/movement_component.gd" id="3_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://c56sk4wnyov54" path="res://Assets/SFX/Footsteps/PLACE_footstep2.ogg" id="3_h4iuc"]
 [ext_resource type="Script" uid="uid://fyfst4gf418a" path="res://Scripts/Player/camera_component.gd" id="4_vgqql"]
 [ext_resource type="Script" uid="uid://bpatlnmhdphmq" path="res://Scripts/Player/camera_bob_component.gd" id="5_f1ek2"]
 [ext_resource type="Script" uid="uid://b7q3l56ryo8qg" path="res://Scripts/Player/interact_component.gd" id="5_fkybt"]
+[ext_resource type="AudioStream" uid="uid://cqy0yt27831aq" path="res://Assets/SFX/Footsteps/PLACE_footstep4.ogg" id="5_qqcod"]
+[ext_resource type="AudioStream" uid="uid://lpt6didip81y" path="res://Assets/SFX/Footsteps/PLACE_footstep5.ogg" id="6_igrcy"]
 [ext_resource type="Script" uid="uid://v05n5ock65wg" path="res://Scripts/Player/timer_component.gd" id="6_x3wgy"]
 [ext_resource type="Script" uid="uid://beiofmic6gdsp" path="res://Scripts/Player/death_component.gd" id="7_3smsa"]
 [ext_resource type="PackedScene" uid="uid://bwxxn76xj3ic0" path="res://Scenes/gui.tscn" id="8_8erm5"]
@@ -126,6 +130,25 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0.03, 0), Vector3(1.5653204e-05, 0, 0), Vector3(0, -0.03, 0), Vector3(9.093247e-05, 0, 0), Vector3(0, 0.03, 0)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FootstepSounds")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [],
+"times": PackedFloat32Array()
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fs7ks"]
+random_volume_offset_db = 0.25
+streams_count = 4
+stream_0/stream = ExtResource("2_7dp3o")
+stream_1/stream = ExtResource("3_h4iuc")
+stream_2/stream = ExtResource("5_qqcod")
+stream_3/stream = ExtResource("6_igrcy")
 
 [sub_resource type="Animation" id="Animation_8erm5"]
 resource_name = "running"
@@ -143,6 +166,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0.03, 0), Vector3(1.5653204e-05, 0, 0), Vector3(0, -0.03, 0), Vector3(9.093247e-05, 0, 0), Vector3(0, 0.03, 0)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FootstepSounds")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_fs7ks")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_3smsa"]
 resource_name = "walking"
@@ -160,6 +198,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0.03, 0), Vector3(1.5653204e-05, 0, 0), Vector3(0, -0.03, 0), Vector3(9.093247e-05, 0, 0), Vector3(0, 0.03, 0)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FootstepSounds")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_fs7ks")
+}],
+"times": PackedFloat32Array(0.40344697)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f1ek2"]
 _data = {
@@ -178,6 +231,10 @@ script = ExtResource("1_cvnsp")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06738281, 0)
 shape = SubResource("CapsuleShape3D_f60y1")
+
+[node name="FootstepSounds" type="AudioStreamPlayer" parent="."]
+volume_db = -11.555
+pitch_scale = 0.81
 
 [node name="CameraAnims" type="AnimationPlayer" parent="."]
 libraries = {
@@ -199,6 +256,10 @@ v_offset = -0.0008849621
 [node name="RayCast3D" type="RayCast3D" parent="Pivot/AnimPivot"]
 target_position = Vector3(0, 0, -5)
 collision_mask = 2
+
+[node name="Gui" parent="." instance=ExtResource("8_8erm5")]
+process_mode = 3
+mouse_filter = 2
 
 [node name="InputComponent" type="Node" parent="."]
 unique_name_in_owner = true
@@ -253,10 +314,6 @@ one_shot = true
 unique_name_in_owner = true
 script = ExtResource("7_3smsa")
 metadata/_custom_type_script = "uid://beiofmic6gdsp"
-
-[node name="Gui" parent="." instance=ExtResource("8_8erm5")]
-process_mode = 3
-mouse_filter = 2
 
 [node name="StaminaTimer" type="Timer" parent="."]
 wait_time = 0.05
