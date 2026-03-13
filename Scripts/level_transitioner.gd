@@ -9,4 +9,4 @@ func switch_level(body: Node3D) -> void:
 	switches the level to the connected_level var
 	'
 	if body is CharacterBody3D:
-		Globals.switch_level(connected_level)
+		Globals.switch_level(connected_level,false)

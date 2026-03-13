@@ -235,6 +235,7 @@ shape = SubResource("CapsuleShape3D_f60y1")
 [node name="FootstepSounds" type="AudioStreamPlayer" parent="."]
 volume_db = -11.555
 pitch_scale = 0.81
+bus = &"Sound Effects"
 
 [node name="CameraAnims" type="AnimationPlayer" parent="."]
 libraries = {

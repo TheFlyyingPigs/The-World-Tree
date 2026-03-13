@@ -15,6 +15,6 @@ script = ExtResource("1_363mk")
 mesh = SubResource("SphereMesh_363mk")
 mesh_material = SubResource("StandardMaterial3D_marlj")
 collision_shape = SubResource("SphereShape3D_363mk")
-resource_type = 2
+resource_type = 1
 particle_color = Color(0.42273512, 0.22212192, 0.03978353, 1)
 metadata/_custom_type_script = "uid://drfc2dahc1go0"

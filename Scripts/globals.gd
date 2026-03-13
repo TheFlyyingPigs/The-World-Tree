@@ -3,14 +3,35 @@ extends Node
 # TODO ADD ACTUAL RESOURCE TYPES!
 enum ItemType { # CONTAINS ALL TYPES OF RESOURCES
 	WATER,
-	LIGHT,
 	DIRT,
+	LIGHT,
 	
-	DIED, # NOT A RESOURCE TYPE, USED FOR ALERTS WHEN PLAYER DIED
 }
 
-var inventory := [] # CONTAINS ALL ITEMS
-var found_this_run := [] # CONTAINS ALL ITEMS FOUND THIS RUN
+const ItemTypeAttributes = { # ATTRIBUTES FOR THE ITEMTYPE ENUM
+	"WATER":{
+		'total'='total_water',
+		'current'='current_water'
+	},
+	"DIRT":{
+		'total'='total_dirt',
+		'current'='current_dirt'
+	},
+	"LIGHT":{
+		'total'='total_light',
+		'current'='current_light'
+	}
+}
+
+var inventory := { # CONTAINS NUMBER OF ALL ITEMS
+	'total_water':0,
+	'current_water':0,
+	'total_dirt':0,
+	'current_dirt':0,
+	'total_light':0,
+	'current_light':0,
+} 
+
 
 # SCENE CHANGE IDENTIFIERS
 var current_scene = null
@@ -37,10 +58,31 @@ func add_item(type : ItemType):
 	Arguments:
 		type: the type of item being added
 	'
-	found_this_run.append(type)
-	inventory.append(type)
+	
+	inventory[ItemTypeAttributes[ItemType.keys()[type]]["current"]] += 1
+	
 	
 
+func update_inventory(didDie):
+	'
+	updates inventory dictionary current and total values
+	
+	arguments:
+		didDie: if the player died to cause this scene transition
+	'
+	if didDie:
+		for i in ItemType:
+			
+			inventory[ItemTypeAttributes[i]["current"]] = 0
+			
+	else:
+		for i in ItemType:
+			
+			var current = inventory[ItemTypeAttributes[i]["current"]]
+			
+			inventory[ItemTypeAttributes[i]["total"]] += current
+			inventory[ItemTypeAttributes[i]["current"]] = 0
+			
 
 func _ready() -> void:
 	'
@@ -55,10 +97,11 @@ func _ready() -> void:
 	
 
 
-func switch_level(id:LevelID):
+func switch_level(id:LevelID,didDie):
 	call_deferred("_deferred_switch_scene",id)
 	loaded = false
-	found_this_run.clear()
+	update_inventory(didDie)
+	print("inventory : "+str(inventory))
 
 func _deferred_switch_scene(id):
 	'
@@ -96,7 +139,7 @@ func scene_initialized():
 	scene_loaded.emit()
 	Gui.fade_in()
 	if died:
-		Gui.alert(Globals.ItemType.DIED)
+		Gui.alert(true)
 		died = false
 
 

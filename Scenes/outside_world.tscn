@@ -28,7 +28,7 @@ albedo = Color(0.81304073, 0.646325, 0.4356786, 1)
 edge_fade = 0.06597558
 
 [sub_resource type="BoxMesh" id="BoxMesh_neogm"]
-size = Vector3(45, 1, 45)
+size = Vector3(150, 1, 150)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgo3i"]
 albedo_color = Color(0.5724594, 0.42118913, 0.25229722, 1)
@@ -37,7 +37,7 @@ albedo_color = Color(0.5724594, 0.42118913, 0.25229722, 1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_energy = 0.75
+light_energy = 0.45
 light_indirect_energy = 0.2
 light_volumetric_fog_energy = 0.7
 shadow_enabled = true
@@ -56,6 +56,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6582623)
 stream = ExtResource("2_cjcjx")
 volume_db = -17.05
 autoplay = true
+bus = &"Ambience"
 parameters/looping = true
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
@@ -71,37 +72,85 @@ size = Vector3(6.3095703, 5.773987, 6.7001953)
 [node name="LevelTransitioner" parent="." instance=ExtResource("5_cjcjx")]
 
 [node name="DepositSpawner" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.747161, 0, -8.9309635)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.807941, -2.2773275, -8.9309635)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
 
 [node name="DepositSpawner2" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.051902, 0, -15.019175)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.862003, -4.468487, -46.580338)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
 
 [node name="DepositSpawner3" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9126644, 0, -14.91556)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.75149, -83.58864, -14.91556)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
 
 [node name="DepositSpawner4" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7890334, 0, -11.832692)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.002878, 0, 20.935295)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
 
 [node name="DepositSpawner5" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.929333, 0, -6.188242)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.074381, 0, -22.326128)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
 
 [node name="DepositSpawner6" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.319304, 0, 1.6299024)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.921622, 0, 21.03836)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+
+[node name="DepositSpawner7" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.041428, 0, -8.057831)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+
+[node name="DepositSpawner8" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.00538, 0, -25.542377)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+
+[node name="DepositSpawner9" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.301155, 0, -61.903416)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+
+[node name="DepositSpawner10" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.04805, 0, -62.355927)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+
+[node name="DepositSpawner11" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.61121, 0, -34.686287)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+
+[node name="DepositSpawner12" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.887875, 0, -46.02944)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+
+[node name="DepositSpawner13" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.88528, 0, -3.7834396)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+
+[node name="DepositSpawner14" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.88528, 0, -5.7834396)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"

@@ -45,9 +45,11 @@ operation = 2
 size = Vector3(5.4384766, 5.279297, 5.972412)
 
 [node name="AmbienceSounds" type="AudioStreamPlayer" parent="."]
+bus = &"Ambience"
 
 [node name="MuffledOutsideSounds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_mntln")
 volume_db = -47.582
 autoplay = true
+bus = &"Ambience"
 parameters/looping = true

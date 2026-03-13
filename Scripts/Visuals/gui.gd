@@ -50,7 +50,7 @@ func fade_in():
 	%ScreenFader.play("fade_in")
 
 
-func alert(type : Globals.ItemType):
+func alert(type : ):
 	'
 	shows an alert for an item being picked
 	
@@ -62,7 +62,7 @@ func alert(type : Globals.ItemType):
 		Globals.ItemType.WATER: alert_label.text = "Found Water" 
 		Globals.ItemType.DIRT: alert_label.text = "Found dirt"
 		#TODO ADD THE REST OF THE RESOURCES
-		Globals.ItemType.DIED: alert_label.text = "Lost all on-hand resources"
+		true: alert_label.text = "Lost all on-hand resources"
 	
 	anim.play("alert")
 
