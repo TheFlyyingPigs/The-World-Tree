@@ -19,6 +19,7 @@ boot_splash/show_image=false
 
 Globals="*res://Scripts/globals.gd"
 Gui="*res://Scripts/Visuals/gui_handler.gd"
+UpgradeManager="*res://Scripts/Upgrades/upgrade_manager.gd"
 
 [debug]
 

@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsy0ey7gtptga"]
+
+[ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="1_dvmix"]
+[ext_resource type="Script" uid="uid://b3ue62nvu4xav" path="res://Scenes/upgrade_option.gd" id="1_wiksl"]
+
+[sub_resource type="Gradient" id="Gradient_wiksl"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.20784314, 0.5019608, 0.21568628, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pd1fd"]
+gradient = SubResource("Gradient_wiksl")
+width = 40
+height = 40
+
+[node name="UpgradeOption" type="Control"]
+layout_mode = 3
+anchor_right = 0.19700001
+anchor_bottom = 0.5
+offset_right = -252.16002
+offset_bottom = -360.0
+script = ExtResource("1_wiksl")
+
+[node name="Name_Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 235.0
+offset_right = 238.0
+offset_bottom = 258.0
+text = "Test name"
+horizontal_alignment = 1
+
+[node name="Description_Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 282.0
+offset_right = 259.0
+offset_bottom = 379.0
+text = "Test description"
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 25.0
+offset_right = 240.0
+offset_bottom = 220.0
+texture = ExtResource("1_dvmix")
+
+[node name="Background" type="TextureButton" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(7.12, 10.280001)
+texture_normal = SubResource("GradientTexture2D_pd1fd")
+
+[connection signal="pressed" from="Background" to="." method="button_pressed"]
