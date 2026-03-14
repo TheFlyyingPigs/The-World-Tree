@@ -9,7 +9,7 @@ var current_screen : Control
 @onready var crosshair := %Crosshair
 @onready var menus := %Menus
 @onready var pause_menu := %PauseMenu
-@onready var upgrade_menu
+@onready var upgrade_menu := %UpgradeMenu
 
 @onready var timer_bar := %TimerProgress
 @onready var stamina_bar := %StaminaProgress
@@ -84,9 +84,21 @@ func show_screen(type : Gui.ScreenType):
 			pause_menu.visible = true
 			current_screen = pause_menu
 		Gui.ScreenType.UPGRADE: 
+			reload_upgrades()
 			upgrade_menu.visible = true
 			current_screen = upgrade_menu
 
+
+func reload_upgrades():
+	'
+	reloads upgrade options when you open the upgrade menu
+	'
+	var container = $CanvasLayer/Menus/UpgradeMenu/HBoxContainer
+	
+	for i in UpgradeManager.upgrade_amount:
+		var upgrade_option = container.get_children()[i]
+		
+		upgrade_option.set_up()
 
 func resume() -> void:
 	'

@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bwxxn76xj3ic0"]
+[gd_scene load_steps=17 format=3 uid="uid://bwxxn76xj3ic0"]
 
 [ext_resource type="Script" uid="uid://dwsao5hvj6lcw" path="res://Scripts/Visuals/gui.gd" id="1_qyd3e"]
 [ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="2_bm56d"]
 [ext_resource type="FontFile" uid="uid://camyb2ia08yy2" path="res://Assets/Textures/GUI/VCR_OSD_MONO_1.001.ttf" id="3_8kag3"]
 [ext_resource type="Shader" uid="uid://5g32sl1r6jse" path="res://Assets/VFX/vhs.gdshader" id="3_n5m23"]
+[ext_resource type="PackedScene" uid="uid://bsy0ey7gtptga" path="res://Scenes/upgrade_option.tscn" id="4_3w84o"]
 [ext_resource type="Texture2D" uid="uid://b1jgva0bxvgik" path="res://Assets/Textures/GUI/spr_visor_overlay.png" id="4_m6o0h"]
 
 [sub_resource type="Gradient" id="Gradient_n5m23"]
@@ -273,6 +274,52 @@ layout_mode = 2
 text = "Quit
 "
 
+[node name="UpgradeMenu" type="Control" parent="CanvasLayer/Menus"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Menus/UpgradeMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 183.0
+offset_top = 99.0
+offset_right = -187.0
+offset_bottom = -116.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.08627451, 0.18431373, 0.08627451, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menus/UpgradeMenu"]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.215625
+anchor_top = 0.2
+anchor_right = 0.815625
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="UpgradeOption" parent="CanvasLayer/Menus/UpgradeMenu/HBoxContainer" instance=ExtResource("4_3w84o")]
+layout_mode = 2
+
+[node name="UpgradeOption2" parent="CanvasLayer/Menus/UpgradeMenu/HBoxContainer" instance=ExtResource("4_3w84o")]
+layout_mode = 2
+
+[node name="UpgradeOption3" parent="CanvasLayer/Menus/UpgradeMenu/HBoxContainer" instance=ExtResource("4_3w84o")]
+layout_mode = 2
+
 [node name="BlackScreen" type="ColorRect" parent="CanvasLayer"]
 z_index = 4096
 z_as_relative = false
@@ -314,3 +361,6 @@ texture = ExtResource("4_m6o0h")
 
 [connection signal="pressed" from="CanvasLayer/Menus/PauseMenu/VBoxContainer/PauseResume" to="." method="resume"]
 [connection signal="pressed" from="CanvasLayer/Menus/PauseMenu/VBoxContainer/PauseQuit" to="." method="quit"]
+[connection signal="upgrade_selected" from="CanvasLayer/Menus/UpgradeMenu/HBoxContainer/UpgradeOption" to="." method="resume" unbinds=1]
+[connection signal="upgrade_selected" from="CanvasLayer/Menus/UpgradeMenu/HBoxContainer/UpgradeOption2" to="." method="resume" unbinds=1]
+[connection signal="upgrade_selected" from="CanvasLayer/Menus/UpgradeMenu/HBoxContainer/UpgradeOption3" to="." method="resume" unbinds=1]

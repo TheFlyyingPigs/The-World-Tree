@@ -1,4 +1,9 @@
 extends Node
+'
+manages everything relating to the upgrade system
+'
+
+var upgrade_amount := 3 
 
 enum Upgrades {
 	TEST_1,
@@ -32,8 +37,7 @@ var UpgradeAttributes = {
 	},
 }
 
-func apply_upgrade(upgrade : Upgrades):
-	var upgrade_name = Upgrades.keys()[upgrade]
-	var power = UpgradeAttributes[upgrade_name].power
-	UpgradeAttributes[upgrade_name].variable += power
-	print_debug("Upgraded variable: "+UpgradeAttributes[upgrade_name].variable)
+func apply_upgrade(upgrade):
+	var power = UpgradeAttributes[upgrade].power
+	UpgradeAttributes[upgrade].variable += power
+	print_debug("Upgraded variable: "+str(UpgradeAttributes[upgrade].variable))

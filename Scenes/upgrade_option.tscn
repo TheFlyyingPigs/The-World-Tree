@@ -14,36 +14,41 @@ height = 40
 
 [node name="UpgradeOption" type="Control"]
 layout_mode = 3
-anchor_right = 0.19700001
-anchor_bottom = 0.5
-offset_right = -252.16002
-offset_bottom = -360.0
+anchor_right = 0.362
+anchor_bottom = 0.86
+offset_right = -252.16003
+offset_bottom = -310.0
+size_flags_horizontal = 3
 script = ExtResource("1_wiksl")
 
 [node name="Name_Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 44.0
-offset_top = 235.0
-offset_right = 238.0
-offset_bottom = 258.0
+offset_left = 35.0
+offset_top = 180.0
+offset_right = 229.0
+offset_bottom = 203.0
+scale = Vector2(0.75, 0.75)
 text = "Test name"
 horizontal_alignment = 1
 
 [node name="Description_Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 27.0
-offset_top = 282.0
-offset_right = 259.0
-offset_bottom = 379.0
+offset_left = 18.0
+offset_top = 227.0
+offset_right = 250.0
+offset_bottom = 324.0
+scale = Vector2(0.75, 0.75)
 text = "Test description"
 horizontal_alignment = 1
 
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 45.0
-offset_top = 25.0
-offset_right = 240.0
+offset_left = 35.0
+offset_top = 25.000002
+offset_right = 230.0
 offset_bottom = 220.0
+scale = Vector2(0.75, 0.75)
+mouse_filter = 2
 texture = ExtResource("1_dvmix")
 
 [node name="Background" type="TextureButton" parent="."]
@@ -51,7 +56,7 @@ z_index = -1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(7.12, 10.280001)
+scale = Vector2(5.34, 7.71)
 texture_normal = SubResource("GradientTexture2D_pd1fd")
 
 [connection signal="pressed" from="Background" to="." method="button_pressed"]
