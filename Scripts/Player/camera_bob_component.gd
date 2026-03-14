@@ -17,10 +17,10 @@ func tick():
 	if movement_component.direction == Vector2.ZERO:
 		camera_anims.current_animation = "idle"
 	else:
-		if movement_component.sprinting == false:
-			camera_anims.current_animation = "walking"
-		else:
+		if movement_component.sprinting == true && movement_component.stamina > 0:
 			camera_anims.current_animation = "running"
+		else:
+			camera_anims.current_animation = "walking"
 	# CAMERA SWAY
 	if input_component.move_dir.x > 0:
 		anim_pivot.rotation.z = lerp_angle(anim_pivot.rotation.z,deg_to_rad(-MAX_SWAY), 0.035)

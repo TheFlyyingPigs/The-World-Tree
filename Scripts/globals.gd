@@ -5,7 +5,6 @@ enum ItemType { # CONTAINS ALL TYPES OF RESOURCES
 	WATER,
 	DIRT,
 	LIGHT,
-	
 }
 
 const ItemTypeAttributes = { # ATTRIBUTES FOR THE ITEMTYPE ENUM
@@ -20,7 +19,7 @@ const ItemTypeAttributes = { # ATTRIBUTES FOR THE ITEMTYPE ENUM
 	"LIGHT":{
 		'total'='total_light',
 		'current'='current_light'
-	}
+	},
 }
 
 var inventory := { # CONTAINS NUMBER OF ALL ITEMS
@@ -101,7 +100,7 @@ func switch_level(id:LevelID,didDie):
 	call_deferred("_deferred_switch_scene",id)
 	loaded = false
 	update_inventory(didDie)
-	print("inventory : "+str(inventory))
+
 
 func _deferred_switch_scene(id):
 	'
