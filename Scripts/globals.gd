@@ -49,6 +49,15 @@ enum LevelID{ # CONTAINS ALL SCENES THAT CAN BE SWITCHED TO
 var timer_length := 120 # Written in seconds
 var time_left := 360
 
+# UPGRADE GLOBAL VARS
+enum Upgrades{
+	FOG_DENSITY_1,
+	FOG_DENSITY_2,
+	FOG_DENSITY_3,
+	FOG_DENSITY_4,
+	FOG_DENSITY_5,
+}
+
 
 func add_item(type : ItemType):
 	'

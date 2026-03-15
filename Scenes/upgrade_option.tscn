@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bsy0ey7gtptga"]
 
 [ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="1_dvmix"]
-[ext_resource type="Script" uid="uid://b3ue62nvu4xav" path="res://Scenes/upgrade_option.gd" id="1_wiksl"]
+[ext_resource type="Script" uid="uid://cqxmwxl2lfarn" path="res://Scripts/Upgrades/upgrade_option.gd" id="1_wiksl"]
 
 [sub_resource type="Gradient" id="Gradient_wiksl"]
 offsets = PackedFloat32Array(0)
@@ -34,11 +34,21 @@ horizontal_alignment = 1
 [node name="Description_Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 18.0
-offset_top = 227.0
+offset_top = 204.0
 offset_right = 250.0
-offset_bottom = 324.0
+offset_bottom = 262.38
 scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 16
 text = "Test description"
+horizontal_alignment = 1
+
+[node name="Cost_Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 244.00002
+offset_right = 218.675
+offset_bottom = 293.0
+scale = Vector2(0.75, 0.75)
 horizontal_alignment = 1
 
 [node name="Icon" type="TextureRect" parent="."]

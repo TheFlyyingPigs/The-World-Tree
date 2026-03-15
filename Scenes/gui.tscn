@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bwxxn76xj3ic0"]
+[gd_scene load_steps=18 format=3 uid="uid://bwxxn76xj3ic0"]
 
 [ext_resource type="Script" uid="uid://dwsao5hvj6lcw" path="res://Scripts/Visuals/gui.gd" id="1_qyd3e"]
 [ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="2_bm56d"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://5g32sl1r6jse" path="res://Assets/VFX/vhs.gdshader" id="3_n5m23"]
 [ext_resource type="PackedScene" uid="uid://bsy0ey7gtptga" path="res://Scenes/upgrade_option.tscn" id="4_3w84o"]
 [ext_resource type="Texture2D" uid="uid://b1jgva0bxvgik" path="res://Assets/Textures/GUI/spr_visor_overlay.png" id="4_m6o0h"]
+[ext_resource type="Script" uid="uid://ugx0bv7qppso" path="res://Scripts/Upgrades/upgrade_menu.gd" id="4_xnb2j"]
 
 [sub_resource type="Gradient" id="Gradient_n5m23"]
 offsets = PackedFloat32Array(0)
@@ -284,6 +285,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("4_xnb2j")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Menus/UpgradeMenu"]
 layout_mode = 1
@@ -361,6 +363,3 @@ texture = ExtResource("4_m6o0h")
 
 [connection signal="pressed" from="CanvasLayer/Menus/PauseMenu/VBoxContainer/PauseResume" to="." method="resume"]
 [connection signal="pressed" from="CanvasLayer/Menus/PauseMenu/VBoxContainer/PauseQuit" to="." method="quit"]
-[connection signal="upgrade_selected" from="CanvasLayer/Menus/UpgradeMenu/HBoxContainer/UpgradeOption" to="." method="resume" unbinds=1]
-[connection signal="upgrade_selected" from="CanvasLayer/Menus/UpgradeMenu/HBoxContainer/UpgradeOption2" to="." method="resume" unbinds=1]
-[connection signal="upgrade_selected" from="CanvasLayer/Menus/UpgradeMenu/HBoxContainer/UpgradeOption3" to="." method="resume" unbinds=1]
