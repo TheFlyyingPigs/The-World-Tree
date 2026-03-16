@@ -11,6 +11,7 @@ var refresh_cost := 1 # Random common resource
 @onready var refresh_item_type 
 
 @onready var refresh_button: Button = $UpgradeRefresh
+@onready var inventory_label: Label = $UpgradeInventory
 
 func open_screen():
 	'
@@ -88,3 +89,17 @@ func _ready() -> void:
 	'
 	refresh_item_type = Globals.ItemType.keys()[Globals.common_item_types[randi_range(0, Globals.common_item_types.size()-1)]]
 	refresh_button.text = "Refresh: x" +str(refresh_cost)+" "+str(refresh_item_type)
+
+
+func _process(_delta: float) -> void:
+	'
+	sets inventory label every frame
+	'
+	inventory_label.text = get_inventory_label()
+
+func get_inventory_label() -> String:
+	'
+	returns inventory label
+	'
+	return  "water: "+str(Globals.inventory.total_water)+"x   metal scrap: "+str(Globals.inventory.total_metal)+"x   co2 canister: "+str(Globals.inventory.total_co2)+"x
+	light crystal: "+str(Globals.inventory.total_light)+"x   Electrical scrap: "+str(Globals.inventory.total_electric)+"x   soul essence: "+str(Globals.inventory.total_soul)+"x"
