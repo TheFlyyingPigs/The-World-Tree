@@ -37,6 +37,7 @@ window/stretch/mode="canvas_items"
 gui=""
 player=""
 camera_comp=""
+outside=""
 
 [gui]
 

@@ -87,6 +87,9 @@ enum Upgrades{
 	FOG_DENSITY_5,
 }
 
+# Upgradeable Variables:
+var fog_density := 0.4
+
 
 func add_item(type : ItemType):
 	'

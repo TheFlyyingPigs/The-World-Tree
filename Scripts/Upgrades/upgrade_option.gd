@@ -49,9 +49,9 @@ func button_pressed():
 	called when the upgrade is clicked
 	checks if player can buy upgrade
 	'
-	if Globals.inventory[total_type_1] > upgrade.cost_1:
+	if Globals.inventory[total_type_1] >= upgrade.cost_1:
 		if upgrade.second_cost:
-			if Globals.inventory[total_type_2] > upgrade.cost_2:
+			if Globals.inventory[total_type_2] >= upgrade.cost_2:
 				on_upgrade_selected()
 			else:
 				animation_player.current_animation = "failed_buying"
@@ -59,6 +59,7 @@ func button_pressed():
 			on_upgrade_selected()
 	else:
 		animation_player.current_animation = "failed_buying"
+
 
 func on_upgrade_selected():
 	'

@@ -3,7 +3,7 @@ extends Control
 the manager of all the upgrade options
 '
 
-@export var possibleUpgrades : Array[UpgradeType]
+var available_upgrades : Array[UpgradeType]
 
 var found_upgrades := []
 
@@ -47,8 +47,8 @@ func get_random_upgrade(upgrade_options) -> UpgradeType:
 	'
 	var possible_upgrades := []
 	
-	for choice in possibleUpgrades:
-		print(choice)
+	
+	for choice in available_upgrades:
 		if choice in upgrade_options: # if choice not already an option
 			pass
 		elif choice in possible_upgrades: # if choice already in list of possible random upgrades
@@ -61,7 +61,6 @@ func get_random_upgrade(upgrade_options) -> UpgradeType:
 						possible_upgrades.append(choice)
 		else: # if it passes all those checks
 			possible_upgrades.append(choice)
-		print(possible_upgrades)
 	if possible_upgrades.size() > 0:
 		var random_item = possible_upgrades.pick_random()
 		return random_item
@@ -77,7 +76,7 @@ func refresh():
 	'
 	var total = Globals.ItemTypeAttributes[refresh_item_type].total
 	
-	if Globals.inventory[total] > refresh_cost:
+	if Globals.inventory[total] >= refresh_cost:
 		refresh_cost += 1
 		generate_upgrade_choices()
 		refresh_item_type = Globals.ItemType.keys()[Globals.common_item_types[randi_range(0, Globals.common_item_types.size()-1)]]
@@ -85,10 +84,15 @@ func refresh():
 
 func _ready() -> void:
 	'
-	sets up the visuals for everything when the scene loads
+	sets up everything when the scene loads
 	'
 	refresh_item_type = Globals.ItemType.keys()[Globals.common_item_types[randi_range(0, Globals.common_item_types.size()-1)]]
 	refresh_button.text = "Refresh: x" +str(refresh_cost)+" "+str(refresh_item_type)
+	
+	for i in DirAccess.get_files_at("res://Upgrades/"):
+		if i != "null_upgrade_type.tres":
+			available_upgrades.append(load("res://Upgrades/"+i))
+
 
 
 func _process(_delta: float) -> void:
@@ -97,9 +101,10 @@ func _process(_delta: float) -> void:
 	'
 	inventory_label.text = get_inventory_label()
 
+
 func get_inventory_label() -> String:
 	'
 	returns inventory label
 	'
-	return  "water: "+str(Globals.inventory.total_water)+"x   metal scrap: "+str(Globals.inventory.total_metal)+"x   co2 canister: "+str(Globals.inventory.total_co2)+"x
+	return  "water: "+str(Globals.inventory.total_water)+"x   scrap metal: "+str(Globals.inventory.total_metal)+"x   co2 canister: "+str(Globals.inventory.total_co2)+"x
 	light crystal: "+str(Globals.inventory.total_light)+"x   Electrical scrap: "+str(Globals.inventory.total_electric)+"x   soul essence: "+str(Globals.inventory.total_soul)+"x"
