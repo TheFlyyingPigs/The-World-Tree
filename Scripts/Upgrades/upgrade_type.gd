@@ -9,7 +9,7 @@ resource that contains all information that an upgrade needs
 
 # upgrade variables
 @export var upgrade : Globals.Upgrades
-@export var prerequisites : Array[Globals.Upgrades] = []
+@export var prerequisites : Array[Globals.Upgrades]
 
 # cost variables
 @export var cost_1_type : Globals.ItemType

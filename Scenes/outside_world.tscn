@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cklblqchlc32c"]
+[gd_scene load_steps=12 format=3 uid="uid://cklblqchlc32c"]
 
 [ext_resource type="PackedScene" uid="uid://bftqq2syj7664" path="res://Scenes/player.tscn" id="1_l60d6"]
 [ext_resource type="AudioStream" uid="uid://c2f52r53eu14" path="res://Assets/SFX/Ambience/PLACE_sandstorm.mp3" id="2_cjcjx"]
@@ -24,37 +24,8 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 volumetric_fog_albedo = Color(0.45471716, 0.3537043, 0.29561317, 1)
 
-[sub_resource type="Curve" id="Curve_cjcjx"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.93939394, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_patlc"]
-curve = SubResource("Curve_cjcjx")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g4qxf"]
-lifetime_randomness = 1.0
-particle_flag_align_y = true
-emission_shape_offset = Vector3(-83.955, 0, 0)
-emission_shape_scale = Vector3(1, 3.715, 1)
-emission_shape = 3
-emission_box_extents = Vector3(78.665, 1, 78.665)
-direction = Vector3(10, 0, 0)
-spread = 0.556
-initial_velocity_min = 42.899998
-initial_velocity_max = 53.25
-gravity = Vector3(0, -2, 0)
-scale_curve = SubResource("CurveTexture_patlc")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cjcjx"]
-albedo_color = Color(0.58401984, 0.4195379, 0.3399049, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_q17te"]
-material = SubResource("StandardMaterial3D_cjcjx")
-size = Vector2(0.15, 1.11)
-orientation = 2
-
 [sub_resource type="FogMaterial" id="FogMaterial_g4qxf"]
-density = 0.5
+density = 0.4
 albedo = Color(0.62239605, 0.46347463, 0.3471015, 1)
 edge_fade = 0.31383365
 
@@ -75,15 +46,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_22iqp")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-amount = 1000
-lifetime = 10.0
-speed_scale = 1.66
-randomness = 1.0
-visibility_aabb = AABB(-76.125, -4, -77.39, 150, 8, 150)
-process_material = SubResource("ParticleProcessMaterial_g4qxf")
-draw_pass_1 = SubResource("PlaneMesh_q17te")
 
 [node name="FogVolume" type="FogVolume" parent="."]
 shape = 4
@@ -201,3 +163,5 @@ metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
 transform = Transform3D(1, 0, 0, 0, 0.7843436, 0.6203267, 0, -0.6203267, 0.7843436, 0, 4.5781584, 0.03809619)
 light_volumetric_fog_energy = 16.0
 spot_range = 7.416045
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]

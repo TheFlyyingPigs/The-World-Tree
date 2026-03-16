@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bwxxn76xj3ic0"]
+[gd_scene load_steps=23 format=3 uid="uid://bwxxn76xj3ic0"]
 
 [ext_resource type="Script" uid="uid://dwsao5hvj6lcw" path="res://Scripts/Visuals/gui.gd" id="1_qyd3e"]
 [ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="2_bm56d"]
@@ -7,7 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://bsy0ey7gtptga" path="res://Scenes/upgrade_option.tscn" id="4_3w84o"]
 [ext_resource type="Texture2D" uid="uid://b1jgva0bxvgik" path="res://Assets/Textures/GUI/spr_visor_overlay.png" id="4_m6o0h"]
 [ext_resource type="Script" uid="uid://ugx0bv7qppso" path="res://Scripts/Upgrades/upgrade_menu.gd" id="4_xnb2j"]
+[ext_resource type="Script" uid="uid://dckfs4nkavx01" path="res://Scripts/Upgrades/upgrade_type.gd" id="5_bf1fa"]
 [ext_resource type="Resource" uid="uid://d4tc6js8k2by" path="res://Upgrades/null_upgrade_type.tres" id="6_gnd4w"]
+[ext_resource type="Resource" uid="uid://k2hoqwb7uag5" path="res://Upgrades/fog_density_1.tres" id="6_s7psx"]
+[ext_resource type="Resource" uid="uid://ddetcxcs2giec" path="res://Upgrades/fog_density_2.tres" id="7_705sf"]
+[ext_resource type="Resource" uid="uid://dlrvii3w18uty" path="res://Upgrades/fog_density_3.tres" id="8_603go"]
 
 [sub_resource type="Gradient" id="Gradient_n5m23"]
 offsets = PackedFloat32Array(0)
@@ -287,6 +291,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_xnb2j")
+possibleUpgrades = Array[ExtResource("5_bf1fa")]([ExtResource("6_s7psx"), ExtResource("7_705sf"), ExtResource("8_603go")])
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Menus/UpgradeMenu"]
 layout_mode = 1
@@ -314,7 +319,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="UpgradeOption" parent="CanvasLayer/Menus/UpgradeMenu/HBoxContainer" instance=ExtResource("4_3w84o")]
+[node name="UpgradeOption1" parent="CanvasLayer/Menus/UpgradeMenu/HBoxContainer" instance=ExtResource("4_3w84o")]
 layout_mode = 2
 upgrade = ExtResource("6_gnd4w")
 
@@ -365,5 +370,9 @@ offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("4_m6o0h")
 
+[connection signal="upgrade_menu_opened" from="." to="CanvasLayer/Menus/UpgradeMenu" method="generate_upgrade_choices"]
 [connection signal="pressed" from="CanvasLayer/Menus/PauseMenu/VBoxContainer/PauseResume" to="." method="resume"]
 [connection signal="pressed" from="CanvasLayer/Menus/PauseMenu/VBoxContainer/PauseQuit" to="." method="quit"]
+[connection signal="upgrade_selected" from="CanvasLayer/Menus/UpgradeMenu/HBoxContainer/UpgradeOption1" to="." method="resume" unbinds=1]
+[connection signal="upgrade_selected" from="CanvasLayer/Menus/UpgradeMenu/HBoxContainer/UpgradeOption2" to="." method="resume" unbinds=1]
+[connection signal="upgrade_selected" from="CanvasLayer/Menus/UpgradeMenu/HBoxContainer/UpgradeOption3" to="." method="resume" unbinds=1]

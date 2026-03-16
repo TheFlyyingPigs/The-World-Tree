@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsy0ey7gtptga"]
+[gd_scene load_steps=5 format=3 uid="uid://bsy0ey7gtptga"]
 
 [ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="1_dvmix"]
 [ext_resource type="Script" uid="uid://cqxmwxl2lfarn" path="res://Scripts/Upgrades/upgrade_option.gd" id="1_wiksl"]
-
-[sub_resource type="Theme" id="Theme_wiksl"]
 
 [sub_resource type="Gradient" id="Gradient_wiksl"]
 offsets = PackedFloat32Array(0)
@@ -30,7 +28,6 @@ offset_top = 180.0
 offset_right = 229.0
 offset_bottom = 203.0
 scale = Vector2(0.75, 0.75)
-theme = SubResource("Theme_wiksl")
 text = "Test name"
 horizontal_alignment = 1
 
@@ -41,7 +38,6 @@ offset_top = 204.0
 offset_right = 250.0
 offset_bottom = 262.38
 scale = Vector2(0.75, 0.75)
-theme = SubResource("Theme_wiksl")
 theme_override_font_sizes/font_size = 16
 text = "Test description"
 horizontal_alignment = 1
@@ -53,7 +49,6 @@ offset_top = 244.00002
 offset_right = 218.675
 offset_bottom = 293.0
 scale = Vector2(0.75, 0.75)
-theme = SubResource("Theme_wiksl")
 horizontal_alignment = 1
 
 [node name="Icon" type="TextureRect" parent="."]

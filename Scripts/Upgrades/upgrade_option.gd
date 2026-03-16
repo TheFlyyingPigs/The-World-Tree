@@ -9,6 +9,8 @@ the display and button for an upgrade type
 @onready var icon: TextureRect = $Icon
 @onready var cost_label: Label = $Cost_Label
 
+signal upgrade_selected(upgrade)
+
 func _ready() -> void:
 	set_up()
 
@@ -27,8 +29,13 @@ func get_cost_label() -> String:
 	returns String
 	'
 	if upgrade.second_cost:
-		return str(upgrade.cost_1)+"x "+ str(upgrade.cost_1_type) + "
-		" + str(upgrade.cost_2)+"x "+str(upgrade.cost_2_type)
+		return str(upgrade.cost_1)+"x "+ str(Globals.ItemType.keys()[upgrade.cost_1_type]) + "
+		" + str(upgrade.cost_2)+"x "+str(Globals.ItemType.keys()[upgrade.cost_2_type])
 	
 	else:
-		return str(upgrade.cost_1)+"x "+ str(upgrade.cost_1_type)
+		return str(upgrade.cost_1)+"x "+ str(Globals.ItemType.keys()[upgrade.cost_1_type])
+	
+
+
+func button_pressed():
+	upgrade_selected.emit(upgrade)
