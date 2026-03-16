@@ -4,12 +4,17 @@ the display and button for an upgrade type
 '
 @export var upgrade : UpgradeType
 
-@onready var name_label: Label = $Name_Label
-@onready var description_label: Label = $Description_Label
-@onready var icon: TextureRect = $Icon
-@onready var cost_label: Label = $Cost_Label
+@onready var name_label: Label = $AnimPivot/Name_Label
+@onready var description_label: Label = $AnimPivot/Description_Label
+@onready var cost_label: Label = $AnimPivot/Cost_Label
+@onready var icon: TextureRect = $AnimPivot/Icon
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 
 signal upgrade_selected(upgrade)
+
+@onready var total_type_1 = Globals.ItemTypeAttributes[Globals.ItemType.keys()[upgrade.cost_1_type]].total
+@onready var total_type_2 = Globals.ItemTypeAttributes[Globals.ItemType.keys()[upgrade.cost_2_type]].total
 
 func _ready() -> void:
 	set_up()
@@ -38,4 +43,35 @@ func get_cost_label() -> String:
 
 
 func button_pressed():
+	'
+	called when the upgrade is clicked
+	checks if player can buy upgrade
+	'
+	if Globals.inventory[total_type_1] > upgrade.cost_1:
+		if upgrade.second_cost:
+			if Globals.inventory[total_type_2] > upgrade.cost_2:
+				on_upgrade_selected()
+			else:
+				animation_player.current_animation = "failed_buying"
+		else:
+			on_upgrade_selected()
+	else:
+		animation_player.current_animation = "failed_buying"
+
+func on_upgrade_selected():
+	'
+	emits upgrade selected and pays resource costs
+	'
 	upgrade_selected.emit(upgrade)
+	
+	Globals.inventory[total_type_1] -= upgrade.cost_1
+	if upgrade.second_cost:
+		Globals.inventory[total_type_2] -= upgrade.cost_2
+
+
+func _on_mouse_hovering() -> void:
+	animation_player.current_animation = "hovering"
+
+
+func _on_mouse_not_hovering() -> void:
+	animation_player.current_animation = "not_hovering"

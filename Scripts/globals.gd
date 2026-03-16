@@ -3,32 +3,61 @@ extends Node
 # TODO ADD ACTUAL RESOURCE TYPES!
 enum ItemType { # CONTAINS ALL TYPES OF RESOURCES
 	WATER,
-	DIRT,
-	LIGHT,
+	SCRAP_METAL,
+	CO2_CANISTER,
+	LIGHT_CRYSTAL,
+	ELETRCICAL_SCRAP,
+	SOUL_ESSENCE
 }
+# TODO ADD ACTUAL COMMON RESOURCES
+const common_item_types := [ItemType.WATER, ItemType.SCRAP_METAL, ItemType.CO2_CANISTER]
+const rare_item_types := [ItemType.LIGHT_CRYSTAL,ItemType.ELETRCICAL_SCRAP,ItemType.SOUL_ESSENCE]
 
 const ItemTypeAttributes = { # ATTRIBUTES FOR THE ITEMTYPE ENUM
 	"WATER":{
 		'total'='total_water',
 		'current'='current_water'
 	},
-	"DIRT":{
-		'total'='total_dirt',
-		'current'='current_dirt'
+	"SCRAP_METAL":{
+		'total'='total_metal',
+		'current'='current_metal'
 	},
-	"LIGHT":{
+	"CO2_CANISTER":{
+		'total'='total_co2',
+		'current'='current_co2'
+	},
+	"LIGHT_CRYSTAL":{
 		'total'='total_light',
 		'current'='current_light'
+	},
+	"ELETRCICAL_SCRAP":{
+		'total'='total_electric',
+		'current'='current_electric'
+	},
+	"SOUL_ESSENCE":{
+		'total'='total_soul',
+		'current'='current_soul'
 	},
 }
 
 var inventory := { # CONTAINS NUMBER OF ALL ITEMS
 	'total_water':0,
 	'current_water':0,
-	'total_dirt':0,
-	'current_dirt':0,
+	
+	'total_metal':0,
+	'current_metal':0,
+	
+	'total_co2':0,
+	'current_co2':0,
+	
 	'total_light':0,
 	'current_light':0,
+	
+	'total_electric':0,
+	'current_electric':0,
+	
+	'total_soul':0,
+	'current_soul':0,
 } 
 
 

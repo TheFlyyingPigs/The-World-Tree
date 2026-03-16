@@ -311,10 +311,10 @@ color = Color(0.08627451, 0.18431373, 0.08627451, 1)
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.215625
-anchor_top = 0.2
-anchor_right = 0.815625
-anchor_bottom = 0.8
+anchor_left = 0.31953126
+anchor_top = 0.55
+anchor_right = 0.9195312
+anchor_bottom = 1.15
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -330,6 +330,23 @@ upgrade = ExtResource("6_gnd4w")
 [node name="UpgradeOption3" parent="CanvasLayer/Menus/UpgradeMenu/HBoxContainer" instance=ExtResource("4_3w84o")]
 layout_mode = 2
 upgrade = ExtResource("6_gnd4w")
+
+[node name="UpgradeRefresh" type="Button" parent="CanvasLayer/Menus/UpgradeMenu"]
+layout_mode = 0
+offset_left = 686.0
+offset_top = 549.0
+offset_right = 812.0
+offset_bottom = 583.0
+text = "Refresh"
+
+[node name="UpgradeSkip" type="Button" parent="CanvasLayer/Menus/UpgradeMenu"]
+layout_mode = 0
+offset_left = 469.0
+offset_top = 548.0
+offset_right = 595.0
+offset_bottom = 582.0
+text = "Skip
+"
 
 [node name="BlackScreen" type="ColorRect" parent="CanvasLayer"]
 z_index = 4096
@@ -370,9 +387,11 @@ offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("4_m6o0h")
 
-[connection signal="upgrade_menu_opened" from="." to="CanvasLayer/Menus/UpgradeMenu" method="generate_upgrade_choices"]
+[connection signal="upgrade_menu_opened" from="." to="CanvasLayer/Menus/UpgradeMenu" method="open_screen"]
 [connection signal="pressed" from="CanvasLayer/Menus/PauseMenu/VBoxContainer/PauseResume" to="." method="resume"]
 [connection signal="pressed" from="CanvasLayer/Menus/PauseMenu/VBoxContainer/PauseQuit" to="." method="quit"]
 [connection signal="upgrade_selected" from="CanvasLayer/Menus/UpgradeMenu/HBoxContainer/UpgradeOption1" to="." method="resume" unbinds=1]
 [connection signal="upgrade_selected" from="CanvasLayer/Menus/UpgradeMenu/HBoxContainer/UpgradeOption2" to="." method="resume" unbinds=1]
 [connection signal="upgrade_selected" from="CanvasLayer/Menus/UpgradeMenu/HBoxContainer/UpgradeOption3" to="." method="resume" unbinds=1]
+[connection signal="pressed" from="CanvasLayer/Menus/UpgradeMenu/UpgradeRefresh" to="CanvasLayer/Menus/UpgradeMenu" method="refresh"]
+[connection signal="pressed" from="CanvasLayer/Menus/UpgradeMenu/UpgradeSkip" to="." method="resume"]

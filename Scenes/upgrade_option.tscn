@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsy0ey7gtptga"]
+[gd_scene load_steps=10 format=3 uid="uid://bsy0ey7gtptga"]
 
 [ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="1_dvmix"]
 [ext_resource type="Script" uid="uid://cqxmwxl2lfarn" path="res://Scripts/Upgrades/upgrade_option.gd" id="1_wiksl"]
@@ -12,6 +12,113 @@ gradient = SubResource("Gradient_wiksl")
 width = 40
 height = 40
 
+[sub_resource type="Animation" id="Animation_wiksl"]
+resource_name = "hovering"
+length = 0.267
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimPivot:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.26666665),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.27, 1.27), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="Animation" id="Animation_pd1fd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimPivot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_a5xa6"]
+resource_name = "not_hovering"
+length = 0.267
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimPivot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(0.95, 0.95), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5lca5"]
+resource_name = "failed_buying"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimPivot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.2, 1.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimPivot:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.16666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.066595815, 0.06632251, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pd1fd"]
+_data = {
+&"RESET": SubResource("Animation_pd1fd"),
+&"failed_buying": SubResource("Animation_5lca5"),
+&"hovering": SubResource("Animation_wiksl"),
+&"not_hovering": SubResource("Animation_a5xa6")
+}
+
 [node name="UpgradeOption" type="Control"]
 layout_mode = 3
 anchor_right = 0.362
@@ -21,52 +128,75 @@ offset_bottom = -310.0
 size_flags_horizontal = 3
 script = ExtResource("1_wiksl")
 
-[node name="Name_Label" type="Label" parent="."]
+[node name="AnimPivot" type="Control" parent="."]
+layout_mode = 1
+anchor_left = -0.469
+anchor_top = -0.485
+anchor_right = 0.504
+anchor_bottom = 0.5
+offset_left = -7.94722
+offset_top = -4.0379944
+offset_right = -0.44477844
+offset_bottom = 0.3999939
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(107.525, 154.405)
+
+[node name="Name_Label" type="Label" parent="AnimPivot"]
 layout_mode = 0
-offset_left = 35.0
-offset_top = 180.0
-offset_right = 229.0
-offset_bottom = 203.0
+offset_left = 34.0
+offset_top = 182.0
+offset_right = 228.0
+offset_bottom = 208.0
 scale = Vector2(0.75, 0.75)
 text = "Test name"
 horizontal_alignment = 1
 
-[node name="Description_Label" type="Label" parent="."]
+[node name="Description_Label" type="Label" parent="AnimPivot"]
 layout_mode = 0
-offset_left = 18.0
-offset_top = 204.0
-offset_right = 250.0
-offset_bottom = 262.38
+offset_left = 17.0
+offset_top = 206.0
+offset_right = 249.0
+offset_bottom = 264.38
 scale = Vector2(0.75, 0.75)
 theme_override_font_sizes/font_size = 16
 text = "Test description"
 horizontal_alignment = 1
 
-[node name="Cost_Label" type="Label" parent="."]
+[node name="Cost_Label" type="Label" parent="AnimPivot"]
 layout_mode = 0
-offset_left = 43.0
-offset_top = 244.00002
-offset_right = 218.675
-offset_bottom = 293.0
+offset_left = 42.0
+offset_top = 246.00002
+offset_right = 217.675
+offset_bottom = 295.0
 scale = Vector2(0.75, 0.75)
 horizontal_alignment = 1
 
-[node name="Icon" type="TextureRect" parent="."]
+[node name="Icon" type="TextureRect" parent="AnimPivot"]
 layout_mode = 0
-offset_left = 35.0
-offset_top = 25.000002
-offset_right = 230.0
-offset_bottom = 220.0
+offset_left = 34.0
+offset_top = 27.0
+offset_right = 229.0
+offset_bottom = 222.0
 scale = Vector2(0.75, 0.75)
 mouse_filter = 2
 texture = ExtResource("1_dvmix")
 
-[node name="Background" type="TextureButton" parent="."]
+[node name="Background" type="TextureButton" parent="AnimPivot"]
 z_index = -1
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -1.0
+offset_top = 2.0
+offset_right = 39.0
+offset_bottom = 42.0
 scale = Vector2(5.34, 7.71)
 texture_normal = SubResource("GradientTexture2D_pd1fd")
 
-[connection signal="pressed" from="Background" to="." method="button_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pd1fd")
+}
+
+[connection signal="mouse_entered" from="AnimPivot/Background" to="." method="_on_mouse_hovering"]
+[connection signal="mouse_exited" from="AnimPivot/Background" to="." method="_on_mouse_not_hovering"]
+[connection signal="pressed" from="AnimPivot/Background" to="." method="button_pressed"]

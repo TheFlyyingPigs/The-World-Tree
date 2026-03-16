@@ -1,10 +1,28 @@
 extends Control
+'
+the manager of all the upgrade options
+'
 
 @export var possibleUpgrades : Array[UpgradeType]
 
 var found_upgrades := []
 
+var refresh_cost := 1 # Random common resource
+@onready var refresh_item_type 
+
+@onready var refresh_button: Button = $UpgradeRefresh
+
+func open_screen():
+	'
+	triggered when the menu is opened, resets refresh cost
+	'
+	refresh_cost = 1
+	generate_upgrade_choices()
+
 func generate_upgrade_choices():
+	'
+	sets the three upgrade options to random ones
+	'
 	var upgrade_options := []
 	
 	for i in range(3):
@@ -20,6 +38,12 @@ func generate_upgrade_choices():
 		upgrade_button.set_up()
 
 func get_random_upgrade(upgrade_options) -> UpgradeType:
+	'
+	returns a possible random upgrade type
+	
+	arguments:
+		upgrade_options: the options that are already being shown as an option
+	'
 	var possible_upgrades := []
 	
 	for choice in possibleUpgrades:
@@ -43,3 +67,24 @@ func get_random_upgrade(upgrade_options) -> UpgradeType:
 	else: 
 		print_debug("only "+str(possible_upgrades.size())+" upgrade choices")
 		return null
+
+
+func refresh():
+	'
+	called when the refresh button is pressed, relpads the upgrade options 
+	and charges the player a increasing amount of a random common item type
+	'
+	var total = Globals.ItemTypeAttributes[refresh_item_type].total
+	
+	if Globals.inventory[total] > refresh_cost:
+		refresh_cost += 1
+		generate_upgrade_choices()
+		refresh_item_type = Globals.ItemType.keys()[Globals.common_item_types[randi_range(0, Globals.common_item_types.size()-1)]]
+		refresh_button.text = "Refresh: x" +str(refresh_cost)+" "+str(refresh_item_type)
+
+func _ready() -> void:
+	'
+	sets up the visuals for everything when the scene loads
+	'
+	refresh_item_type = Globals.ItemType.keys()[Globals.common_item_types[randi_range(0, Globals.common_item_types.size()-1)]]
+	refresh_button.text = "Refresh: x" +str(refresh_cost)+" "+str(refresh_item_type)

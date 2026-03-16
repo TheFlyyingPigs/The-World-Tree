@@ -61,8 +61,11 @@ func alert(type : ):
 	
 	match type:
 		Globals.ItemType.WATER: alert_label.text = "Found Water" 
-		Globals.ItemType.DIRT: alert_label.text = "Found dirt"
-		#TODO ADD THE REST OF THE RESOURCES
+		Globals.ItemType.SCRAP_METAL: alert_label.text = "Found scrap metal"
+		Globals.ItemType.CO2_CANISTER: alert_label.text = "Found Co2 canister"
+		Globals.ItemType.LIGHT_CRYSTAL: alert_label.text = "Found Light Crystal"
+		Globals.ItemType.ELETRCICAL_SCRAP: alert_label.text = "Found Electrical Scrap"
+		Globals.ItemType.SOUL_ESSENCE: alert_label.text = "Found Soul essence"
 		true: alert_label.text = "Lost all on-hand resources"
 	
 	anim.play("alert")
