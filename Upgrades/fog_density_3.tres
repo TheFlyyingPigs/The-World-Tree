@@ -7,9 +7,9 @@
 script = ExtResource("2_6r4nu")
 icon = ExtResource("1_me68h")
 display_name = "Fog Density"
-description = "Level: 2
+description = "Level: 3
 Decreases the density of fog"
-upgrade = 1
+upgrade = 2
 prerequisites = Array[int]([0])
-cost_1 = 3
+cost_1 = 4
 metadata/_custom_type_script = "uid://dckfs4nkavx01"
