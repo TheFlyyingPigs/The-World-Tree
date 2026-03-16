@@ -16,6 +16,7 @@ var current_screen : Control
 @onready var anim := %AlertPlayer
 @onready var alert_label := %AlertLabel
 
+signal upgrade_menu_opened
 
 func _ready() -> void:
 	$CanvasLayer/BlackScreen.color = Color(0,0,0,1)
@@ -84,21 +85,11 @@ func show_screen(type : Gui.ScreenType):
 			pause_menu.visible = true
 			current_screen = pause_menu
 		Gui.ScreenType.UPGRADE: 
-			reload_upgrades()
+			upgrade_menu_opened.emit()
 			upgrade_menu.visible = true
 			current_screen = upgrade_menu
 
 
-func reload_upgrades():
-	'
-	reloads upgrade options when you open the upgrade menu
-	'
-	var container = $CanvasLayer/Menus/UpgradeMenu/HBoxContainer
-	
-	for i in UpgradeManager.upgrade_amount:
-		var upgrade_option = container.get_children()[i]
-		
-		upgrade_option.set_up()
 
 func resume() -> void:
 	'

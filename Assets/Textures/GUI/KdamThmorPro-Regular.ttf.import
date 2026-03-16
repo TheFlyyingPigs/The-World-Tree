@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://camyb2ia08yy2"
-path="res://.godot/imported/VCR_OSD_MONO_1.001.ttf-90e7e9a0f5a5aa89771b4a07f2a40d4b.fontdata"
+uid="uid://c3236q4ho1mhn"
+path="res://.godot/imported/KdamThmorPro-Regular.ttf-bebc615499f2e1219a6262ee4f502841.fontdata"
 
 [deps]
 
-source_file="res://Assets/Textures/GUI/VCR_OSD_MONO_1.001.ttf"
-dest_files=["res://.godot/imported/VCR_OSD_MONO_1.001.ttf-90e7e9a0f5a5aa89771b4a07f2a40d4b.fontdata"]
+source_file="res://Assets/Textures/GUI/KdamThmorPro-Regular.ttf"
+dest_files=["res://.godot/imported/KdamThmorPro-Regular.ttf-bebc615499f2e1219a6262ee4f502841.fontdata"]
 
 [params]
 

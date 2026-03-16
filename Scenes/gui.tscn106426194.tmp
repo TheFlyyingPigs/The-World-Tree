@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bwxxn76xj3ic0"]
+[gd_scene load_steps=18 format=3 uid="uid://bwxxn76xj3ic0"]
 
 [ext_resource type="Script" uid="uid://dwsao5hvj6lcw" path="res://Scripts/Visuals/gui.gd" id="1_qyd3e"]
 [ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="2_bm56d"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bsy0ey7gtptga" path="res://Scenes/upgrade_option.tscn" id="4_3w84o"]
 [ext_resource type="Texture2D" uid="uid://b1jgva0bxvgik" path="res://Assets/Textures/GUI/spr_visor_overlay.png" id="4_m6o0h"]
 [ext_resource type="Script" uid="uid://ugx0bv7qppso" path="res://Scripts/Upgrades/upgrade_menu.gd" id="4_xnb2j"]
-[ext_resource type="Resource" uid="uid://d4tc6js8k2by" path="res://Upgrades/null_upgrade_type.tres" id="6_gnd4w"]
 
 [sub_resource type="Gradient" id="Gradient_n5m23"]
 offsets = PackedFloat32Array(0)
@@ -316,15 +315,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="UpgradeOption" parent="CanvasLayer/Menus/UpgradeMenu/HBoxContainer" instance=ExtResource("4_3w84o")]
 layout_mode = 2
-upgrade = ExtResource("6_gnd4w")
 
 [node name="UpgradeOption2" parent="CanvasLayer/Menus/UpgradeMenu/HBoxContainer" instance=ExtResource("4_3w84o")]
 layout_mode = 2
-upgrade = ExtResource("6_gnd4w")
 
 [node name="UpgradeOption3" parent="CanvasLayer/Menus/UpgradeMenu/HBoxContainer" instance=ExtResource("4_3w84o")]
 layout_mode = 2
-upgrade = ExtResource("6_gnd4w")
 
 [node name="BlackScreen" type="ColorRect" parent="CanvasLayer"]
 z_index = 4096

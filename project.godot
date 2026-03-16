@@ -38,6 +38,10 @@ gui=""
 player=""
 camera_comp=""
 
+[gui]
+
+theme/custom_font="uid://c3236q4ho1mhn"
+
 [input]
 
 move_forward={
