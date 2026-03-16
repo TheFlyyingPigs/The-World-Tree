@@ -49,3 +49,7 @@ func fade_out():
 func fade_in():
 	if Globals.loaded:
 		gui.fade_in()
+
+func set_crosshair_color(color:Color):
+	if Globals.loaded:
+		gui.set_crosshair_color(color)

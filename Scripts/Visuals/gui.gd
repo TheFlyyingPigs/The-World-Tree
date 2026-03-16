@@ -93,6 +93,12 @@ func show_screen(type : Gui.ScreenType):
 			current_screen = upgrade_menu
 			Input.warp_mouse(Vector2(950,850))
 
+func set_crosshair_color(color:Color):
+	'
+	sets the crosshairs color to a given variable
+	arguments: color: the color to change the crosshair to
+	'
+	crosshair.modulate = color
 
 func resume() -> void:
 	'
