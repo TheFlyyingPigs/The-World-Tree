@@ -11,6 +11,7 @@ extends CharacterBody3D
 @onready var outside_timer := $OutsideTimer
 @onready var timer_component := $TimerComponent
 @onready var camera_bob_component := $CameraBobComponent
+@onready var upgrade_handler := $UpgradeHandler
 
 # VARIABLES
 var can_interact := true

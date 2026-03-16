@@ -11,6 +11,7 @@ the display and button for an upgrade type
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var set_up_player: AnimationPlayer = $SetUpPlayer
 
+@onready var upgrade_handler :UpgradeHandler
 
 signal upgrade_selected(upgrade)
 
@@ -19,6 +20,9 @@ signal upgrade_selected(upgrade)
 
 func _ready() -> void:
 	set_up()
+	await Globals.scene_loaded
+	upgrade_handler = get_tree().get_first_node_in_group("player").upgrade_handler
+	upgrade_selected.connect(upgrade_handler.apply_upgrade)
 
 func set_up():
 	'

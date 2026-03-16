@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bftqq2syj7664"]
+[gd_scene load_steps=23 format=3 uid="uid://bftqq2syj7664"]
 
 [ext_resource type="Script" uid="uid://bxqq3l150xbtp" path="res://Scripts/Player/player.gd" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://qnck7cjv4cy7" path="res://Scripts/Player/input_component.gd" id="2_6t5aa"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://v05n5ock65wg" path="res://Scripts/Player/timer_component.gd" id="6_x3wgy"]
 [ext_resource type="Script" uid="uid://beiofmic6gdsp" path="res://Scripts/Player/death_component.gd" id="7_3smsa"]
 [ext_resource type="PackedScene" uid="uid://bwxxn76xj3ic0" path="res://Scenes/gui.tscn" id="8_8erm5"]
+[ext_resource type="Script" uid="uid://dv7grg1mxaq5c" path="res://Scripts/Upgrades/upgrade_handler.gd" id="14_7dp3o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
 height = 2.1347656
@@ -319,6 +320,10 @@ metadata/_custom_type_script = "uid://beiofmic6gdsp"
 [node name="StaminaTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
+
+[node name="UpgradeHandler" type="Node" parent="."]
+script = ExtResource("14_7dp3o")
+metadata/_custom_type_script = "uid://dv7grg1mxaq5c"
 
 [connection signal="interact" from="InputComponent" to="." method="on_interact"]
 [connection signal="mouse_movement" from="InputComponent" to="." method="on_mouse_movement"]
