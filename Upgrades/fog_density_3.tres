@@ -10,6 +10,6 @@ display_name = "Fog Density"
 description = "Level: 3
 Decreases the density of fog"
 upgrade = 2
-prerequisites = Array[int]([0])
+prerequisites = Array[int]([1])
 cost_1 = 4
 metadata/_custom_type_script = "uid://dckfs4nkavx01"

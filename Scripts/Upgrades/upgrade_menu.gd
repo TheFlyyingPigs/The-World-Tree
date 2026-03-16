@@ -53,7 +53,7 @@ func get_random_upgrade(upgrade_options) -> UpgradeType:
 			pass
 		elif choice in possible_upgrades: # if choice already in list of possible random upgrades
 			pass
-		elif choice in found_upgrades: # if choice not already picked
+		elif choice.upgrade in found_upgrades: # if choice not already picked
 			pass
 		elif choice.prerequisites.size() > 0: # if there are prerequisites
 				for i in choice.prerequisites: # then check if you have them
@@ -108,3 +108,6 @@ func get_inventory_label() -> String:
 	'
 	return  "water: "+str(Globals.inventory.total_water)+"x   scrap metal: "+str(Globals.inventory.total_metal)+"x   co2 canister: "+str(Globals.inventory.total_co2)+"x
 	light crystal: "+str(Globals.inventory.total_light)+"x   Electrical scrap: "+str(Globals.inventory.total_electric)+"x   soul essence: "+str(Globals.inventory.total_soul)+"x"
+
+func upgrade_picked(upgrade):
+	found_upgrades.append(upgrade.upgrade)
