@@ -9,6 +9,7 @@ the display and button for an upgrade type
 @onready var cost_label: Label = $AnimPivot/Cost_Label
 @onready var icon: TextureRect = $AnimPivot/Icon
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var set_up_player: AnimationPlayer = $SetUpPlayer
 
 
 signal upgrade_selected(upgrade)
@@ -23,6 +24,7 @@ func set_up():
 	'
 	sets up a new upgrade card
 	'
+	set_up_player.current_animation = "appear"
 	name_label.text = upgrade.display_name
 	description_label.text = upgrade.description
 	icon.texture = upgrade.icon

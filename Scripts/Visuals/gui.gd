@@ -91,7 +91,7 @@ func show_screen(type : Gui.ScreenType):
 			upgrade_menu_opened.emit()
 			upgrade_menu.visible = true
 			current_screen = upgrade_menu
-
+			Input.warp_mouse(Vector2(950,850))
 
 
 func resume() -> void:

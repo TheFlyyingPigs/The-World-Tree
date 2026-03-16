@@ -33,6 +33,8 @@ func _physics_process(delta: float) -> void:
 		
 		# CAMERA BOB AND SWAY
 		camera_bob_component.tick()
+	
+
 
 # MOUSE MOVEMENT
 func on_mouse_movement() -> void:
