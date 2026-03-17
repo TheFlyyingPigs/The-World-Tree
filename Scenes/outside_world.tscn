@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cklblqchlc32c"]
+[gd_scene load_steps=13 format=3 uid="uid://cklblqchlc32c"]
 
 [ext_resource type="PackedScene" uid="uid://bftqq2syj7664" path="res://Scenes/player.tscn" id="1_l60d6"]
+[ext_resource type="Script" uid="uid://yf7hr01yjqdx" path="res://Scripts/outside_world.gd" id="1_patlc"]
 [ext_resource type="AudioStream" uid="uid://c2f52r53eu14" path="res://Assets/SFX/Ambience/PLACE_sandstorm.mp3" id="2_cjcjx"]
+[ext_resource type="Material" uid="uid://c37rnnikndvip" path="res://Assets/VFX/fog.tres" id="2_g4qxf"]
 [ext_resource type="Script" uid="uid://bdkp8v3kk11lc" path="res://Scripts/Resource_Deposits/deposit_spawner.gd" id="3_l60d6"]
 [ext_resource type="Resource" uid="uid://vf1uyivxts6x" path="res://Resource_Deposits/CloseSpawner.tres" id="4_cjcjx"]
 [ext_resource type="PackedScene" uid="uid://csoau7mpja14x" path="res://Scenes/level_transitioner.tscn" id="5_cjcjx"]
@@ -24,11 +26,6 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 volumetric_fog_albedo = Color(0.45471716, 0.3537043, 0.29561317, 1)
 
-[sub_resource type="FogMaterial" id="FogMaterial_g4qxf"]
-density = 0.4
-albedo = Color(0.62239605, 0.46347463, 0.3471015, 1)
-edge_fade = 0.31383365
-
 [sub_resource type="BoxMesh" id="BoxMesh_neogm"]
 size = Vector3(150, 1, 150)
 
@@ -36,6 +33,7 @@ size = Vector3(150, 1, 150)
 albedo_color = Color(0.29960102, 0.21026641, 0.11093453, 1)
 
 [node name="outside_world" type="Node3D" groups=["outside"]]
+script = ExtResource("1_patlc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.3113416e-07, 1, 0, -1, 1.3113416e-07, 0, 0, 0)
@@ -49,7 +47,7 @@ environment = SubResource("Environment_22iqp")
 
 [node name="FogVolume" type="FogVolume" parent="."]
 shape = 4
-material = SubResource("FogMaterial_g4qxf")
+material = ExtResource("2_g4qxf")
 
 [node name="Player" parent="." instance=ExtResource("1_l60d6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6582623)
@@ -163,5 +161,3 @@ metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
 transform = Transform3D(1, 0, 0, 0, 0.7843436, 0.6203267, 0, -0.6203267, 0.7843436, 0, 4.5781584, 0.03809619)
 light_volumetric_fog_energy = 16.0
 spot_range = 7.416045
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]

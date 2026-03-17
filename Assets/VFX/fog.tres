@@ -1,0 +1,7 @@
+[gd_resource type="FogMaterial" format=3 uid="uid://c37rnnikndvip"]
+
+[resource]
+resource_local_to_scene = true
+density = 0.4
+albedo = Color(0.62239605, 0.46347463, 0.3471015, 1)
+edge_fade = 0.31383365

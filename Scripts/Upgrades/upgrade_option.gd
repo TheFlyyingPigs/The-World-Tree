@@ -14,9 +14,12 @@ the display and button for an upgrade type
 @onready var upgrade_handler :UpgradeHandler
 
 signal upgrade_selected(upgrade)
+signal button_pressed_signal
 
-@onready var total_type_1 = Globals.ItemTypeAttributes[Globals.ItemType.keys()[upgrade.cost_1_type]].total
-@onready var total_type_2 = Globals.ItemTypeAttributes[Globals.ItemType.keys()[upgrade.cost_2_type]].total
+var different_option_picked := false
+
+@onready var total_type_1
+@onready var total_type_2
 
 func _ready() -> void:
 	set_up()
@@ -53,22 +56,25 @@ func button_pressed():
 	called when the upgrade is clicked
 	checks if player can buy upgrade
 	'
+	total_type_1 = Globals.ItemTypeAttributes[Globals.ItemType.keys()[upgrade.cost_1_type]].total
+	total_type_2 = Globals.ItemTypeAttributes[Globals.ItemType.keys()[upgrade.cost_2_type]].total
 	if Globals.inventory[total_type_1] >= upgrade.cost_1:
 		if upgrade.second_cost:
 			if Globals.inventory[total_type_2] >= upgrade.cost_2:
-				on_upgrade_selected()
+				if not different_option_picked: set_up_player.current_animation = "selected"
 			else:
 				animation_player.current_animation = "failed_buying"
 		else:
-			on_upgrade_selected()
+			if not different_option_picked:set_up_player.current_animation = "selected"
 	else:
 		animation_player.current_animation = "failed_buying"
-
+	button_pressed_signal.emit()
 
 func on_upgrade_selected():
 	'
 	emits upgrade selected and pays resource costs
 	'
+	print("upgraded")
 	upgrade_selected.emit(upgrade)
 	
 	Globals.inventory[total_type_1] -= upgrade.cost_1

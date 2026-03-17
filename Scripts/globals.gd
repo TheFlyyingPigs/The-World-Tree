@@ -41,25 +41,26 @@ const ItemTypeAttributes = { # ATTRIBUTES FOR THE ITEMTYPE ENUM
 }
 
 var inventory := { # CONTAINS NUMBER OF ALL ITEMS
-	'total_water':0,
+	'total_water':99,
 	'current_water':0,
 	
-	'total_metal':0,
+	'total_metal':99,
 	'current_metal':0,
 	
-	'total_co2':0,
+	'total_co2':99,
 	'current_co2':0,
 	
-	'total_light':0,
+	'total_light':99,
 	'current_light':0,
 	
-	'total_electric':0,
+	'total_electric':99,
 	'current_electric':0,
 	
-	'total_soul':0,
+	'total_soul':99,
 	'current_soul':0,
 } 
 
+var found_upgrades := []
 
 # SCENE CHANGE IDENTIFIERS
 var current_scene = null
@@ -103,9 +104,9 @@ enum Upgrades{
 	
 }
 
-# Upgradeable Variables:
+# UPGRADEABLE VARIABLES
 var fog_density := 0.4
-
+var sunlight := 0.3
 
 func add_item(type : ItemType):
 	'
