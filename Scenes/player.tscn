@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bftqq2syj7664"]
+[gd_scene load_steps=25 format=3 uid="uid://bftqq2syj7664"]
 
 [ext_resource type="Script" uid="uid://bxqq3l150xbtp" path="res://Scripts/Player/player.gd" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://qnck7cjv4cy7" path="res://Scripts/Player/input_component.gd" id="2_6t5aa"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" uid="uid://beiofmic6gdsp" path="res://Scripts/Player/death_component.gd" id="7_3smsa"]
 [ext_resource type="PackedScene" uid="uid://bwxxn76xj3ic0" path="res://Scenes/gui.tscn" id="8_8erm5"]
 [ext_resource type="Script" uid="uid://dv7grg1mxaq5c" path="res://Scripts/Upgrades/upgrade_handler.gd" id="14_7dp3o"]
+[ext_resource type="Script" uid="uid://c3lv1fxr50c14" path="res://Scripts/Player/spawning_component.gd" id="15_fd4e3"]
+[ext_resource type="PackedScene" uid="uid://b4f8xls07esex" path="res://Scenes/bread_crumb.tscn" id="16_qqcod"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
 height = 2.1347656
@@ -325,7 +327,15 @@ autostart = true
 script = ExtResource("14_7dp3o")
 metadata/_custom_type_script = "uid://dv7grg1mxaq5c"
 
+[node name="SpawningComponent" type="Node" parent="." node_paths=PackedStringArray("body")]
+script = ExtResource("15_fd4e3")
+spawned_object = ExtResource("16_qqcod")
+body = NodePath("..")
+metadata/_custom_type_script = "uid://c3lv1fxr50c14"
+
 [connection signal="interact" from="InputComponent" to="." method="on_interact"]
 [connection signal="mouse_movement" from="InputComponent" to="." method="on_mouse_movement"]
+[connection signal="throw" from="InputComponent" to="." method="_on_throw"]
 [connection signal="timeout" from="InteractTimer" to="." method="_on_interact_timer_timeout"]
 [connection signal="timeout" from="OutsideTimer" to="." method="died"]
+[connection signal="upgraded" from="UpgradeHandler" to="." method="_on_upgraded"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4f8xls07esex"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_k1ro0"]
+radius = 0.2
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lw4s2"]
+albedo_color = Color(0.20237884, 0.6039407, 1.92523e-07, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ubnxd"]
+radius = 0.22717309
+
+[node name="RigidBody3D" type="RigidBody3D"]
+collision_layer = 8
+collision_mask = 8
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_k1ro0")
+surface_material_override/0 = SubResource("StandardMaterial3D_lw4s2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ubnxd")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(2.887845e-06, 0.6960861, 0.24905121, 1)

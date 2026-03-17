@@ -101,12 +101,18 @@ enum Upgrades{
 	BRIGHTER_SUN_4,
 	BRIGHTER_SUN_5,
 	
+	MORE_BREAD_CRUMBS_1, # TODO CHANGE BREAD CRUMB TO REAL NAME
+	MORE_BREAD_CRUMBS_2,
+	MORE_BREAD_CRUMBS_3,
+	MORE_BREAD_CRUMBS_4,
+	MORE_BREAD_CRUMBS_5,
 	
 }
 
 # UPGRADEABLE VARIABLES
 var fog_density := 0.4
 var sunlight := 0.3
+var max_bread_crumbs := 15
 
 func add_item(type : ItemType):
 	'

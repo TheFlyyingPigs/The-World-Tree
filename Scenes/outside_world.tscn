@@ -62,6 +62,8 @@ parameters/looping = true
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3156095, 0)
 use_collision = true
+collision_layer = 9
+collision_mask = 9
 mesh = SubResource("BoxMesh_neogm")
 material = SubResource("StandardMaterial3D_fgo3i")
 

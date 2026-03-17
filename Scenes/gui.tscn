@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://bwxxn76xj3ic0"]
+[gd_scene load_steps=20 format=3 uid="uid://bwxxn76xj3ic0"]
 
 [ext_resource type="Script" uid="uid://dwsao5hvj6lcw" path="res://Scripts/Visuals/gui.gd" id="1_qyd3e"]
+[ext_resource type="Texture2D" uid="uid://bp8ldpwjap60m" path="res://Assets/Textures/GUI/spr_crumbs_bar.png" id="2_bf1fa"]
 [ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="2_bm56d"]
 [ext_resource type="FontFile" uid="uid://c3236q4ho1mhn" path="res://Assets/Textures/GUI/KdamThmorPro-Regular.ttf" id="3_8kag3"]
 [ext_resource type="Shader" uid="uid://5g32sl1r6jse" path="res://Assets/VFX/vhs.gdshader" id="3_n5m23"]
@@ -145,6 +146,22 @@ script = ExtResource("1_qyd3e")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
 follow_viewport_enabled = true
+
+[node name="CrumbsProgress" type="TextureProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+z_index = 2
+anchors_preset = -1
+anchor_right = 0.057000004
+anchor_bottom = 0.39200002
+offset_left = 20.999985
+offset_top = 13.0
+offset_right = -35.960022
+offset_bottom = -210.24002
+scale = Vector2(2.79, 5.236)
+max_value = 15.0
+value = 15.0
+fill_mode = 2
+texture_progress = ExtResource("2_bf1fa")
 
 [node name="TimerProgress" type="TextureProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true

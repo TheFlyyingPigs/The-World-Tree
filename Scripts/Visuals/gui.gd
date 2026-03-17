@@ -10,6 +10,7 @@ var current_screen : Control
 @onready var menus := %Menus
 @onready var pause_menu := %PauseMenu
 @onready var upgrade_menu := %UpgradeMenu
+@onready var crumbs_progress:= %CrumbsProgress
 
 @onready var timer_bar := %TimerProgress
 @onready var stamina_bar := %StaminaProgress
@@ -29,6 +30,13 @@ func update_timer_bar():
 	timer_bar.max_value = Globals.timer_length
 	timer_bar.value = Globals.time_left
 
+func update_crumbs_bar(value):
+	'
+	updates the progress bar for the amount of crumbs left to a given value
+	arguments: value: the new value of the bar
+	'
+	crumbs_progress.max_value = Globals.max_bread_crumbs
+	crumbs_progress.value = value
 
 func update_stamina_bar(value):
 	'

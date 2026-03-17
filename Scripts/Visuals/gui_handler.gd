@@ -53,3 +53,7 @@ func fade_in():
 func set_crosshair_color(color:Color):
 	if Globals.loaded:
 		gui.set_crosshair_color(color)
+
+func update_crumbs_bar(value):
+	if Globals.loaded:
+		gui.update_crumbs_bar(value)

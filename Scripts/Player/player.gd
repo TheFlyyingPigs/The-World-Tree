@@ -12,11 +12,12 @@ extends CharacterBody3D
 @onready var timer_component := $TimerComponent
 @onready var camera_bob_component := $CameraBobComponent
 @onready var upgrade_handler := $UpgradeHandler
+@onready var spawning_component:= $SpawningComponent
 
 # VARIABLES
 var can_interact := true
 var motion_overide := false
-
+var amount_bread_crumbs : int = Globals.max_bread_crumbs
 
 func _physics_process(delta: float) -> void:
 	'
@@ -35,6 +36,7 @@ func _physics_process(delta: float) -> void:
 		# CAMERA BOB AND SWAY
 		camera_bob_component.tick()
 	
+	Gui.update_crumbs_bar(amount_bread_crumbs)
 
 
 # MOUSE MOVEMENT
@@ -82,3 +84,14 @@ func reset_motion_overide():
 	lets the player continue to move
 	'
 	motion_overide = false
+
+
+func _on_throw() -> void:
+	if amount_bread_crumbs > 0:
+		spawning_component.spawn()
+		amount_bread_crumbs -= 1
+
+
+
+func _on_upgraded() -> void:
+	amount_bread_crumbs = Globals.max_bread_crumbs
