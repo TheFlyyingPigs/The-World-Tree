@@ -7,6 +7,7 @@ Defines the movement for the player character
 @export var body : CharacterBody3D
 @export var walking_speed := 145.0
 @export var sprinting_speed := 220.0
+@export var slowed_speed := 95
 @export var air_control := 1.0
 @export var timer : Timer
 
@@ -37,16 +38,19 @@ func get_speed() -> float:
 	'
 	Returns the current speed of the player
 	'
-	if sprinting && stamina > 0:
-		if body.is_on_floor():
-			return sprinting_speed
+	if not StatusEffects.is_slowed:
+		if sprinting && stamina > 0:
+			if body.is_on_floor():
+				return sprinting_speed
+			else:
+				return sprinting_speed/air_control
 		else:
-			return sprinting_speed/air_control
+			if body.is_on_floor():
+				return walking_speed
+			else:
+				return walking_speed/air_control
 	else:
-		if body.is_on_floor():
-			return walking_speed
-		else:
-			return walking_speed/air_control
+		return slowed_speed
 
 func update_stamina():
 	'

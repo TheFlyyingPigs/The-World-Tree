@@ -312,7 +312,6 @@ timer = NodePath("../OutsideTimer")
 metadata/_custom_type_script = "uid://v05n5ock65wg"
 
 [node name="OutsideTimer" type="Timer" parent="."]
-one_shot = true
 
 [node name="DeathComponent" type="Node" parent="."]
 unique_name_in_owner = true
@@ -337,5 +336,6 @@ metadata/_custom_type_script = "uid://c3lv1fxr50c14"
 [connection signal="mouse_movement" from="InputComponent" to="." method="on_mouse_movement"]
 [connection signal="throw" from="InputComponent" to="." method="_on_throw"]
 [connection signal="timeout" from="InteractTimer" to="." method="_on_interact_timer_timeout"]
-[connection signal="timeout" from="OutsideTimer" to="." method="died"]
+[connection signal="outside_timeout" from="TimerComponent" to="." method="died"]
+[connection signal="timeout" from="OutsideTimer" to="TimerComponent" method="_on_timeout"]
 [connection signal="upgraded" from="UpgradeHandler" to="." method="_on_upgraded"]

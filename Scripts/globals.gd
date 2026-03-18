@@ -203,11 +203,11 @@ func scene_initialized():
 	loaded = true
 	scene_loaded.emit()
 	Gui.fade_in()
+	if current_scene_id == LevelID.INSIDE && not just_opened_game && not died:
+		Gui.show_screen(Gui.ScreenType.UPGRADE)
 	if died:
 		Gui.alert(true)
 		died = false
-	if current_scene_id == LevelID.INSIDE && not just_opened_game:
-		Gui.show_screen(Gui.ScreenType.UPGRADE)
 	just_opened_game = false
 
 
