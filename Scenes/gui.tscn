@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://bwxxn76xj3ic0"]
+[gd_scene load_steps=20 format=3 uid="uid://bwxxn76xj3ic0"]
 
 [ext_resource type="Script" uid="uid://dwsao5hvj6lcw" path="res://Scripts/Visuals/gui.gd" id="1_qyd3e"]
+[ext_resource type="PackedScene" uid="uid://c00u7rkv4v020" path="res://Scenes/effects_manager.tscn" id="2_bf1fa"]
 [ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="2_bm56d"]
 [ext_resource type="FontFile" uid="uid://c3236q4ho1mhn" path="res://Assets/Textures/GUI/KdamThmorPro-Regular.ttf" id="3_8kag3"]
 [ext_resource type="Shader" uid="uid://5g32sl1r6jse" path="res://Assets/VFX/vhs.gdshader" id="3_n5m23"]
@@ -145,6 +146,13 @@ script = ExtResource("1_qyd3e")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
 follow_viewport_enabled = true
+
+[node name="EffectsManager" parent="CanvasLayer" instance=ExtResource("2_bf1fa")]
+anchors_preset = 15
+offset_left = 1176.0
+offset_top = 156.0
+offset_right = -26.0
+offset_bottom = -485.0
 
 [node name="CrumbsRect" type="ColorRect" parent="CanvasLayer"]
 z_index = 2

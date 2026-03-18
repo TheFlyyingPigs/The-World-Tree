@@ -40,5 +40,5 @@ func _input(event: InputEvent) -> void:
 		throw.emit()
 	
 	if Input.is_action_just_pressed("debug_button"):
-		Gui.show_screen(Gui.ScreenType.UPGRADE)
+		StatusEffects.apply_effect(StatusEffects.Effects.POISON, 15)
 	

@@ -198,6 +198,7 @@ func scene_initialized():
 	sends a signal when the scene is fully loaded
 	'
 	Gui.scene_switched()
+	StatusEffects.scene_switched()
 	loaded = true
 	scene_loaded.emit()
 	Gui.fade_in()

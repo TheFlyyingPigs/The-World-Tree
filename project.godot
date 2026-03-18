@@ -39,6 +39,7 @@ gui=""
 player=""
 camera_comp=""
 outside=""
+effects_manager=""
 
 [gui]
 

@@ -1,17 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://1xhqp7vj54tv"]
+[gd_scene load_steps=3 format=3 uid="uid://1xhqp7vj54tv"]
 
 [ext_resource type="Script" uid="uid://bn03pcrl1oer8" path="res://Scripts/Effects/effect_icon.gd" id="1_wlerh"]
+[ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="2_q4uvg"]
 
-[node name="EffectIcon" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="EffectIcon" type="TextureProgressBar"]
+anchors_preset = -1
+anchor_right = 0.05
+anchor_bottom = 0.09
+offset_bottom = 0.19999695
+max_value = 15.0
+value = 15.0
+fill_mode = 3
+texture_progress = ExtResource("2_q4uvg")
+tint_progress = Color(0.18039216, 0.18039216, 0.18039216, 0.49411765)
 script = ExtResource("1_wlerh")
 
-[node name="Icon" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

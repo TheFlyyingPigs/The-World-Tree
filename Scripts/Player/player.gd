@@ -95,6 +95,5 @@ func _on_throw() -> void:
 		amount_bread_crumbs -= 1
 
 
-
 func _on_upgraded() -> void:
 	amount_bread_crumbs = Globals.max_bread_crumbs

@@ -2,11 +2,19 @@
 
 [ext_resource type="Script" uid="uid://djmixadit3ria" path="res://Scripts/Effects/effects_manager.gd" id="1_aod1v"]
 
-[node name="EffectsManager" type="Control"]
+[node name="EffectsManager" type="Control" groups=["effects_manager"]]
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1202.0
+offset_bottom = -257.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_aod1v")
+
+[node name="EffectContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_right = 78.0
+offset_bottom = 75.0
+
+[node name="EffectTickTimer" type="Timer" parent="."]
