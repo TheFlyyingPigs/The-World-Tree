@@ -10,7 +10,7 @@ var current_screen : Control
 @onready var menus := %Menus
 @onready var pause_menu := %PauseMenu
 @onready var upgrade_menu := %UpgradeMenu
-@onready var crumbs_progress:= %CrumbsProgress
+@onready var crumbs_label: Label = %CrumbsLabel
 
 @onready var timer_bar := %TimerProgress
 @onready var stamina_bar := %StaminaProgress
@@ -35,8 +35,8 @@ func update_crumbs_bar(value):
 	updates the progress bar for the amount of crumbs left to a given value
 	arguments: value: the new value of the bar
 	'
-	crumbs_progress.max_value = Globals.max_bread_crumbs
-	crumbs_progress.value = value
+	crumbs_label.text = str(value)+"x"
+	
 
 func update_stamina_bar(value):
 	'

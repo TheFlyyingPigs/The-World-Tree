@@ -23,3 +23,4 @@ shape = SubResource("SphereShape3D_ubnxd")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(2.887845e-06, 0.6960861, 0.24905121, 1)
+light_volumetric_fog_energy = 6.278

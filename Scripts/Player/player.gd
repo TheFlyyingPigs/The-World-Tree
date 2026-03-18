@@ -87,6 +87,9 @@ func reset_motion_overide():
 
 
 func _on_throw() -> void:
+	'
+	spawns the cbread crumb on the throw input
+	'
 	if amount_bread_crumbs > 0:
 		spawning_component.spawn()
 		amount_bread_crumbs -= 1

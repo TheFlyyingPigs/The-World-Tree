@@ -24,6 +24,6 @@ func _process(_delta: float) -> void:
 	sets the crosshairs color if it sees something
 	'
 	if raycast.is_colliding():
-		Gui.set_crosshair_color(Color(1,0,0.25,1))
+		Gui.set_crosshair_color(Color(0.236, 0.48, 0.258, 1.0))
 	else:
 		Gui.set_crosshair_color(Color(1,1,1,1))
