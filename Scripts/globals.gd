@@ -68,6 +68,7 @@ var loaded := false
 signal scene_loaded
 var died := false
 var current_scene_id : LevelID
+var just_opened_game := true
 
 enum LevelID{ # CONTAINS ALL SCENES THAT CAN BE SWITCHED TO
 	INSIDE,
@@ -205,6 +206,9 @@ func scene_initialized():
 	if died:
 		Gui.alert(true)
 		died = false
+	if current_scene_id == LevelID.INSIDE && not just_opened_game:
+		Gui.show_screen(Gui.ScreenType.UPGRADE)
+	just_opened_game = false
 
 
 func outside_timer_run():
