@@ -19,6 +19,7 @@ boot_splash/show_image=false
 
 Globals="*res://Scripts/globals.gd"
 Gui="*res://Scripts/Visuals/gui_handler.gd"
+StatusEffects="*res://Scripts/Effects/effects_handler.gd"
 
 [debug]
 
