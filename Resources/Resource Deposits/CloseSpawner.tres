@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="SpawnerType" load_steps=6 format=3 uid="uid://vf1uyivxts6x"]
 
-[ext_resource type="Resource" uid="uid://de5575og4qhkh" path="res://Resource_Deposits/WaterDeposit.tres" id="1_2fauy"]
+[ext_resource type="Resource" uid="uid://de5575og4qhkh" path="res://Resources/Resource Deposits/WaterDeposit.tres" id="1_2fauy"]
 [ext_resource type="Script" uid="uid://dgxcc277p2e5x" path="res://Scripts/Resource_Deposits/spawner_type.gd" id="1_bh6q5"]
 [ext_resource type="Script" uid="uid://drfc2dahc1go0" path="res://Scripts/Resource_Deposits/deposit_type.gd" id="1_fcqhd"]
-[ext_resource type="Resource" uid="uid://x67ipijwulxy" path="res://Resource_Deposits/MetalDeposit.tres" id="3_0ylsh"]
-[ext_resource type="Resource" uid="uid://bycdskaubyofn" path="res://Resource_Deposits/Co2Deposit.tres" id="4_0ylsh"]
+[ext_resource type="Resource" uid="uid://x67ipijwulxy" path="res://Resources/Resource Deposits/MetalDeposit.tres" id="3_0ylsh"]
+[ext_resource type="Resource" uid="uid://bycdskaubyofn" path="res://Resources/Resource Deposits/Co2Deposit.tres" id="4_0ylsh"]
 
 [resource]
 script = ExtResource("1_bh6q5")

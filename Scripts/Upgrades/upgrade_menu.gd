@@ -92,9 +92,9 @@ func _ready() -> void:
 	refresh_item_type = Globals.ItemType.keys()[Globals.common_item_types[randi_range(0, Globals.common_item_types.size()-1)]]
 	refresh_button.text = "Refresh: x" +str(refresh_cost)+" "+str(refresh_item_type)
 	
-	for i in DirAccess.get_files_at("res://Upgrades/"):
+	for i in DirAccess.get_files_at("res://Resources/Upgrades/"):
 		if i != "null_upgrade_type.tres":
-			available_upgrades.append(load("res://Upgrades/"+i))
+			available_upgrades.append(load("res://Resources/Upgrades/"+i))
 
 
 

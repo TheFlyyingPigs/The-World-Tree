@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dum1yujii1ubv"]
 
 [ext_resource type="Script" uid="uid://2flmqe8likxl" path="res://Scripts/Resource_Deposits/resource_deposit.gd" id="1_iuuqq"]
-[ext_resource type="Material" uid="uid://t7tq7y4mpui" path="res://Resource_Deposits/DepositParticle.tres" id="2_iuuqq"]
+[ext_resource type="Material" uid="uid://t7tq7y4mpui" path="res://Resources/Resource Deposits/DepositParticle.tres" id="2_iuuqq"]
 [ext_resource type="AudioStream" uid="uid://ceto42ly0f5r0" path="res://Assets/SFX/PLACE_find_resource.wav" id="3_ofyhk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_equij"]

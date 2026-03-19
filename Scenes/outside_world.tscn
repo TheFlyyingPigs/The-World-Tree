@@ -1,12 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://cklblqchlc32c"]
+[gd_scene load_steps=16 format=3 uid="uid://cklblqchlc32c"]
 
 [ext_resource type="PackedScene" uid="uid://bftqq2syj7664" path="res://Scenes/player.tscn" id="1_l60d6"]
 [ext_resource type="Script" uid="uid://yf7hr01yjqdx" path="res://Scripts/outside_world.gd" id="1_patlc"]
 [ext_resource type="AudioStream" uid="uid://c2f52r53eu14" path="res://Assets/SFX/Ambience/PLACE_sandstorm.mp3" id="2_cjcjx"]
 [ext_resource type="Material" uid="uid://c37rnnikndvip" path="res://Assets/VFX/fog.tres" id="2_g4qxf"]
 [ext_resource type="Script" uid="uid://bdkp8v3kk11lc" path="res://Scripts/Resource_Deposits/deposit_spawner.gd" id="3_l60d6"]
-[ext_resource type="Resource" uid="uid://vf1uyivxts6x" path="res://Resource_Deposits/CloseSpawner.tres" id="4_cjcjx"]
+[ext_resource type="Resource" uid="uid://vf1uyivxts6x" path="res://Resources/Resource Deposits/CloseSpawner.tres" id="4_cjcjx"]
 [ext_resource type="PackedScene" uid="uid://csoau7mpja14x" path="res://Scenes/level_transitioner.tscn" id="5_cjcjx"]
+[ext_resource type="PackedScene" uid="uid://df6cmmyprvyqf" path="res://Scenes/effect_trigger_zone.tscn" id="8_22iqp"]
+[ext_resource type="Resource" uid="uid://bkwqjt73u7kaa" path="res://Resources/Effect Trigger Zones/MudEffectZone.tres" id="9_neogm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q17te"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -31,6 +33,9 @@ size = Vector3(150, 1, 150)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgo3i"]
 albedo_color = Color(0.29960102, 0.21026641, 0.11093453, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22iqp"]
+albedo_color = Color(0.43674797, 0.22789639, 0.1286732, 1)
 
 [node name="outside_world" type="Node3D" groups=["outside"]]
 script = ExtResource("1_patlc")
@@ -163,3 +168,13 @@ metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
 transform = Transform3D(1, 0, 0, 0, 0.7843436, 0.6203267, 0, -0.6203267, 0.7843436, 0, 4.5781584, 0.03809619)
 light_volumetric_fog_energy = 16.0
 spot_range = 7.416045
+
+[node name="EffectTriggerZone" parent="." instance=ExtResource("8_22iqp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.486855)
+zone_settings = ExtResource("9_neogm")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.70227194, -9.413919)
+radius = 1.2299805
+height = 0.3001709
+material = SubResource("StandardMaterial3D_22iqp")

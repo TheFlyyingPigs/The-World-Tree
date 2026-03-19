@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bsy0ey7gtptga" path="res://Scenes/upgrade_option.tscn" id="4_3w84o"]
 [ext_resource type="Texture2D" uid="uid://b1jgva0bxvgik" path="res://Assets/Textures/GUI/spr_visor_overlay.png" id="4_m6o0h"]
 [ext_resource type="Script" uid="uid://ugx0bv7qppso" path="res://Scripts/Upgrades/upgrade_menu.gd" id="4_xnb2j"]
-[ext_resource type="Resource" uid="uid://d4tc6js8k2by" path="res://Upgrades/null_upgrade_type.tres" id="6_gnd4w"]
+[ext_resource type="Resource" uid="uid://d4tc6js8k2by" path="res://Resources/Upgrades/null_upgrade_type.tres" id="6_gnd4w"]
 
 [sub_resource type="Gradient" id="Gradient_n5m23"]
 offsets = PackedFloat32Array(0)

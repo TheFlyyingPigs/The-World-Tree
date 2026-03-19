@@ -9,7 +9,7 @@ func _ready() -> void:
 	'
 	picks a random resource from weighted list in SpawnerType and places it
 	'
-	var placed_resource = load("res://Resource_Deposits/resource_deposit.tscn").instantiate()
+	var placed_resource = load("res://Scenes/resource_deposit.tscn").instantiate()
 	placed_resource.deposit_type = spawner_type.possible_deposits[rng.rand_weighted(spawner_type.weights)]
 	
 	await Globals.scene_loaded
