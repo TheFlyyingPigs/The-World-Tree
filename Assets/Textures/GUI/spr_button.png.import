@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djay1h6lmi7as"
-path="res://.godot/imported/spr_TimerProgressBar.png-a4b2c517edfcf754f6e954a014a8d8f5.ctex"
+uid="uid://rp0m0ubiwjb2"
+path="res://.godot/imported/spr_button.png-a39cb132ed4a692af8b7cee39c467b9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/GUI/spr_TimerProgressBar.png"
-dest_files=["res://.godot/imported/spr_TimerProgressBar.png-a4b2c517edfcf754f6e954a014a8d8f5.ctex"]
+source_file="res://Assets/Textures/GUI/spr_button.png"
+dest_files=["res://.godot/imported/spr_button.png-a39cb132ed4a692af8b7cee39c467b9f.ctex"]
 
 [params]
 

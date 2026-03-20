@@ -27,7 +27,7 @@ shadow_enabled = true
 environment = SubResource("Environment_yimsw")
 
 [node name="Player" parent="." instance=ExtResource("1_mntln")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.6604302)
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0.25138968, -1.5064504)
 
 [node name="LevelTransitioner" parent="." instance=ExtResource("3_jgd3w")]
 connected_level = 1

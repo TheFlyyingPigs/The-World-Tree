@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djay1h6lmi7as"
-path="res://.godot/imported/spr_TimerProgressBar.png-a4b2c517edfcf754f6e954a014a8d8f5.ctex"
+uid="uid://dlob80c6uu0lo"
+path="res://.godot/imported/spr_stamina_progress.png-77176dcdb6b62953c79209bc4fa66547.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/GUI/spr_TimerProgressBar.png"
-dest_files=["res://.godot/imported/spr_TimerProgressBar.png-a4b2c517edfcf754f6e954a014a8d8f5.ctex"]
+source_file="res://Assets/Textures/GUI/spr_stamina_progress.png"
+dest_files=["res://.godot/imported/spr_stamina_progress.png-77176dcdb6b62953c79209bc4fa66547.ctex"]
 
 [params]
 

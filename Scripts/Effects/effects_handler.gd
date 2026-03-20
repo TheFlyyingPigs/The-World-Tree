@@ -49,6 +49,7 @@ func _process(_delta: float) -> void:
 		is_slowed = true
 	else:
 		is_slowed = false
+	
 
 func scene_switched():
 	active_effects.clear()

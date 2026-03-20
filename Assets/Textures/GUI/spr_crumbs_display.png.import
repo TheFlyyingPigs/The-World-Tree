@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp8ldpwjap60m"
-path="res://.godot/imported/spr_crumbs_bar.png-0cb03057f103cabf518b4bf9d4e7d96d.ctex"
+uid="uid://c0q1otpdqmnmq"
+path="res://.godot/imported/spr_crumbs_display.png-7d48060d4c7321856bc078d2d7e6aec5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/GUI/spr_crumbs_bar.png"
-dest_files=["res://.godot/imported/spr_crumbs_bar.png-0cb03057f103cabf518b4bf9d4e7d96d.ctex"]
+source_file="res://Assets/Textures/GUI/spr_crumbs_display.png"
+dest_files=["res://.godot/imported/spr_crumbs_display.png-7d48060d4c7321856bc078d2d7e6aec5.ctex"]
 
 [params]
 

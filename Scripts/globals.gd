@@ -111,7 +111,7 @@ enum Upgrades{
 }
 
 # UPGRADEABLE VARIABLES
-var fog_density := 0.4
+var fog_density := 0.5
 var sunlight := 0.3
 var max_bread_crumbs := 15
 

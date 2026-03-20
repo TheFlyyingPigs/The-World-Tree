@@ -170,11 +170,11 @@ light_volumetric_fog_energy = 16.0
 spot_range = 7.416045
 
 [node name="EffectTriggerZone" parent="." instance=ExtResource("8_22iqp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.486855)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46370757, 0, -12.527076)
 zone_settings = ExtResource("9_neogm")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.70227194, -9.413919)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46370757, -0.70227194, -12.454141)
 radius = 1.2299805
 height = 0.3001709
 material = SubResource("StandardMaterial3D_22iqp")
