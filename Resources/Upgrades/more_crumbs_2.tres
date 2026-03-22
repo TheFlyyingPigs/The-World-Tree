@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="UpgradeType" load_steps=3 format=3 uid="uid://bvqtqioakq86t"]
 
-[ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="1_n5318"]
+[ext_resource type="Texture2D" uid="uid://bd4tw8uavffmk" path="res://Assets/Textures/GUI/more_crumbs.png" id="1_5v31s"]
 [ext_resource type="Script" uid="uid://dckfs4nkavx01" path="res://Scripts/Upgrades/upgrade_type.gd" id="2_2r4tq"]
 
 [resource]
 script = ExtResource("2_2r4tq")
-icon = ExtResource("1_n5318")
+icon = ExtResource("1_5v31s")
 display_name = "More Bread Crumbs"
 description = "Level: 2
 More green orbs to keep your way"

@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="UpgradeType" load_steps=3 format=3 uid="uid://ck7p4j24b6vlq"]
 
-[ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="1_xyqdx"]
+[ext_resource type="Texture2D" uid="uid://cqxese7j7jx25" path="res://Assets/Textures/GUI/less_fog.png" id="1_pmd6o"]
 [ext_resource type="Script" uid="uid://dckfs4nkavx01" path="res://Scripts/Upgrades/upgrade_type.gd" id="2_hw6le"]
 
 [resource]
 script = ExtResource("2_hw6le")
-icon = ExtResource("1_xyqdx")
+icon = ExtResource("1_pmd6o")
 display_name = "Fog Density"
 description = "Level: 5
 Decreases the density of fog"
