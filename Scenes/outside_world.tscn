@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cklblqchlc32c"]
+[gd_scene load_steps=18 format=3 uid="uid://cklblqchlc32c"]
 
 [ext_resource type="PackedScene" uid="uid://bftqq2syj7664" path="res://Scenes/player.tscn" id="1_l60d6"]
 [ext_resource type="Script" uid="uid://yf7hr01yjqdx" path="res://Scripts/outside_world.gd" id="1_patlc"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://csoau7mpja14x" path="res://Scenes/level_transitioner.tscn" id="5_cjcjx"]
 [ext_resource type="PackedScene" uid="uid://df6cmmyprvyqf" path="res://Scenes/effect_trigger_zone.tscn" id="8_22iqp"]
 [ext_resource type="Resource" uid="uid://bkwqjt73u7kaa" path="res://Resources/Effect Trigger Zones/MudEffectZone.tres" id="9_neogm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_neogm"]
+radius = 0.6850586
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q17te"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -24,7 +27,6 @@ background_color = Color(0.6141291, 0.23144284, 0.07447294, 1)
 background_energy_multiplier = 0.2
 sky = SubResource("Sky_patlc")
 tonemap_mode = 2
-fog_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 volumetric_fog_albedo = Color(0.45471716, 0.3537043, 0.29561317, 1)
@@ -42,8 +44,20 @@ albedo_color = Color(0.43674797, 0.22789639, 0.1286732, 1)
 script = ExtResource("1_patlc")
 
 [node name="TreeModel" type="MeshInstance3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 2.7580023)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -1.3000102, 2.758)
 mesh = ExtResource("2_neogm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TreeModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52928156, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TreeModel/StaticBody3D"]
+shape = SubResource("CapsuleShape3D_neogm")
+
+[node name="LevelTransitioner" parent="." instance=ExtResource("5_cjcjx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25750732)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="LevelTransitioner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7371445, -1.1583397)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.3113416e-07, 1, 0, -1, 1.3113416e-07, 0, 0, 0)
@@ -76,9 +90,6 @@ collision_layer = 9
 collision_mask = 9
 mesh = SubResource("BoxMesh_neogm")
 material = SubResource("StandardMaterial3D_fgo3i")
-
-[node name="LevelTransitioner" parent="." instance=ExtResource("5_cjcjx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25750732)
 
 [node name="DepositSpawner" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.807941, -2.2773275, -8.9309635)
@@ -163,13 +174,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.88528, 0, -5.7834396)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
-
-[node name="Camera3D" type="Camera3D" parent="."]
-
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.7843436, 0.6203267, 0, -0.6203267, 0.7843436, 0, 4.5781584, 0.03809619)
-light_volumetric_fog_energy = 16.0
-spot_range = 7.416045
 
 [node name="EffectTriggerZone" parent="." instance=ExtResource("8_22iqp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46370757, 0, -12.527076)

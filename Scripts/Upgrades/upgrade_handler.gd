@@ -6,7 +6,7 @@ handles applying the changes from every upgrade in the game!
 signal upgraded
 
 # UPGRADE CONSTANTS
-const FOG_DECREASE = 0.075
+const FOG_DECREASE = 0.05
 const TIMER_INCREASE = 30
 const SUNLIGHT_INCREASE = 0.05
 const CRUMBS_INCREASE = 5

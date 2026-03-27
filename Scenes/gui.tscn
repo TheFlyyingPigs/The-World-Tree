@@ -446,6 +446,100 @@ offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("4_m6o0h")
 
+[node name="QuotaEndScreen" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+z_index = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/QuotaEndScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/QuotaEndScreen"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 147.0
+offset_right = 1279.0
+offset_bottom = 230.0
+theme_override_font_sizes/font_size = 55
+text = "Quota 1 End"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ResourcesFoundLabel" type="Label" parent="CanvasLayer/QuotaEndScreen"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 330.0
+offset_right = 1268.0
+offset_bottom = 391.0
+theme_override_font_sizes/font_size = 26
+text = "14/10 Resources Found"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="DayEndScreen" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+z_index = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/DayEndScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="DayTitleLabel" type="Label" parent="CanvasLayer/DayEndScreen"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 147.0
+offset_right = 1279.0
+offset_bottom = 230.0
+theme_override_font_sizes/font_size = 55
+text = "Day 1 End"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="DayResourcesFoundLabel" type="Label" parent="CanvasLayer/DayEndScreen"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 330.0
+offset_right = 1268.0
+offset_bottom = 391.0
+theme_override_font_sizes/font_size = 26
+text = "14/10 Resources Found"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
 [connection signal="upgrade_menu_opened" from="." to="CanvasLayer/Menus/UpgradeMenu" method="open_screen"]
 [connection signal="pressed" from="CanvasLayer/Menus/PauseMenu/VBoxContainer/PauseResume" to="." method="resume"]
 [connection signal="pressed" from="CanvasLayer/Menus/PauseMenu/VBoxContainer/PauseQuit" to="." method="quit"]
