@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="UpgradeType" load_steps=3 format=3 uid="uid://debw70f8c458w"]
 
-[ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="1_yf1e6"]
+[ext_resource type="Texture2D" uid="uid://bplh1ccysdw6" path="res://Assets/Textures/GUI/longer_timer.png" id="1_f8rex"]
 [ext_resource type="Script" uid="uid://dckfs4nkavx01" path="res://Scripts/Upgrades/upgrade_type.gd" id="2_g0nyl"]
 
 [resource]
 script = ExtResource("2_g0nyl")
-icon = ExtResource("1_yf1e6")
+icon = ExtResource("1_f8rex")
 display_name = "Longer Timer"
 description = "Level: 3
 Increases timer length"

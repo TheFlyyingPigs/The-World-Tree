@@ -33,7 +33,7 @@ func generate_upgrade_choices():
 		if not choice == null:
 			upgrade_options.append(choice)
 		else:
-			upgrade_options.append(load("res://Upgrades/null_upgrade_type.tres"))
+			upgrade_options.append(load("res://Resources/Upgrades/null_upgrade_type.tres"))
 	
 	for i in range(3):
 		var upgrade_button = get_node("HBoxContainer/UpgradeOption"+str(i+1))

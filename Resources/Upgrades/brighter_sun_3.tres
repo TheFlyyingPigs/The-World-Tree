@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="UpgradeType" load_steps=3 format=3 uid="uid://b3o5dwpv3dps7"]
 
-[ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="1_l82d5"]
+[ext_resource type="Texture2D" uid="uid://dj7n7qrhi87tt" path="res://Assets/Textures/GUI/brighter_sun.png" id="1_5mdd1"]
 [ext_resource type="Script" uid="uid://dckfs4nkavx01" path="res://Scripts/Upgrades/upgrade_type.gd" id="2_cnp7c"]
 
 [resource]
 script = ExtResource("2_cnp7c")
-icon = ExtResource("1_l82d5")
+icon = ExtResource("1_5mdd1")
 display_name = "Brighter Sun"
 description = "Level: 3
 Makes the outside brighter"
