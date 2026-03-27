@@ -178,3 +178,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46370757, -0.70227194, -12
 radius = 1.2299805
 height = 0.3001709
 material = SubResource("StandardMaterial3D_22iqp")
+
+[node name="TreeModel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.1383362)

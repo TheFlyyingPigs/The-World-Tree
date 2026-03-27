@@ -61,6 +61,10 @@ var inventory := { # CONTAINS NUMBER OF ALL ITEMS
 } 
 
 var found_upgrades := []
+var tree_stage := 1
+const tree_stages := {
+	"stage_1" : null # TODO put real tree models here
+}
 
 # SCENE CHANGE IDENTIFIERS
 var current_scene = null

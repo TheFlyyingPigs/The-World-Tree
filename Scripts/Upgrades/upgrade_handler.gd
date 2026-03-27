@@ -5,11 +5,17 @@ handles applying the changes from every upgrade in the game!
 
 signal upgraded
 
-# CONSTANTS
+# UPGRADE CONSTANTS
 const FOG_DECREASE = 0.075
 const TIMER_INCREASE = 30
 const SUNLIGHT_INCREASE = 0.05
 const CRUMBS_INCREASE = 5
+
+# TREE STAGE CONSTANTS
+const TREE_STAGE_1_AMOUNT = 5
+const TREE_STAGE_2_AMOUNT = 10
+const TREE_STAGE_3_AMOUNT = 15
+const TREE_STAGE_4_AMOUNT = 20
 
 func apply_upgrade(upgrade_resource : UpgradeType):
 	'
@@ -45,3 +51,13 @@ func apply_upgrade(upgrade_resource : UpgradeType):
 		Globals.Upgrades.MORE_BREAD_CRUMBS_5: Globals.max_bread_crumbs += CRUMBS_INCREASE
 	
 	upgraded.emit()
+	match Globals.found_upgrades.size():
+		TREE_STAGE_1_AMOUNT: 
+			Globals.tree_stage += 1
+		TREE_STAGE_2_AMOUNT: 
+			Globals.tree_stage += 1
+		TREE_STAGE_3_AMOUNT: 
+			Globals.tree_stage += 1
+		TREE_STAGE_4_AMOUNT: 
+			Globals.tree_stage += 1
+		
