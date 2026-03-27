@@ -58,6 +58,4 @@ func apply_upgrade(upgrade_resource : UpgradeType):
 			Globals.tree_stage += 1
 		TREE_STAGE_3_AMOUNT: 
 			Globals.tree_stage += 1
-		TREE_STAGE_4_AMOUNT: 
-			Globals.tree_stage += 1
 		

@@ -45,7 +45,7 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Models/Tree/0.res",
+"save_to_file/fallback_path": "res://Assets/Models/Tree/exterior_stage_1.res",
 "save_to_file/path": "uid://plxh48xci1ri"
 },
 "the_world_tree_exterior_Cube_004": {
@@ -54,7 +54,7 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Models/Tree/the_world_tree_exterior_Cube_004.res",
+"save_to_file/fallback_path": "res://Assets/Models/Tree/exterior_stage_2.res",
 "save_to_file/path": "uid://ryd5bhe7a3ry"
 },
 "the_world_tree_exterior_Cube_005": {
@@ -63,7 +63,7 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Assets/Models/Tree/the_world_tree_exterior_Cube_005.res",
+"save_to_file/fallback_path": "res://Assets/Models/Tree/exterior_stage_3.res",
 "save_to_file/path": "uid://c5atf6k64v4p7"
 }
 }

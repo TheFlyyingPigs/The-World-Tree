@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://cklblqchlc32c"]
+[gd_scene load_steps=17 format=3 uid="uid://cklblqchlc32c"]
 
 [ext_resource type="PackedScene" uid="uid://bftqq2syj7664" path="res://Scenes/player.tscn" id="1_l60d6"]
 [ext_resource type="Script" uid="uid://yf7hr01yjqdx" path="res://Scripts/outside_world.gd" id="1_patlc"]
 [ext_resource type="AudioStream" uid="uid://c2f52r53eu14" path="res://Assets/SFX/Ambience/PLACE_sandstorm.mp3" id="2_cjcjx"]
 [ext_resource type="Material" uid="uid://c37rnnikndvip" path="res://Assets/VFX/fog.tres" id="2_g4qxf"]
+[ext_resource type="ArrayMesh" uid="uid://plxh48xci1ri" path="res://Assets/Models/Tree/exterior_stage_1.res" id="2_neogm"]
 [ext_resource type="Script" uid="uid://bdkp8v3kk11lc" path="res://Scripts/Resource_Deposits/deposit_spawner.gd" id="3_l60d6"]
 [ext_resource type="Resource" uid="uid://vf1uyivxts6x" path="res://Resources/Resource Deposits/CloseSpawner.tres" id="4_cjcjx"]
 [ext_resource type="PackedScene" uid="uid://csoau7mpja14x" path="res://Scenes/level_transitioner.tscn" id="5_cjcjx"]
@@ -40,6 +41,10 @@ albedo_color = Color(0.43674797, 0.22789639, 0.1286732, 1)
 [node name="outside_world" type="Node3D" groups=["outside"]]
 script = ExtResource("1_patlc")
 
+[node name="TreeModel" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 2.7580023)
+mesh = ExtResource("2_neogm")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.3113416e-07, 1, 0, -1, 1.3113416e-07, 0, 0, 0)
 light_energy = 0.3
@@ -65,18 +70,15 @@ bus = &"Ambience"
 parameters/looping = true
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3156095, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.043278694, -1.3847958, 0.01942563)
 use_collision = true
 collision_layer = 9
 collision_mask = 9
 mesh = SubResource("BoxMesh_neogm")
 material = SubResource("StandardMaterial3D_fgo3i")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6805115, 3.3725343)
-size = Vector3(6.3095703, 5.773987, 6.7001953)
-
 [node name="LevelTransitioner" parent="." instance=ExtResource("5_cjcjx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25750732)
 
 [node name="DepositSpawner" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.807941, -2.2773275, -8.9309635)
@@ -178,6 +180,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46370757, -0.70227194, -12
 radius = 1.2299805
 height = 0.3001709
 material = SubResource("StandardMaterial3D_22iqp")
-
-[node name="TreeModel" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.1383362)

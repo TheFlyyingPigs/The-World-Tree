@@ -1,6 +1,6 @@
 extends Node
 
-# TODO ADD ACTUAL RESOURCE TYPES!
+
 enum ItemType { # CONTAINS ALL TYPES OF RESOURCES
 	WATER,
 	SCRAP_METAL,
@@ -9,7 +9,7 @@ enum ItemType { # CONTAINS ALL TYPES OF RESOURCES
 	ELETRCICAL_SCRAP,
 	SOUL_ESSENCE
 }
-# TODO ADD ACTUAL COMMON RESOURCES
+
 const common_item_types := [ItemType.WATER, ItemType.SCRAP_METAL, ItemType.CO2_CANISTER]
 const rare_item_types := [ItemType.LIGHT_CRYSTAL,ItemType.ELETRCICAL_SCRAP,ItemType.SOUL_ESSENCE]
 
@@ -63,7 +63,9 @@ var inventory := { # CONTAINS NUMBER OF ALL ITEMS
 var found_upgrades := []
 var tree_stage := 1
 const tree_stages := {
-	"stage_1" : null # TODO put real tree models here
+	"stage_1" : preload("res://Assets/Models/Tree/exterior_stage_1.res"),
+	"stage_2" : preload("res://Assets/Models/Tree/exterior_stage_2.res"),
+	"stage_3" : preload("res://Assets/Models/Tree/exterior_stage_3.res")
 }
 
 # SCENE CHANGE IDENTIFIERS
