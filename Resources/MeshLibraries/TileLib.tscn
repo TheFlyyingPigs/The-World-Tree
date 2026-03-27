@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://r6w60iejjxry"]
+
+[ext_resource type="ArrayMesh" uid="uid://bx3rnhs0vpmsw" path="res://Assets/Models/tile_3_Plane.tres" id="1_bnslt"]
+[ext_resource type="ArrayMesh" uid="uid://ct0jaqw7ed4f4" path="res://Assets/Models/tile_3_Plane_002.tres" id="2_cfmtf"]
+[ext_resource type="ArrayMesh" uid="uid://bpxs7mp1nsst" path="res://Assets/Models/tile_3_Plane_003.tres" id="3_ddp5l"]
+[ext_resource type="ArrayMesh" uid="uid://cn7j4d7tkrcn0" path="res://Assets/Models/tile_3_Plane_004.tres" id="4_0lcsm"]
+[ext_resource type="ArrayMesh" uid="uid://cx8u58gkpblca" path="res://Assets/Models/tile_3_Plane_005.tres" id="5_3c4ed"]
+
+[node name="TileLib" type="Node3D"]
+
+[node name="ObjectiveTile" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_bnslt")
+
+[node name="DirtTile" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8695177, -0.46114016, 0.26574183)
+mesh = ExtResource("2_cfmtf")
+
+[node name="HazardTile" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018808365, 0.047910392, 0.07305479)
+mesh = ExtResource("3_ddp5l")
+
+[node name="GrassTile" type="MeshInstance3D" parent="."]
+mesh = ExtResource("4_0lcsm")
+
+[node name="SandTile" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1133038, 0, 1.1710916)
+mesh = ExtResource("5_3c4ed")
