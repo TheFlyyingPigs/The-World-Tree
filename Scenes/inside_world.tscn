@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://b04xakd0pv2cx"]
+[gd_scene load_steps=8 format=3 uid="uid://b04xakd0pv2cx"]
 
 [ext_resource type="PackedScene" uid="uid://bftqq2syj7664" path="res://Scenes/player.tscn" id="1_mntln"]
+[ext_resource type="AudioStream" uid="uid://dn8mk504podk7" path="res://Assets/Music/World Tree 1 loop.wav" id="3_5l7jk"]
 [ext_resource type="PackedScene" uid="uid://csoau7mpja14x" path="res://Scenes/level_transitioner.tscn" id="3_jgd3w"]
 [ext_resource type="AudioStream" uid="uid://c2f52r53eu14" path="res://Assets/SFX/Ambience/PLACE_sandstorm.mp3" id="3_mntln"]
 
@@ -44,8 +45,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6805115, -2.2783208)
 operation = 2
 size = Vector3(5.4384766, 5.279297, 5.972412)
 
-[node name="AmbienceSounds" type="AudioStreamPlayer" parent="."]
-bus = &"Ambience"
+[node name="InsideMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5l7jk")
+volume_db = -18.563
+autoplay = true
+bus = &"Music"
 
 [node name="MuffledOutsideSounds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_mntln")
