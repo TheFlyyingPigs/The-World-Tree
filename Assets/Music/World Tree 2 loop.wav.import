@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dbthgjj4nntm1"
+path="res://.godot/imported/World Tree 2 loop.wav-6a6d86d4b6d28c34498771f4c945dc06.sample"
+
+[deps]
+
+source_file="res://Assets/Music/World Tree 2 loop.wav"
+dest_files=["res://.godot/imported/World Tree 2 loop.wav-6a6d86d4b6d28c34498771f4c945dc06.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

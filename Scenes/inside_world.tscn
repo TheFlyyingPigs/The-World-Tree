@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b04xakd0pv2cx"]
+[gd_scene load_steps=10 format=3 uid="uid://b04xakd0pv2cx"]
 
 [ext_resource type="PackedScene" uid="uid://bftqq2syj7664" path="res://Scenes/player.tscn" id="1_mntln"]
 [ext_resource type="AudioStream" uid="uid://dn8mk504podk7" path="res://Assets/Music/World Tree 1 loop.wav" id="3_5l7jk"]
@@ -17,6 +17,38 @@ background_mode = 2
 sky = SubResource("Sky_go701")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="Animation" id="Animation_5l7jk"]
+resource_name = "music fade in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InsideMusic:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-37.0, -12.05]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MuffledOutsideSounds:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-37.0, -28.049999999999997]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jgd3w"]
+_data = {
+&"music fade in": SubResource("Animation_5l7jk")
+}
 
 [node name="inside_world" type="Node3D"]
 
@@ -46,14 +78,23 @@ operation = 2
 size = Vector3(5.4384766, 5.279297, 5.972412)
 
 [node name="InsideMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("3_5l7jk")
-volume_db = -18.563
+volume_db = -37.0
 autoplay = true
 bus = &"Music"
 
 [node name="MuffledOutsideSounds" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("3_mntln")
-volume_db = -47.582
+volume_db = -37.0
 autoplay = true
 bus = &"Ambience"
 parameters/looping = true
+
+[node name="MusicTransitioner" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+&"": SubResource("AnimationLibrary_jgd3w")
+}
+autoplay = "music fade in"
