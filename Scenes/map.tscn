@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://diksf0fbieldg"]
+
+[ext_resource type="MeshLibrary" uid="uid://b54pq0cqibpet" path="res://TileLib.meshlib" id="1_ci6au"]
+[ext_resource type="Script" uid="uid://bh4dei5551i11" path="res://Scripts/MapGen.gd" id="2_26yhd"]
+
+[node name="Map" type="GridMap"]
+mesh_library = ExtResource("1_ci6au")
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+script = ExtResource("2_26yhd")

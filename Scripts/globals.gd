@@ -28,8 +28,7 @@ func _ready() -> void:
 
 
 func switch_level(id:LevelID):
-	call_deferred("_deferred_switch_scene",id)
-	
+	call_deferred("_deferred_switch_scene",id)	
 
 func _deferred_switch_scene(id):
 	current_scene.free()
@@ -42,7 +41,6 @@ func _deferred_switch_scene(id):
 	current_scene = new_scene.instantiate()
 	get_tree().root.add_child(current_scene)
 	get_tree().current_scene = current_scene
-	
 
 var timer_length := 360
 var time_left := 360
