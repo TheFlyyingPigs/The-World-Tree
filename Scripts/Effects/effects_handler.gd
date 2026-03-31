@@ -13,11 +13,11 @@ enum Effects{
 
 const EffectAttributes = {
 	"POISON":{
-		"icon":preload("res://Assets/Textures/GUI/spr_TimerProgressBar.png"), # TODO ADD REAL ICONS!
+		"icon":preload("res://Assets/Textures/GUI/effect-poison-icon.png"),
 		"type":EffectTypes.ALTERING
 	},
 	"SLOW":{
-		"icon":preload("res://Assets/Textures/GUI/spr_TimerProgressBar.png"),
+		"icon":preload("res://Assets/Textures/GUI/effect-slow-icon.png"),
 		"type":EffectTypes.ALTERING
 	}
 }

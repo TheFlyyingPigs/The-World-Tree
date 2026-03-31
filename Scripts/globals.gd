@@ -102,15 +102,13 @@ enum Upgrades{
 	LONGER_TIMER_4,
 	LONGER_TIMER_5,
 	
-	#TODO ADD LESS HAZARDS AND MORE RESOURCES UPGRADES!
-	
 	BRIGHTER_SUN_1,
 	BRIGHTER_SUN_2,
 	BRIGHTER_SUN_3,
 	BRIGHTER_SUN_4,
 	BRIGHTER_SUN_5,
 	
-	MORE_BREAD_CRUMBS_1, # TODO CHANGE BREAD CRUMB TO REAL NAME
+	MORE_BREAD_CRUMBS_1, 
 	MORE_BREAD_CRUMBS_2,
 	MORE_BREAD_CRUMBS_3,
 	MORE_BREAD_CRUMBS_4,
@@ -128,27 +126,33 @@ var day := 0
 var quota_num := 1
 var quota_requirement := 10
 var days_per_quota := 3
+var quota_day := 0
 
 func day_end():
 	day += 1
-	if day % (days_per_quota+1) == 0:
+	quota_day += 1
+	quota_requirement = quota_num * 5 + 5
+	if quota_day % (days_per_quota+1) == 0:
 		if not total_resources >= quota_requirement:
 			failed_quota()
+			Gui.show_quota_end_screen()
 		else:
+			Gui.show_quota_end_screen()
 			quota_num += 1
-			quota_requirement = quota_num * 5 + 5
-		Gui.show_quota_end_screen()
+			quota_day = 0
 	else:
 		Gui.show_day_end_screen()
 
 func failed_quota():
 	quota_num = 1
-	quota_requirement = quota_num * 5 + 5
+	quota_requirement = 10
 	day = 0
 	fog_density = 0.3
 	sunlight = 0.3
 	max_bread_crumbs = 15
 	found_upgrades = []
+	tree_stage = 1
+	
 	for item in ItemType:
 		inventory[ItemTypeAttributes[item]["total"]] = 0
 	
