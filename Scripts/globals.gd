@@ -147,7 +147,7 @@ var quota_day := 0
 func day_end():
 	day += 1
 	quota_day += 1
-	quota_requirement = quota_num * 5 + 5
+	quota_requirement = ceili((quota_num**1.3) * 5 + 5)
 	if quota_day % (days_per_quota+1) == 0:
 		if not total_resources >= quota_requirement:
 			failed_quota()
