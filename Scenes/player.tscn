@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bxqq3l150xbtp" path="res://Scripts/Player/player.gd" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://qnck7cjv4cy7" path="res://Scripts/Player/input_component.gd" id="2_6t5aa"]
 [ext_resource type="AudioStream" uid="uid://b3cc70iiy5rvc" path="res://Assets/SFX/Footsteps/PLACE_footstep1.ogg" id="2_7dp3o"]
-[ext_resource type="Script" uid="uid://bshe62toj41q8" path="res://Scripts/Effects/movement_component.gd" id="3_6t5aa"]
+[ext_resource type="Script" path="res://Scripts/Effects/movement_component.gd" id="3_6t5aa"]
 [ext_resource type="AudioStream" uid="uid://c56sk4wnyov54" path="res://Assets/SFX/Footsteps/PLACE_footstep2.ogg" id="3_h4iuc"]
 [ext_resource type="Script" uid="uid://fyfst4gf418a" path="res://Scripts/Player/camera_component.gd" id="4_vgqql"]
 [ext_resource type="Script" uid="uid://bpatlnmhdphmq" path="res://Scripts/Player/camera_bob_component.gd" id="5_f1ek2"]
@@ -231,6 +231,14 @@ process_mode = 1
 collision_layer = 5
 script = ExtResource("1_cvnsp")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4257963, 0)
+light_energy = 0.75
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 20.0
+omni_attenuation = 0.75
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06738281, 0)
 shape = SubResource("CapsuleShape3D_f60y1")
@@ -278,7 +286,6 @@ walking_speed = 225.0
 sprinting_speed = 330.0
 air_control = 4.0
 timer = NodePath("../StaminaTimer")
-metadata/_custom_type_script = "uid://bshe62toj41q8"
 
 [node name="CameraComponent" type="Node" parent="." node_paths=PackedStringArray("body", "camera_pivot", "camera") groups=["camera_comp"]]
 unique_name_in_owner = true

@@ -12,7 +12,6 @@ updates the variables that get upgraded to the upgraded variable
 
 func _ready() -> void:
 	fog_material.density = Globals.fog_density
-	sun.light_energy = Globals.sunlight
 	if Globals.beacon_strength == -1:
 		beacon.visible = false
 	else:

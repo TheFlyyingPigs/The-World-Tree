@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://che82fevj6olo" path="res://Assets/Textures/GUI/Effects-foreground.png" id="2_nq22j"]
 
 [node name="EffectIcon" type="TextureProgressBar"]
+process_mode = 1
 anchors_preset = -1
 anchor_right = 0.05
 anchor_bottom = 0.09
