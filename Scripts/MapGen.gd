@@ -3,7 +3,6 @@ class MapGen extends Node3D:
 	Contains methods to generate a miscellaneous structure of tile objects.
 	'
 	@onready var _map = get_node("res://Scenes/Map")
-	static var _spawn_coordinates: Vector3i = Vector3i(0, 0, 0)
 	static var min_dist: int = 5 # Minimum distance between objective tiles
 	
 	# Methods
@@ -19,17 +18,67 @@ class MapGen extends Node3D:
 				_map.set_cell_item(Vector3i(i,j,-1), randi_range(0, 4))
 		return
 
-	func procedural_gen(rounds:int = 20):
+	func procedural_gen():
 		'
 		Procedurally generate map based on a set of rules.
 		
 		Args:
 			rounds (int): number of times to run through the generation loop
 		'
-		var curr_dist: int = None # Tracks distance between objective tiles
+		var objective_dist: int = 0 # Tracks distance between objective tiles
+		var hazard_dist: int = 0
+		var objective_count: int = 0 # Tracks number of objective tiles
+		var curr_loc: Vector3i = Vector3i(-25,-25,-1) # x, y are back left corner
 		
-		for i in rounds:
+		while curr_loc.x < 25 or curr_loc.y < 25:  # 50 by 50 grid centered on spawn
 			match randi_range(0,4): # From 0 to maximum number of tiles in meshlibrary
 				0: # Objective tile
 					# No objective tile within x spaces of eachother
+					if objective_dist < min_dist:
+						continue
+						
 					# No objective tile within 10 spaces of spawn
+					if (curr_loc.x >= 10 or curr_loc.x <= 10) or \
+					(curr_loc.y >= 10 or curr_loc.y <= 10): 
+						continue
+						
+					# No more than 4 objective tiles total
+					if objective_count > 4:
+						continue
+					
+					# Place tile, increment count and reset dist
+					_map.set_cell_item(curr_loc, 0)
+					objective_count += 1
+					objective_dist = 0
+					
+					# Decide whether to increment x or y location
+					if curr_loc.x >= curr_loc.y:
+						curr_loc.y += 1
+					else:
+						curr_loc.x += 1
+					
+				1: # Dirt Tile
+					# Place tile
+					_map.place_cell_item(curr_loc, 1)
+					
+					# Decide whether to increment x or y location
+					if curr_loc.x >= curr_loc.y:
+						curr_loc.y += 1
+					else:
+						curr_loc.x += 1
+					
+				2: # Hazard Tile - Slow
+					# No two hazards within 2 spaces of each other
+					if hazard_dist < 2:
+						continue
+						
+					# Place tile, reset dist
+					_map.set_cell_item(curr_loc, 2)
+					hazard_dist = 0
+				3:
+					continue # Not implmented
+				4: 
+					continue # Not implemented
+			# Increment distance variables
+			objective_dist += 1
+			hazard_dist += 1
