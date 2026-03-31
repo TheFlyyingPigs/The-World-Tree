@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UpgradeType" load_steps=3 format=3 uid="uid://c5vpowafm8cwm"]
+
+[ext_resource type="Texture2D" uid="uid://mg2sw1fflans" path="res://Assets/Textures/GUI/tree-beacon.png" id="1_c5f6x"]
+[ext_resource type="Script" uid="uid://dckfs4nkavx01" path="res://Scripts/Upgrades/upgrade_type.gd" id="2_2jy3y"]
+
+[resource]
+script = ExtResource("2_2jy3y")
+icon = ExtResource("1_c5f6x")
+display_name = "Tree Beacon"
+description = "Level: 2
+Increases the range of the beacon"
+upgrade = 26
+prerequisites = Array[int]([25])
+cost_1_type = 2
+cost_1 = 6
+metadata/_custom_type_script = "uid://dckfs4nkavx01"

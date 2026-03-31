@@ -56,4 +56,4 @@ func scene_switched():
 	effects_manager = get_tree().get_first_node_in_group("effects_manager")
 
 func apply_effect(effect : Effects, time:int):
-	effects_manager.apply_effect(effect,time)
+	effects_manager.apply_effect(effect,time-Globals.status_effects_shorten)

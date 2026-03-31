@@ -17,8 +17,6 @@ var sprinting := false
 var stamina := 50
 
 
-# CONSTANTS
-const MAX_STAMINA = 50
 
 func tick(delta :float) -> void:
 	'
@@ -61,7 +59,7 @@ func update_stamina():
 			stamina -= 2
 			Gui.update_stamina_bar(stamina)
 			timer.start()
-	elif stamina < MAX_STAMINA:
+	elif stamina < Globals.max_stamina:
 		stamina += 1
 		timer.start()
 		Gui.update_stamina_bar(stamina)
@@ -70,6 +68,7 @@ func _ready() -> void:
 	'
 	connects the timer signal to the update stamina func
 	'
+	stamina = Globals.max_stamina
 	timer.timeout.connect(update_stamina)
 	await Globals.scene_loaded
 	Gui.update_stamina_bar(stamina)

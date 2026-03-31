@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UpgradeType" load_steps=3 format=3 uid="uid://c2k87nsy7e5"]
+
+[ext_resource type="Texture2D" uid="uid://lk1whyki14vb" path="res://Assets/Textures/GUI/effect-short.png" id="1_x53o8"]
+[ext_resource type="Script" uid="uid://dckfs4nkavx01" path="res://Scripts/Upgrades/upgrade_type.gd" id="2_2jgrw"]
+
+[resource]
+script = ExtResource("2_2jgrw")
+icon = ExtResource("1_x53o8")
+display_name = "Shorten Effects"
+description = "Level: 5
+Shortens status effect timers"
+upgrade = 34
+prerequisites = Array[int]([34])
+cost_1_type = 2
+cost_1 = 7
+second_cost = true
+cost_2_type = 3
+cost_2 = 4
+metadata/_custom_type_script = "uid://dckfs4nkavx01"

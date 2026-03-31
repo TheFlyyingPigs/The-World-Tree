@@ -54,6 +54,7 @@ func update_stamina_bar(value):
 	arguments:
 		value: the stamina value the bar should update to
 	'
+	stamina_bar.max_value = Globals.max_stamina
 	create_tween().tween_property(stamina_bar,"value",value,0.075)
 
 func fade_out():
@@ -69,23 +70,26 @@ func fade_in():
 	%ScreenFader.play("fade_in")
 
 
-func alert(type : ):
+func alert(type : Globals.ItemType, amount = null):
 	'
 	shows an alert for an item being picked
 	
 	arguments:
 		type: the type of item being picked up
 	'
-	
-	match type:
-		Globals.ItemType.WATER: alert_label.text = "Found Water" 
-		Globals.ItemType.SCRAP_METAL: alert_label.text = "Found scrap metal"
-		Globals.ItemType.CO2_CANISTER: alert_label.text = "Found Co2 canister"
-		Globals.ItemType.LIGHT_CRYSTAL: alert_label.text = "Found Light Crystal"
-		Globals.ItemType.ELETRCICAL_SCRAP: alert_label.text = "Found Electrical Scrap"
-		Globals.ItemType.SOUL_ESSENCE: alert_label.text = "Found Soul essence"
-		true: alert_label.text = "Lost all on-hand resources"
-	
+	if amount == null:
+		match type:
+			Globals.ItemType.WATER: alert_label.text = "Found Water" 
+			Globals.ItemType.SCRAP_METAL: alert_label.text = "Found scrap metal"
+			Globals.ItemType.CO2_CANISTER: alert_label.text = "Found Co2 canister"
+			Globals.ItemType.ELETRCICAL_SCRAP: alert_label.text = "Found Electrical Scrap"
+			true: alert_label.text = "Lost all on-hand resources"
+	else:
+		match type:
+			Globals.ItemType.WATER: alert_label.text = "Found "+str(amount)+ " Water" 
+			Globals.ItemType.SCRAP_METAL: alert_label.text = "Found "+str(amount)+" scrap metal"
+			Globals.ItemType.CO2_CANISTER: alert_label.text = "Found "+str(amount)+" Co2 canister"
+			Globals.ItemType.ELETRCICAL_SCRAP: alert_label.text = "Found "+str(amount)+" Electrical Scrap"
 	anim.play("alert")
 
 

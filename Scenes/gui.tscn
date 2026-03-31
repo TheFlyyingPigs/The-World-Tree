@@ -145,7 +145,6 @@ process_mode = 3
 follow_viewport_enabled = true
 
 [node name="EffectsManager" parent="CanvasLayer" instance=ExtResource("2_bf1fa")]
-anchors_preset = 15
 offset_left = 1176.0
 offset_top = 156.0
 offset_right = -26.0
@@ -399,11 +398,10 @@ text = "Skip
 [node name="UpgradeInventory" type="Label" parent="CanvasLayer/Menus/UpgradeMenu"]
 layout_mode = 0
 offset_left = 199.0
-offset_top = 89.0
+offset_top = 112.0
 offset_right = 1081.0
-offset_bottom = 144.0
-text = "WATER: 2x    Metal scrap: 1x    co2 canister: 0x    
-light crystal: 0x    electrical scrap: 1x    soul essence: 2x"
+offset_bottom = 167.0
+text = "WATER: 2x    Metal scrap: 1x    co2 canister: 0x    electrical scrap: 1x"
 horizontal_alignment = 1
 uppercase = true
 
@@ -441,8 +439,8 @@ color = Color(0.535984, 1, 0.5114435, 0.08235294)
 [node name="VisorOverlay" type="TextureRect" parent="CanvasLayer"]
 modulate = Color(0.8732979, 0.8732986, 0.87329817, 0.27450982)
 z_index = 1
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1280.0
+offset_bottom = 720.0
 mouse_filter = 2
 texture = ExtResource("4_m6o0h")
 

@@ -13,6 +13,6 @@ upgrade = 4
 prerequisites = Array[int]([3])
 cost_1 = 6
 second_cost = true
-cost_2_type = 3
+cost_2_type = 2
 cost_2 = 4
 metadata/_custom_type_script = "uid://dckfs4nkavx01"

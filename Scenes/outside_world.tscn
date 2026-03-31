@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cklblqchlc32c"]
+[gd_scene load_steps=20 format=3 uid="uid://cklblqchlc32c"]
 
 [ext_resource type="PackedScene" uid="uid://bftqq2syj7664" path="res://Scenes/player.tscn" id="1_l60d6"]
 [ext_resource type="Script" uid="uid://yf7hr01yjqdx" path="res://Scripts/outside_world.gd" id="1_patlc"]
@@ -10,6 +10,19 @@
 [ext_resource type="PackedScene" uid="uid://csoau7mpja14x" path="res://Scenes/level_transitioner.tscn" id="5_cjcjx"]
 [ext_resource type="PackedScene" uid="uid://df6cmmyprvyqf" path="res://Scenes/effect_trigger_zone.tscn" id="8_22iqp"]
 [ext_resource type="Resource" uid="uid://bkwqjt73u7kaa" path="res://Resources/Effect Trigger Zones/MudEffectZone.tres" id="9_neogm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_neogm"]
+resource_local_to_scene = true
+disable_fog = true
+emission_enabled = true
+emission = Color(0.13142616, 0.4019188, 0.38964084, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 150.0
+distance_fade_max_distance = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_neogm"]
+material = SubResource("StandardMaterial3D_neogm")
+height = 100.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_neogm"]
 radius = 0.6850586
@@ -42,6 +55,10 @@ albedo_color = Color(0.43674797, 0.22789639, 0.1286732, 1)
 
 [node name="outside_world" type="Node3D" groups=["outside"]]
 script = ExtResource("1_patlc")
+
+[node name="Beacon" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2241287, 95.80977, 0)
+mesh = SubResource("CylinderMesh_neogm")
 
 [node name="TreeModel" type="MeshInstance3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -1.3000102, 2.758)
@@ -84,7 +101,7 @@ bus = &"Ambience"
 parameters/looping = true
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.043278694, -1.3847958, 0.01942563)
+transform = Transform3D(7.5916333, 0, 0, 0, 1, 0, 0, 0, 7.5916333, 0.043278694, -1.3847958, 0.01942563)
 use_collision = true
 collision_layer = 9
 collision_mask = 9

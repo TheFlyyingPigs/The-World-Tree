@@ -5,13 +5,10 @@ enum ItemType { # CONTAINS ALL TYPES OF RESOURCES
 	WATER,
 	SCRAP_METAL,
 	CO2_CANISTER,
-	LIGHT_CRYSTAL,
 	ELETRCICAL_SCRAP,
-	SOUL_ESSENCE
 }
 
-const common_item_types := [ItemType.WATER, ItemType.SCRAP_METAL, ItemType.CO2_CANISTER]
-const rare_item_types := [ItemType.LIGHT_CRYSTAL,ItemType.ELETRCICAL_SCRAP,ItemType.SOUL_ESSENCE]
+const common_item_types := [ItemType.WATER, ItemType.SCRAP_METAL, ItemType.CO2_CANISTER, ItemType.ELETRCICAL_SCRAP]
 
 const ItemTypeAttributes = { # ATTRIBUTES FOR THE ITEMTYPE ENUM
 	"WATER":{
@@ -26,17 +23,9 @@ const ItemTypeAttributes = { # ATTRIBUTES FOR THE ITEMTYPE ENUM
 		'total'='total_co2',
 		'current'='current_co2'
 	},
-	"LIGHT_CRYSTAL":{
-		'total'='total_light',
-		'current'='current_light'
-	},
 	"ELETRCICAL_SCRAP":{
 		'total'='total_electric',
 		'current'='current_electric'
-	},
-	"SOUL_ESSENCE":{
-		'total'='total_soul',
-		'current'='current_soul'
 	},
 }
 
@@ -50,14 +39,8 @@ var inventory := { # CONTAINS NUMBER OF ALL ITEMS
 	'total_co2':99,
 	'current_co2':0,
 	
-	'total_light':99,
-	'current_light':0,
-	
 	'total_electric':99,
 	'current_electric':0,
-	
-	'total_soul':99,
-	'current_soul':0,
 } 
 
 var total_resources := 0
@@ -114,12 +97,46 @@ enum Upgrades{
 	MORE_BREAD_CRUMBS_4,
 	MORE_BREAD_CRUMBS_5,
 	
+	MORE_STAMINA_1,
+	MORE_STAMINA_2,
+	MORE_STAMINA_3,
+	MORE_STAMINA_4,
+	MORE_STAMINA_5,
+	
+	BEACON_STRENGTH_1,
+	BEACON_STRENGTH_2,
+	BEACON_STRENGTH_3,
+	BEACON_STRENGTH_4,
+	BEACON_STRENGTH_5,
+	
+	SHORTER_EFFECTS_1,
+	SHORTER_EFFECTS_2,
+	SHORTER_EFFECTS_3,
+	SHORTER_EFFECTS_4,
+	SHORTER_EFFECTS_5,
+	
+	ADDITONAL_RESOURCES_1,
+	ADDITONAL_RESOURCES_2,
+	ADDITONAL_RESOURCES_3,
+	ADDITONAL_RESOURCES_4,
+	ADDITONAL_RESOURCES_5,
+	
+	
+	NULL_UPGRADE,
+	
+	EXIT_PROTOCOL,
 }
 
 # UPGRADEABLE VARIABLES
 var fog_density := 0.3
 var sunlight := 0.3
 var max_bread_crumbs := 15
+var beacon_strength := -1
+var max_stamina := 30
+var additonal_chance := 0.0
+var status_effects_shorten := 0
+
+
 
 # QUOTA VARIABLES
 var day := 0

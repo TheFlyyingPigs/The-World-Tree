@@ -22,9 +22,9 @@ func scene_switched():
 	camera = get_tree().get_first_node_in_group("camera_comp")
 
 
-func alert(type):
+func alert(type, amount = null):
 	if Globals.loaded && not Globals.current_scene_id == Globals.LevelID.MAIN_MENU:
-		gui.alert(type)
+		gui.alert(type,amount)
 
 func show_screen(type):
 	if Globals.loaded && not Globals.current_scene_id == Globals.LevelID.MAIN_MENU:

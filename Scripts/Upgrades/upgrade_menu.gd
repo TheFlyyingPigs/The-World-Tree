@@ -33,7 +33,7 @@ func generate_upgrade_choices():
 		if not choice == null:
 			upgrade_options.append(choice)
 		else:
-			upgrade_options.append(load("res://Resources/Upgrades/null_upgrade_type.tres"))
+			upgrade_options.append(load("res://Resources/Upgrades/exit_protocol.tres"))
 	
 	for i in range(3):
 		var upgrade_button = get_node("HBoxContainer/UpgradeOption"+str(i+1))
@@ -48,7 +48,6 @@ func get_random_upgrade(upgrade_options) -> UpgradeType:
 		upgrade_options: the options that are already being shown as an option
 	'
 	var possible_upgrades := []
-	
 	
 	for choice in available_upgrades:
 		if choice in upgrade_options: # if choice not already an option
@@ -67,9 +66,7 @@ func get_random_upgrade(upgrade_options) -> UpgradeType:
 		var random_item = possible_upgrades.pick_random()
 		return random_item
 	else: 
-		print_debug("only "+str(possible_upgrades.size())+" upgrade choices")
 		return null
-
 
 func refresh():
 	'
@@ -93,9 +90,8 @@ func _ready() -> void:
 	refresh_button.text = "Refresh: x" +str(refresh_cost)+" "+str(refresh_item_type)
 	
 	for i in DirAccess.get_files_at("res://Resources/Upgrades/"):
-		if i != "null_upgrade_type.tres":
+		if i != "null_upgrade_type.tres" && i != "exit_protocol.tres":
 			available_upgrades.append(load("res://Resources/Upgrades/"+i))
-
 
 
 func _process(_delta: float) -> void:
@@ -109,8 +105,7 @@ func get_inventory_label() -> String:
 	'
 	returns inventory label
 	'
-	return  "water: "+str(Globals.inventory.total_water)+"x   scrap metal: "+str(Globals.inventory.total_metal)+"x   co2 canister: "+str(Globals.inventory.total_co2)+"x
-	light crystal: "+str(Globals.inventory.total_light)+"x   Electrical scrap: "+str(Globals.inventory.total_electric)+"x   soul essence: "+str(Globals.inventory.total_soul)+"x"
+	return  "water: "+str(Globals.inventory.total_water)+"x   scrap metal: "+str(Globals.inventory.total_metal)+"x   co2 canister: "+str(Globals.inventory.total_co2)+"x   Electrical scrap: "+str(Globals.inventory.total_electric)+"x"
 
 func upgrade_picked(upgrade):
 	Globals.found_upgrades.append(upgrade.upgrade)

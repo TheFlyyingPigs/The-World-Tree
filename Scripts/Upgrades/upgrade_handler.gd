@@ -10,9 +10,10 @@ const FOG_DECREASE = 0.05
 const TIMER_INCREASE = 30
 const SUNLIGHT_INCREASE = 0.05
 const CRUMBS_INCREASE = 5
+const STAMINA_INCREASE = 10
+const BEACON_STRENGTH_INCREASE = 25
 
 # TREE STAGE CONSTANTS
-const TREE_STAGE_1_AMOUNT = 5
 const TREE_STAGE_2_AMOUNT = 10
 const TREE_STAGE_3_AMOUNT = 15
 const TREE_STAGE_4_AMOUNT = 20
@@ -49,13 +50,40 @@ func apply_upgrade(upgrade_resource : UpgradeType):
 		Globals.Upgrades.MORE_BREAD_CRUMBS_3: Globals.max_bread_crumbs += CRUMBS_INCREASE
 		Globals.Upgrades.MORE_BREAD_CRUMBS_4: Globals.max_bread_crumbs += CRUMBS_INCREASE
 		Globals.Upgrades.MORE_BREAD_CRUMBS_5: Globals.max_bread_crumbs += CRUMBS_INCREASE
+		
+		Globals.Upgrades.MORE_STAMINA_1: Globals.max_stamina += STAMINA_INCREASE
+		Globals.Upgrades.MORE_STAMINA_2: Globals.max_stamina += STAMINA_INCREASE
+		Globals.Upgrades.MORE_STAMINA_3: Globals.max_stamina += STAMINA_INCREASE
+		Globals.Upgrades.MORE_STAMINA_4: Globals.max_stamina += STAMINA_INCREASE
+		Globals.Upgrades.MORE_STAMINA_5: Globals.max_stamina += STAMINA_INCREASE
+		
+		Globals.Upgrades.BEACON_STRENGTH_1: Globals.beacon_strength = 60
+		Globals.Upgrades.BEACON_STRENGTH_2: Globals.beacon_strength += BEACON_STRENGTH_INCREASE
+		Globals.Upgrades.BEACON_STRENGTH_3: Globals.beacon_strength += BEACON_STRENGTH_INCREASE
+		Globals.Upgrades.BEACON_STRENGTH_4: Globals.beacon_strength += BEACON_STRENGTH_INCREASE
+		Globals.Upgrades.BEACON_STRENGTH_5: Globals.beacon_strength += BEACON_STRENGTH_INCREASE
+		
+		Globals.Upgrades.SHORTER_EFFECTS_1: Globals.status_effects_shorten += 2
+		Globals.Upgrades.SHORTER_EFFECTS_2: Globals.status_effects_shorten += 2
+		Globals.Upgrades.SHORTER_EFFECTS_3: Globals.status_effects_shorten += 2
+		Globals.Upgrades.SHORTER_EFFECTS_4: Globals.status_effects_shorten += 2
+		Globals.Upgrades.SHORTER_EFFECTS_5: Globals.status_effects_shorten += 2
+		
+		Globals.Upgrades.ADDITONAL_RESOURCES_1: Globals.additonal_chance += 0.10
+		Globals.Upgrades.ADDITONAL_RESOURCES_2: Globals.additonal_chance += 0.10
+		Globals.Upgrades.ADDITONAL_RESOURCES_3: Globals.additonal_chance += 0.10
+		Globals.Upgrades.ADDITONAL_RESOURCES_4: Globals.additonal_chance += 0.10
+		Globals.Upgrades.ADDITONAL_RESOURCES_5: Globals.additonal_chance += 0.10
+		
+		Globals.Upgrades.EXIT_PROTOCOL: get_tree().quit()
+		
 	
 	upgraded.emit()
 	match Globals.found_upgrades.size():
-		TREE_STAGE_1_AMOUNT: 
-			Globals.tree_stage += 1
 		TREE_STAGE_2_AMOUNT: 
 			Globals.tree_stage += 1
 		TREE_STAGE_3_AMOUNT: 
+			Globals.tree_stage += 1
+		TREE_STAGE_4_AMOUNT: 
 			Globals.tree_stage += 1
 		

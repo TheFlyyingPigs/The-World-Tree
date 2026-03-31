@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeType" load_steps=3 format=3 uid="uid://li1m1h0wftiw"]
+
+[ext_resource type="Texture2D" uid="uid://mg2sw1fflans" path="res://Assets/Textures/GUI/tree-beacon.png" id="1_5i4nu"]
+[ext_resource type="Script" uid="uid://dckfs4nkavx01" path="res://Scripts/Upgrades/upgrade_type.gd" id="2_psvd8"]
+
+[resource]
+script = ExtResource("2_psvd8")
+icon = ExtResource("1_5i4nu")
+display_name = "Tree Beacon"
+description = "Level: 1
+Adds a beacon that pierces the fog"
+upgrade = 25
+cost_1_type = 2
+cost_1 = 4
+metadata/_custom_type_script = "uid://dckfs4nkavx01"
