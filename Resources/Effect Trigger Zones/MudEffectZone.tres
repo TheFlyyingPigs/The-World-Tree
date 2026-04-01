@@ -1,12 +1,9 @@
-[gd_resource type="Resource" script_class="EffectZoneSettings" load_steps=3 format=3 uid="uid://bkwqjt73u7kaa"]
+[gd_resource type="Resource" script_class="EffectZoneSettings" load_steps=2 format=3 uid="uid://bkwqjt73u7kaa"]
 
 [ext_resource type="Script" uid="uid://8umtn7qov3bu" path="res://Scripts/Effects/effect_zone_settings.gd" id="1_kh7wa"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_kh7wa"]
 
 [resource]
 script = ExtResource("1_kh7wa")
 effect = 1
-time = 15
-collison_shape = SubResource("SphereShape3D_kh7wa")
+time = 23
 metadata/_custom_type_script = "uid://8umtn7qov3bu"

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b2guctrl6k62g" path="res://Scripts/Effects/effect_trigger_zone.gd" id="1_1sxc7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i1occ"]
-radius = 1.1431421
+radius = 1.9324492
 
 [node name="EffectTriggerZone" type="Area3D"]
 collision_layer = 0

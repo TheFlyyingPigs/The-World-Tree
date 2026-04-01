@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjv1jfy4kcgnc"]
+
+[ext_resource type="Script" uid="uid://bdkp8v3kk11lc" path="res://Scripts/Resource_Deposits/deposit_spawner.gd" id="1_25ptn"]
+[ext_resource type="Resource" uid="uid://vf1uyivxts6x" path="res://Resources/Resource Deposits/CloseSpawner.tres" id="2_5ilme"]
+
+[node name="DepositSpawner" type="Marker3D"]
+script = ExtResource("1_25ptn")
+spawner_type = ExtResource("2_5ilme")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"

@@ -1,15 +1,41 @@
-[gd_scene load_steps=20 format=3 uid="uid://cklblqchlc32c"]
+[gd_scene load_steps=26 format=3 uid="uid://cklblqchlc32c"]
 
 [ext_resource type="PackedScene" uid="uid://bftqq2syj7664" path="res://Scenes/player.tscn" id="1_l60d6"]
 [ext_resource type="Script" uid="uid://yf7hr01yjqdx" path="res://Scripts/outside_world.gd" id="1_patlc"]
 [ext_resource type="AudioStream" uid="uid://c2f52r53eu14" path="res://Assets/SFX/Ambience/PLACE_sandstorm.mp3" id="2_cjcjx"]
 [ext_resource type="Material" uid="uid://c37rnnikndvip" path="res://Assets/VFX/fog.tres" id="2_g4qxf"]
+[ext_resource type="Texture2D" uid="uid://dwhl4qxmnnrk2" path="res://Assets/Models/Map/Material/GroundSand005_COL_1K.jpg" id="2_k0ujp"]
 [ext_resource type="ArrayMesh" uid="uid://plxh48xci1ri" path="res://Assets/Models/Tree/exterior_stage_1.res" id="2_neogm"]
 [ext_resource type="Script" uid="uid://bdkp8v3kk11lc" path="res://Scripts/Resource_Deposits/deposit_spawner.gd" id="3_l60d6"]
+[ext_resource type="Texture2D" uid="uid://cl2whx3k6kglp" path="res://Assets/Models/Map/Material/GroundSand005_AO_1K.jpg" id="3_npnsw"]
 [ext_resource type="Resource" uid="uid://vf1uyivxts6x" path="res://Resources/Resource Deposits/CloseSpawner.tres" id="4_cjcjx"]
+[ext_resource type="Texture2D" uid="uid://bfwcqx88uabnk" path="res://Assets/Models/Map/Material/GroundSand005_DISP_1K.jpg" id="4_crori"]
 [ext_resource type="PackedScene" uid="uid://csoau7mpja14x" path="res://Scenes/level_transitioner.tscn" id="5_cjcjx"]
-[ext_resource type="PackedScene" uid="uid://df6cmmyprvyqf" path="res://Scenes/effect_trigger_zone.tscn" id="8_22iqp"]
-[ext_resource type="Resource" uid="uid://bkwqjt73u7kaa" path="res://Resources/Effect Trigger Zones/MudEffectZone.tres" id="9_neogm"]
+[ext_resource type="Texture2D" uid="uid://b523pwbtdkte5" path="res://Assets/Models/Map/Material/GroundSand005_GLOSS_1K.jpg" id="5_nalyw"]
+[ext_resource type="Texture2D" uid="uid://cjfk785o2w2tn" path="res://Assets/Models/Map/Material/GroundSand005_NRM_1K.jpg" id="6_bwxpn"]
+[ext_resource type="Texture2D" uid="uid://c4buko7i14syr" path="res://Assets/Models/Map/Material/GroundSand005_BUMP_1K.jpg" id="7_pybpb"]
+[ext_resource type="PackedScene" uid="uid://bjv1jfy4kcgnc" path="res://Scenes/deposit_spawner.tscn" id="17_npnsw"]
+[ext_resource type="PackedScene" uid="uid://mpg1gu3qv74u" path="res://Scenes/slow_hazard.tscn" id="18_nalyw"]
+[ext_resource type="PackedScene" uid="uid://cv16aaj3p0mgm" path="res://Scenes/poison_hazard.tscn" id="19_bwxpn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vp8kl"]
+size = Vector3(500, 1, 500)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56rrh"]
+albedo_texture = ExtResource("2_k0ujp")
+metallic = 1.0
+metallic_specular = 0.0
+metallic_texture = ExtResource("5_nalyw")
+roughness_texture = ExtResource("7_pybpb")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_texture = ExtResource("6_bwxpn")
+clearcoat = 0.0
+clearcoat_texture = ExtResource("4_crori")
+ao_enabled = true
+ao_texture = ExtResource("3_npnsw")
+uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_neogm"]
 resource_local_to_scene = true
@@ -44,17 +70,15 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 volumetric_fog_albedo = Color(0.45471716, 0.3537043, 0.29561317, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_neogm"]
-size = Vector3(150, 1, 150)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgo3i"]
-albedo_color = Color(0.29960102, 0.21026641, 0.11093453, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22iqp"]
-albedo_color = Color(0.43674797, 0.22789639, 0.1286732, 1)
-
 [node name="outside_world" type="Node3D" groups=["outside"]]
 script = ExtResource("1_patlc")
+
+[node name="Map" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.905, 0)
+use_collision = true
+collision_layer = 9
+mesh = SubResource("BoxMesh_vp8kl")
+material = SubResource("StandardMaterial3D_56rrh")
 
 [node name="Beacon" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 1.2241287, 144.9837, 0)
@@ -78,7 +102,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9011173)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7371445, -1.1583397)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.3113416e-07, 1, 0, -1, 1.3113416e-07, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1.3113416e-07, 1, 0, -1, 1.3113416e-07, -1.4995649, -0.05164528, 2.559458)
 light_energy = 0.075
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 4.464
@@ -92,7 +116,7 @@ shape = 4
 material = ExtResource("2_g4qxf")
 
 [node name="Player" parent="." instance=ExtResource("1_l60d6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6582623)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.79255867, -0.39098722, -5.599618)
 
 [node name="AmbienceSounds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_cjcjx")
@@ -101,104 +125,1008 @@ autoplay = true
 bus = &"Ambience"
 parameters/looping = true
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(7.5916333, 0, 0, 0, 1, 0, 0, 0, 7.5916333, 0.043278694, -1.3847958, 0.01942563)
-use_collision = true
-collision_layer = 9
-collision_mask = 9
-mesh = SubResource("BoxMesh_neogm")
-material = SubResource("StandardMaterial3D_fgo3i")
-
 [node name="DepositSpawner" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.807941, -2.2773275, -8.9309635)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.034, -0.297, -19.022)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
 
-[node name="DepositSpawner2" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.862003, -4.468487, -46.580338)
+[node name="@Marker3D@27729" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.23308435, 0, -0.9724564, 0, 1, 0, 0.9724564, 0, -0.23308435, -20.533163, -1.405, -49.02861)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (1)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.90455246, 0, 0.42636204, 0, 1, 0, -0.42636204, 0, 0.90455246, -47.360012, -1.405, 53.84149)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (2)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.8751883, 0, 0.4837822, 0, 1, 0, -0.4837822, 0, 0.8751883, 54.28976, -1.405, 9.953888)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (3)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.0023880005, 0, 0.9999971, 0, 1, 0, -0.9999971, 0, 0.0023880005, 51.800133, -1.405, -39.38443)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (4)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.6304705, 0, -0.77621305, 0, 1, 0, 0.77621305, 0, -0.6304705, 15.980377, -1.405, -92.25673)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (5)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.69370437, 0, -0.7202597, 0, 1, 0, 0.7202597, 0, 0.69370437, -43.767277, -1.405, -54.402496)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (6)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.24896863, 0, 0.9685114, 0, 1, 0, -0.9685114, 0, -0.24896863, 11.821352, -1.405, -60.296364)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (7)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.50174844, 0, -0.8650134, 0, 1, 0, 0.8650134, 0, -0.50174844, -108.1014, -1.405, 12.126556)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (8)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.22302513, 0, -0.9748127, 0, 1, 0, 0.9748127, 0, 0.22302513, -111.33534, -1.4050076, 87.932144)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (9)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.72430146, 0, -0.68948334, 0, 1, 0, 0.68948334, 0, 0.72430146, -65.681725, -1.4050076, -86.67734)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (10)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.34326375, 0, 0.939239, 0, 1, 0, -0.939239, 0, 0.34326375, -18.90459, -1.405, -96.82436)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (11)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.27342188, 0, 0.96189415, 0, 1, 0, -0.96189415, 0, -0.27342188, -91.41714, -1.405, -40.4233)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (12)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.55259836, 0, -0.8334476, 0, 1, 0, 0.8334476, 0, -0.55259836, 38.915752, -1.405, -84.49234)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (13)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.99359274, 0, 0.11301854, 0, 1, 0, -0.11301854, 0, 0.99359274, 117.0051, -1.4050076, -39.65799)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (14)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.41842481, 0, 0.9082513, 0, 1, 0, -0.9082513, 0, 0.41842481, 132.0051, -1.4050076, 37.265915)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (15)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.9876921, 0, 0.15640977, 0, 1, 0, -0.15640977, 0, -0.9876921, 72.68862, -1.4049695, 142.1778)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (16)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.8640216, 0, -0.50345445, 0, 1, 0, 0.50345445, 0, 0.8640216, -52.49302, -1.4049695, 241.18317)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (17)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.58840156, 0, 0.8085687, 0, 1, 0, -0.8085687, 0, 0.58840156, -194.64227, -1.4049695, 149.53741)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (19)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.9993665, 0, 0.035585083, 0, 1, 0, -0.035585083, 0, -0.9993665, -71.502815, -1.405, 80.2052)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (20)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.7425486, 0, -0.66979206, 0, 1, 0, 0.66979206, 0, -0.7425486, 102.85991, -1.4049695, 91.82205)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (21)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.63364154, 0, -0.77362657, 0, 1, 0, 0.77362657, 0, 0.63364154, 240.50165, -1.405, 239.6195)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (23)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.99982446, 0, 0.01872605, 0, 1, 0, -0.01872605, 0, -0.99982446, 236.00845, -1.405061, -144.61139)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (24)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.6403375, 0, -0.7680934, 0, 1, 0, 0.7680934, 0, 0.6403375, 67.39883, -1.4050305, -139.9086)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (25)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.17081305, 0, 0.9853033, 0, 1, 0, -0.9853033, 0, -0.17081305, 37.89695, -1.4050305, -164.91495)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (26)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.59623176, 0, -0.80281216, 0, 1, 0, 0.80281216, 0, -0.59623176, -27.072847, -1.4050305, -128.06442)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (27)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.59922934, 0, 0.8005772, 0, 1, 0, -0.8005772, 0, 0.59922934, -142.88245, -1.4049695, -199.61133)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (28)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.7033422, 0, -0.7108512, 0, 1, 0, 0.7108512, 0, -0.7033422, -173.31784, -1.405, -57.934814)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (41)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.6886607, 0, -0.72508365, 0, 1, 0, 0.72508365, 0, -0.6886607, -190.00082, -1.405, 102.352844)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (56)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.99696726, 0, 0.07782212, 0, 1, 0, -0.07782212, 0, 0.99696726, 218.15198, -1.4050152, -170.20032)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (70)" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.87590545, 0, 0.48248294, 0, 1, 0, -0.48248294, 0, -0.87590545, -224.6619, -1.4050009, 201.21967)
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="SlowHazard" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.8246015, 0, 0.56571406, 0, 1, 0, -0.56571406, 0, 0.8246015, -1.1059952, -1.4049923, -48.21946)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (1)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.83445895, 0, -0.55107003, 0, 1, 0, 0.55107003, 0, -0.83445895, 38.78083, -1.4049923, -57.012444)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (2)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.5011808, 0, -0.8653425, 0, 1, 0, 0.8653425, 0, -0.5011808, -62.167625, -1.4050076, 7.4679337)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (3)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.236681, 0, -0.9715873, 0, 1, 0, 0.9715873, 0, -0.236681, 54.951706, -1.4050076, 19.638657)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (4)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.71007913, 0, -0.7041218, 0, 1, 0, 0.7041218, 0, 0.71007913, 107.20054, -1.405, -30.779716)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (5)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.96638805, 0, -0.2570878, 0, 1, 0, 0.2570878, 0, 0.96638805, 66.70357, -1.4049923, -62.302055)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (6)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.12758854, 0, 0.9918272, 0, 1, 0, -0.9918272, 0, 0.12758854, 76.24998, -1.4049847, -6.766632)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (7)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.8777193, 0, 0.4791752, 0, 1, 0, -0.4791752, 0, -0.8777193, -37.62798, -1.4050305, -82.76158)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (8)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.7632437, 0, -0.64611083, 0, 1, 0, 0.64611083, 0, 0.7632437, -39.151375, -1.405, -32.606934)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (9)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.94943905, 0, -0.3139516, 0, 1, 0, 0.3139516, 0, 0.94943905, 18.289524, -1.4049695, -102.32576)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (10)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.38220328, 0, 0.92407835, 0, 1, 0, -0.92407835, 0, -0.38220328, 32.50711, -1.405, -22.676586)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (11)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.88549536, 0, -0.46464825, 0, 1, 0, 0.46464825, 0, -0.88549536, -23.83057, -1.405, -14.818497)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (12)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.5501833, 0, -0.8350439, 0, 1, 0, 0.8350439, 0, -0.5501833, 41.839035, -1.4050038, 91.50122)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (13)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.32105613, 0, -0.94706017, 0, 1, 0, 0.94706017, 0, -0.32105613, 114.17597, -1.405, 34.24298)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (14)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.57782406, 0, -0.8161614, 0, 1, 0, 0.8161614, 0, 0.57782406, 158.4793, -1.405, 1.6361923)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (15)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.53824407, 0, 0.84278905, 0, 1, 0, -0.84278905, 0, 0.53824407, 160.58182, -1.4050152, -154.41766)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (16)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.32481876, 0, 0.94577634, 0, 1, 0, -0.94577634, 0, -0.32481876, 216.66656, -1.4050152, -89.791916)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (17)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.08239043, 0, -0.99660015, 0, 1, 0, 0.99660015, 0, -0.08239043, 69.84891, -1.4049847, -113.36662)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (18)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.8391058, 0, 0.5439683, 0, 1, 0, -0.5439683, 0, 0.8391058, 134.79672, -1.405, -75.20708)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (19)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.44359076, 0, 0.89622945, 0, 1, 0, -0.89622945, 0, -0.44359076, 102.93671, -1.4049847, -132.36328)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (20)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.99970794, 0, 0.024164855, 0, 1, 0, -0.024164855, 0, -0.99970794, -21.871185, -1.4050305, -182.81242)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (21)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.89528793, 0, -0.4454878, 0, 1, 0, 0.4454878, 0, -0.89528793, -88.07457, -1.405, -87.77783)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (22)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.8756652, 0, -0.4829185, 0, 1, 0, 0.4829185, 0, 0.8756652, -90.530266, -1.4050305, -165.50217)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (23)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.34469494, 0, 0.9387147, 0, 1, 0, -0.9387147, 0, 0.34469494, -45.79022, -1.405, -138.40323)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (24)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.91693294, 0, 0.39904103, 0, 1, 0, -0.39904103, 0, -0.91693294, 12.57914, -1.4050305, -205.01056)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (25)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.48217976, 0, -0.87607217, 0, 1, 0, 0.87607217, 0, 0.48217976, 4.8743896, -1.405, -151.10822)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (26)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.6092767, 0, -0.79295754, 0, 1, 0, 0.79295754, 0, 0.6092767, 83.758095, -1.405, -202.24959)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (27)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.87012124, 0, -0.49283743, 0, 1, 0, 0.49283743, 0, 0.87012124, 54.147232, -1.405, -170.276)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (29)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.9952244, 0, 0.09761143, 0, 1, 0, -0.09761143, 0, -0.9952244, 130.68765, -1.4049695, -210.11812)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (30)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.20957875, 0, -0.97779155, 0, 1, 0, 0.97779155, 0, -0.20957875, 91.097664, -1.405, -246.50339)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (31)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.95350295, 0, -0.3013829, 0, 1, 0, 0.3013829, 0, 0.95350295, 168.7608, -1.405, -239.34048)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (32)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.9906202, 0, 0.13664258, 0, 1, 0, -0.13664258, 0, 0.9906202, 215.60568, -1.405, -167.29617)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (33)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.35159415, 0, 0.93615246, 0, 1, 0, -0.93615246, 0, 0.35159415, 251.27307, -1.4049695, -206.18617)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (36)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.7494832, 0, -0.6620232, 0, 1, 0, 0.6620232, 0, 0.7494832, 220.09225, -1.4050305, -26.664673)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (38)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.03084749, 0, -0.999524, 0, 1, 0, 0.999524, 0, -0.03084749, 164.80832, -1.4049695, -12.458496)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (39)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.21329424, 0, -0.9769879, 0, 1, 0, 0.9769879, 0, 0.21329424, 229.04614, -1.4049695, 78.39871)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (40)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.029978901, 0, 0.9995504, 0, 1, 0, -0.9995504, 0, -0.029978901, 134.04279, -1.405, 217.5632)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (41)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.05124306, 0, -0.9986861, 0, 1, 0, 0.9986861, 0, -0.05124306, 178.4339, -1.405, 88.78937)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (43)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.07802011, 0, 0.99695164, 0, 1, 0, -0.99695164, 0, 0.07802011, 127.621895, -1.4049695, 103.259)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (44)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.29917186, 0, 0.9541991, 0, 1, 0, -0.9541991, 0, -0.29917186, -37.901665, -1.4049695, 248.73007)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (45)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.19624668, 0, -0.9805544, 0, 1, 0, 0.9805544, 0, -0.19624668, -66.333664, -1.405, 131.37082)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (46)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.9629426, 0, -0.26970583, 0, 1, 0, 0.26970583, 0, 0.9629426, 49.689674, -1.4049695, 137.63461)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (47)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.111903936, 0, 0.9937189, 0, 1, 0, -0.9937189, 0, -0.111903936, 19.760628, -1.405, 224.88235)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (48)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.33290625, 0, 0.9429598, 0, 1, 0, -0.9429598, 0, -0.33290625, -210.89111, -1.405, 124.86856)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (49)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.8885304, 0, -0.45881745, 0, 1, 0, 0.45881745, 0, -0.8885304, -165.57489, -1.405, -7.4010925)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (50)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.34208304, 0, -0.93966955, 0, 1, 0, 0.93966955, 0, -0.34208304, -138.26852, -1.405, 89.5119)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (51)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.6839184, 0, -0.7295582, 0, 1, 0, 0.7295582, 0, 0.6839184, -48.943386, -1.405, 161.62265)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (52)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.65560335, 0, 0.7551052, 0, 1, 0, -0.7551052, 0, -0.65560335, -156.21432, -1.405, -123.614136)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (53)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.99504864, 0, 0.099387795, 0, 1, 0, -0.099387795, 0, -0.99504864, -129.02853, -1.405, -72.157776)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (54)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.37788725, 0, -0.9258515, 0, 1, 0, 0.9258515, 0, 0.37788725, -172.86697, -1.405, -201.99756)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (55)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.5044464, 0, -0.8634429, 0, 1, 0, 0.8634429, 0, 0.5044464, -244.66357, -1.4050305, -135.54785)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (57)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.97773015, 0, 0.20986593, 0, 1, 0, -0.20986593, 0, -0.97773015, -78.95818, -1.405, -232.37177)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (72)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.9669575, 0, 0.25493705, 0, 1, 0, -0.25493705, 0, 0.9669575, 171.16388, -1.405, 209.90317)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (73)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(-0.9286996, 0, 0.37083262, 0, 1, 0, -0.37083262, 0, -0.9286996, -215.05429, -1.405, -24.625366)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (90)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.4841329, 0, -0.8749943, 0, 1, 0, 0.8749943, 0, 0.4841329, -240.30763, -1.405061, 154.10785)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (91)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.60210246, 0, 0.7984187, 0, 1, 0, -0.7984187, 0, 0.60210246, -74.89331, -1.405061, 223.07373)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="SlowHazard (93)" type="Node3D" parent="." instance=ExtResource("18_nalyw")]
+transform = Transform3D(0.39528972, 0, 0.91855633, 0, 1, 0, -0.91855633, 0, 0.39528972, -169.1677, -1.405061, 176.78755)
+metadata/asset_placer_res_id = "uid://mpg1gu3qv74u"
+
+[node name="PoisonHazard (3)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.28087533, 0, -0.9597442, 0, 1, 0, 0.9597442, 0, -0.28087533, 14.6565895, -1.4050152, 153.61057)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (4)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.77945596, 0, -0.626457, 0, 1, 0, 0.626457, 0, 0.77945596, -97.82603, -1.405, -34.880615)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (5)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.70731425, 0, 0.7068992, 0, 1, 0, -0.7068992, 0, 0.70731425, -25.862122, -1.405, 79.8008)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (6)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.9516238, 0, -0.3072657, 0, 1, 0, 0.3072657, 0, -0.9516238, -112.75219, -1.405, 53.96045)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (7)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.33666268, 0, -0.94162536, 0, 1, 0, 0.94162536, 0, 0.33666268, -181.38907, -1.405, 53.19113)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (8)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.86767435, 0, 0.49713308, 0, 1, 0, -0.49713308, 0, 0.86767435, -134.88635, -1.405, 113.08249)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (9)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.3148133, 0, 0.94915366, 0, 1, 0, -0.94915366, 0, 0.3148133, -209.51816, -1.405, -77.92352)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (10)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.9944688, 0, -0.1050325, 0, 1, 0, 0.1050325, 0, -0.9944688, -122.60478, -1.405, -249.85968)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (18)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.76544285, 0, -0.64350426, 0, 1, 0, 0.64350426, 0, 0.76544285, 224.15076, -1.405061, -113.36337)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (20)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.29174381, 0, 0.95649666, 0, 1, 0, -0.95649666, 0, -0.29174381, 150.1724, -1.4049389, -136.46484)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (21)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.98601496, 0, 0.16665795, 0, 1, 0, -0.16665795, 0, -0.98601496, -124.79486, -1.405, -52.964508)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (22)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.5477106, 0, -0.83666813, 0, 1, 0, 0.83666813, 0, -0.5477106, -104.621956, -1.4049389, -128.88196)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (23)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.38254178, 0, -0.9239385, 0, 1, 0, 0.9239385, 0, 0.38254178, -175.83871, -1.405, -39.08084)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (24)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.059360415, 0, 0.9982369, 0, 1, 0, -0.9982369, 0, 0.059360415, -196.81143, -1.405061, -128.86826)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (25)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.34051797, 0, 0.94023836, 0, 1, 0, -0.94023836, 0, -0.34051797, -252.70921, -1.4049389, 65.595215)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (26)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.883315, 0, -0.46878052, 0, 1, 0, 0.46878052, 0, -0.883315, -109.13767, -1.405, 87.25107)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (27)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.78241336, 0, -0.6227599, 0, 1, 0, 0.6227599, 0, -0.78241336, 45.17946, -1.405, 110.05423)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (31)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.1551999, 0, 0.9878833, 0, 1, 0, -0.9878833, 0, -0.1551999, -106.81525, -1.405, 246.51334)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="DepositSpawner (76)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.8350558, 0, 0.55016524, 0, 1, 0, -0.55016524, 0, -0.8350558, -84.581085, -1.4049847, 18.61)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
 
-[node name="DepositSpawner3" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.75149, -83.58864, -14.91556)
+[node name="DepositSpawner (77)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.5026201, 0, -0.8645074, 0, 1, 0, 0.8645074, 0, -0.5026201, -61.912308, -1.405, 39.154617)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
 
-[node name="DepositSpawner4" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.002878, 0, 20.935295)
+[node name="DepositSpawner (78)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.42679632, 0, -0.9043478, 0, 1, 0, 0.9043478, 0, 0.42679632, -141.13338, -1.4049847, 17.085594)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
 
-[node name="DepositSpawner5" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.074381, 0, -22.326128)
+[node name="DepositSpawner (79)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.0383901, 0, 0.99926287, 0, 1, 0, -0.99926287, 0, -0.0383901, -135.33502, -1.405, 61.672066)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
 
-[node name="DepositSpawner6" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.921622, 0, 21.03836)
+[node name="DepositSpawner (80)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.46357226, 0, -0.88605917, 0, 1, 0, 0.88605917, 0, -0.46357226, -17.622066, -1.405, 67.60291)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
 
-[node name="DepositSpawner7" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.041428, 0, -8.057831)
+[node name="DepositSpawner (81)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.74027926, 0, -0.6722995, 0, 1, 0, 0.6722995, 0, 0.74027926, -74.81448, -1.4050152, -58.307907)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
 
-[node name="DepositSpawner8" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.00538, 0, -25.542377)
+[node name="DepositSpawner (82)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.37974247, 0, 0.9250922, 0, 1, 0, -0.9250922, 0, -0.37974247, -119.05075, -1.4049847, -19.60643)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
 
-[node name="DepositSpawner9" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.301155, 0, -61.903416)
+[node name="DepositSpawner (83)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.6989292, 0, 0.7151909, 0, 1, 0, -0.7151909, 0, -0.6989292, -203.12173, -1.4050305, -130.65373)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
 
-[node name="DepositSpawner10" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.04805, 0, -62.355927)
+[node name="DepositSpawner (84)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.59179676, 0, -0.80608726, 0, 1, 0, 0.80608726, 0, -0.59179676, -146.54826, -1.405, -84.81995)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
 
-[node name="DepositSpawner11" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.61121, 0, -34.686287)
+[node name="DepositSpawner (85)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.40028346, 0, -0.91639143, 0, 1, 0, 0.91639143, 0, 0.40028346, -255.71999, -1.405, 11.815056)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
 
-[node name="DepositSpawner12" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.887875, 0, -46.02944)
+[node name="DepositSpawner (86)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.25796506, 0, 0.9661543, 0, 1, 0, -0.9661543, 0, -0.25796506, -232.49829, -1.4049847, 95.83302)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
 
-[node name="DepositSpawner13" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.88528, 0, -3.7834396)
+[node name="DepositSpawner (87)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.737242, 0, 0.6756288, 0, 1, 0, -0.6756288, 0, -0.737242, 27.390247, -1.4050152, 73.51179)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
 
-[node name="DepositSpawner14" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.88528, 0, -5.7834396)
+[node name="DepositSpawner (88)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.029171556, 0, -0.9995744, 0, 1, 0, 0.9995744, 0, 0.029171556, 166.82626, -1.4049847, 48.761642)
 script = ExtResource("3_l60d6")
 spawner_type = ExtResource("4_cjcjx")
 metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
 
-[node name="EffectTriggerZone" parent="." instance=ExtResource("8_22iqp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46370757, 0, -12.527076)
-zone_settings = ExtResource("9_neogm")
+[node name="DepositSpawner (89)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.3549378, 0, 0.9348899, 0, 1, 0, -0.9348899, 0, 0.3549378, -27.17549, -1.4050152, 93.97318)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46370757, -0.70227194, -12.454141)
-radius = 1.2299805
-height = 0.3001709
-material = SubResource("StandardMaterial3D_22iqp")
+[node name="DepositSpawner (90)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.57897866, 0, 0.81534266, 0, 1, 0, -0.81534266, 0, -0.57897866, 189.57893, -1.4049695, -109.40567)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (91)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.23750797, 0, -0.9713856, 0, 1, 0, 0.9713856, 0, 0.23750797, 69.60779, -1.405, -153.78986)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (92)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.74596786, 0, 0.66598195, 0, 1, 0, -0.66598195, 0, 0.74596786, 200.4491, -1.405, -78.39548)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (93)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.99108624, 0, -0.13322216, 0, 1, 0, 0.13322216, 0, -0.99108624, -139.61946, -1.405, -155.69626)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (95)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.67757183, 0, 0.7354567, 0, 1, 0, -0.7354567, 0, 0.67757183, -244.1505, -1.4050305, -148.24344)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (96)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.08741308, 0, 0.9961723, 0, 1, 0, -0.9961723, 0, 0.08741308, -234.66791, -1.405, -217.7297)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (97)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.03220061, 0, 0.99948156, 0, 1, 0, -0.99948156, 0, 0.03220061, -196.91055, -1.4050305, -226.45078)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (98)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.57106185, 0, 0.82090724, 0, 1, 0, -0.82090724, 0, -0.57106185, -222.77588, -1.405, -148.87589)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (99)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.67704326, 0, -0.7359436, 0, 1, 0, 0.7359436, 0, -0.67704326, -150.057, -1.4049695, -146.43048)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (102)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.47717562, 0, -0.87880826, 0, 1, 0, 0.87880826, 0, 0.47717562, -213.56305, -1.405, 136.29034)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (103)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.97184724, 0, 0.23561314, 0, 1, 0, -0.23561314, 0, 0.97184724, -222.72597, -1.405, 198.17998)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (104)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.117798544, 0, 0.9930378, 0, 1, 0, -0.9930378, 0, -0.117798544, -206.1688, -1.405, 236.32307)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (105)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.3563378, 0, -0.9343575, 0, 1, 0, 0.9343575, 0, -0.3563378, 94.950455, -1.4050305, 207.3792)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (106)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.9848158, 0, -0.1736044, 0, 1, 0, 0.1736044, 0, 0.9848158, 212.78519, -1.4049695, 178.88069)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (107)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.46245998, 0, 0.8866405, 0, 1, 0, -0.8866405, 0, -0.46245998, -26.914982, -1.4050305, 124.72343)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (108)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.45517293, 0, -0.8904034, 0, 1, 0, 0.8904034, 0, 0.45517293, -208.85648, -1.405, 118.74334)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (109)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.8602462, 0, -0.50987947, 0, 1, 0, 0.50987947, 0, 0.8602462, 93.76492, -1.4049695, 39.68698)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (119)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.008512944, 0, -0.99996406, 0, 1, 0, 0.99996406, 0, -0.008512944, -229.18033, -1.4050305, 219.1302)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (121)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.63941395, 0, 0.76886296, 0, 1, 0, -0.76886296, 0, 0.63941395, -211.10141, -1.405, 152.72147)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (122)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.13119444, 0, 0.9913569, 0, 1, 0, -0.9913569, 0, -0.13119444, 84.23421, -1.405, 161.2732)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (125)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.9776229, 0, 0.2103659, 0, 1, 0, -0.2103659, 0, 0.9776229, 170.91011, -1.405, 165.21883)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (131)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.41244414, 0, -0.91098297, 0, 1, 0, 0.91098297, 0, 0.41244414, -32.244442, -1.405, 28.013996)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (132)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.34952125, 0, 0.9369285, 0, 1, 0, -0.9369285, 0, 0.34952125, -14.680225, -1.4050038, -30.510353)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (133)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.8711826, 0, -0.49095944, 0, 1, 0, 0.49095944, 0, -0.8711826, 77.550934, -1.4050038, -35.87697)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49686" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.13512154, 0, 0.99082905, 0, 1, 0, -0.99082905, 0, -0.13512154, 93.10721, -1.405, -72.97359)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49687" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.40740085, 0, -0.91324943, 0, 1, 0, 0.91324943, 0, -0.40740085, 63.584457, -1.405, -89.923615)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49688" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.9015807, 0, 0.43261087, 0, 1, 0, -0.43261087, 0, 0.9015807, 132.78284, -1.405, -116.72388)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49689" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.44059166, 0, 0.8977076, 0, 1, 0, -0.8977076, 0, 0.44059166, 140.85977, -1.4049389, -98.978)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49690" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.9989104, 0, -0.04666859, 0, 1, 0, 0.04666859, 0, -0.9989104, 199.41875, -1.4049389, -51.61115)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49691" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.94805336, 0, -0.31811133, 0, 1, 0, 0.31811133, 0, -0.94805336, 166.66037, -1.405, -23.4645)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49692" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.6906753, 0, -0.723165, 0, 1, 0, 0.723165, 0, 0.6906753, 91.51843, -1.405, 122.157715)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49693" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.88052565, 0, -0.4739985, 0, 1, 0, 0.4739985, 0, 0.88052565, 204.47162, -1.405, 201.72311)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49694" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.9718199, 0, -0.2357249, 0, 1, 0, 0.2357249, 0, 0.9718199, 152.60991, -1.405061, 209.34189)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49695" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.35491747, 0, 0.9348977, 0, 1, 0, -0.9348977, 0, -0.35491747, 57.21119, -1.405061, 127.24518)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49696" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.9285579, 0, -0.37118798, 0, 1, 0, 0.37118798, 0, -0.9285579, -120.62107, -1.405, -192.66048)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49697" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.8783472, 0, -0.47802353, 0, 1, 0, 0.47802353, 0, -0.8783472, -164.7673, -1.405, -71.35574)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49698" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.31208238, 0, -0.95005524, 0, 1, 0, 0.95005524, 0, -0.31208238, -89.43309, -1.405, 36.93419)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49699" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.99741656, 0, -0.071836755, 0, 1, 0, 0.071836755, 0, 0.99741656, -88.39101, -1.405, 137.763)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49700" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.82605946, 0, 0.56358325, 0, 1, 0, -0.56358325, 0, -0.82605946, -160.15186, -1.405, 168.46205)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49701" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.9502424, 0, 0.31151193, 0, 1, 0, -0.31151193, 0, -0.9502424, 64.106606, -1.405, 198.94072)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (94)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.9050866, 0, -0.42522776, 0, 1, 0, 0.42522776, 0, 0.9050866, 214.74794, -1.405, 159.23456)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49702" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.93373823, 0, 0.35795742, 0, 1, 0, -0.35795742, 0, 0.93373823, 218.86267, -1.405, -19.163956)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49703" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.59344435, 0, 0.80487555, 0, 1, 0, -0.80487555, 0, 0.59344435, 147.01933, -1.405, -159.02483)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49704" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.72600514, 0, 0.6876898, 0, 1, 0, -0.6876898, 0, -0.72600514, 78.30196, -1.405, -188.51367)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49705" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.77155584, 0, -0.6361621, 0, 1, 0, 0.6361621, 0, -0.77155584, 19.631683, -1.405, -189.08636)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49706" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.09204456, 0, -0.9957552, 0, 1, 0, 0.9957552, 0, 0.09204456, 35.763676, -1.405, -109.9828)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (100)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.2561402, 0, 0.96664006, 0, 1, 0, -0.96664006, 0, 0.2561402, 104.14961, -1.405, -49.563286)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (101)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.1256356, 0, 0.9920769, 0, 1, 0, -0.9920769, 0, 0.1256356, -115.70423, -1.405, -25.126108)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49707" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.72973484, 0, -0.6837308, 0, 1, 0, 0.6837308, 0, -0.72973484, -107.17246, -1.405, -84.30803)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49708" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.9382065, 0, 0.3460771, 0, 1, 0, -0.3460771, 0, 0.9382065, -86.43912, -1.405, -151.75351)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49709" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.6550282, 0, 0.7556049, 0, 1, 0, -0.7556049, 0, -0.6550282, 59.77343, -1.405, -159.06259)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49710" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.967106, 0, 0.2543754, 0, 1, 0, -0.2543754, 0, -0.967106, 181.92906, -1.405, -159.32642)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49711" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.99123883, 0, 0.1320847, 0, 1, 0, -0.1320847, 0, -0.99123883, 165.68901, -1.405, 24.89647)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49712" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.08438632, 0, -0.9964335, 0, 1, 0, 0.9964335, 0, -0.08438632, 60.011467, -1.4049389, 159.09813)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49713" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.6134467, 0, 0.7897366, 0, 1, 0, -0.7897366, 0, 0.6134467, -167.40222, -1.405, 149.93767)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Marker3D@49714" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(0.25779605, 0, 0.96619976, 0, 1, 0, -0.96619976, 0, 0.25779605, -202.64786, -1.405, -33.87822)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (110)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.9065769, 0, 0.42204192, 0, 1, 0, -0.42204192, 0, -0.9065769, -194.16528, -1.405061, -198.53796)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="DepositSpawner (111)" type="Marker3D" parent="." instance=ExtResource("17_npnsw")]
+transform = Transform3D(-0.7113526, 0, -0.70283604, 0, 1, 0, 0.70283604, 0, -0.7113526, -4.2405453, -1.405061, -165.38275)
+script = ExtResource("3_l60d6")
+spawner_type = ExtResource("4_cjcjx")
+metadata/_custom_type_script = "uid://bdkp8v3kk11lc"
+metadata/asset_placer_res_id = "uid://bjv1jfy4kcgnc"
+
+[node name="@Node3D@49715" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.9537563, 0, 0.30058104, 0, 1, 0, -0.30058104, 0, -0.9537563, 84.00703, -1.405, -84.41319)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="@Node3D@49716" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.81035113, 0, -0.58594465, 0, 1, 0, 0.58594465, 0, 0.81035113, -18.905983, -1.405, -154.82016)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (28)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.81862164, 0, 0.57433325, 0, 1, 0, -0.57433325, 0, 0.81862164, -119.201675, -1.405, -80.78455)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (29)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.7406881, 0, 0.67184913, 0, 1, 0, -0.67184913, 0, 0.7406881, -120.8905, -1.405, 50.85376)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (30)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.9946898, 0, 0.10291836, 0, 1, 0, -0.10291836, 0, -0.9946898, -65.38023, -1.405, 137.81578)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="@Node3D@49717" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.15002286, 0, -0.98868257, 0, 1, 0, 0.98868257, 0, 0.15002286, 33.336006, -1.405061, 172.4053)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (32)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.9683195, 0, -0.24971476, 0, 1, 0, 0.24971476, 0, 0.9683195, 177.03903, -1.405061, 170.54785)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (33)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.99901164, 0, 0.044450432, 0, 1, 0, -0.044450432, 0, 0.99901164, 224.83942, -1.405, 12.790894)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (34)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.8298639, 0, 0.55796593, 0, 1, 0, -0.55796593, 0, 0.8298639, 55.028824, -1.405, -137.82536)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="@Node3D@49718" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.9758831, 0, 0.2182939, 0, 1, 0, -0.2182939, 0, -0.9758831, -168.05725, -1.405, -218.19292)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="@Node3D@49719" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.070254445, 0, -0.9975291, 0, 1, 0, 0.9975291, 0, -0.070254445, -109.877785, -1.405061, 117.92305)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (37)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.8084941, 0, 0.5885043, 0, 1, 0, -0.5885043, 0, 0.8084941, 149.99626, -1.405, 150.50212)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="@Node3D@49720" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.7935377, 0, 0.6085212, 0, 1, 0, -0.6085212, 0, -0.7935377, 124.056015, -1.405, 100.338455)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (39)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.8755143, 0, 0.4831922, 0, 1, 0, -0.4831922, 0, -0.8755143, 193.10109, -1.405, -117.677155)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (40)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.93685335, 0, 0.3497227, 0, 1, 0, -0.3497227, 0, -0.93685335, -63.300938, -1.405061, -198.48093)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (42)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.5159443, 0, -0.85662246, 0, 1, 0, 0.85662246, 0, -0.5159443, -204.96458, -1.405, -78.38724)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (43)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.9950541, 0, 0.09933698, 0, 1, 0, -0.09933698, 0, 0.9950541, -205.35332, -1.405, 146.16011)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (44)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(-0.30002242, 0, 0.95393246, 0, 1, 0, -0.95393246, 0, -0.30002242, -119.87394, -1.405, 238.22063)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"
+
+[node name="PoisonHazard (45)" type="Node3D" parent="." instance=ExtResource("19_bwxpn")]
+transform = Transform3D(0.07962403, 0, -0.99682534, 0, 1, 0, 0.99682534, 0, 0.07962403, -116.654045, -1.405, 151.01094)
+metadata/asset_placer_res_id = "uid://cv16aaj3p0mgm"

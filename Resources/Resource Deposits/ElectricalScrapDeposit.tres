@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DepositType" load_steps=5 format=3 uid="uid://siia4w60u3nm"]
+
+[ext_resource type="Script" uid="uid://drfc2dahc1go0" path="res://Scripts/Resource_Deposits/deposit_type.gd" id="1_h21mw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4n82b"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rwmsm"]
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yk211"]
+albedo_color = Color(0.21568628, 0.34901962, 0.21568628, 1)
+metallic = 0.55
+metallic_specular = 1.0
+
+[resource]
+script = ExtResource("1_h21mw")
+mesh = SubResource("PlaneMesh_rwmsm")
+mesh_material = SubResource("StandardMaterial3D_yk211")
+collision_shape = SubResource("BoxShape3D_4n82b")
+resource_type = 3
+particle_color = Color(0.16107172, 0.4185244, 0.16073334, 1)
+metadata/_custom_type_script = "uid://drfc2dahc1go0"

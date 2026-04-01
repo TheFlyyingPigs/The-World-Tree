@@ -132,7 +132,7 @@ var fog_density := 0.3
 var sunlight := 30
 var max_bread_crumbs := 15
 var beacon_strength := -1
-var max_stamina := 30
+var max_stamina := 75
 var additonal_chance := 0.0
 var status_effects_shorten := 0
 

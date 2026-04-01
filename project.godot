@@ -37,6 +37,10 @@ window/size/mode=4
 window/size/resizable=false
 window/stretch/mode="canvas_items"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/asset_placer/plugin.cfg")
+
 [global_group]
 
 gui=""
