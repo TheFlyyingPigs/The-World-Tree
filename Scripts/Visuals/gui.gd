@@ -17,7 +17,17 @@ var current_screen : Control
 @onready var anim := %AlertPlayer
 @onready var alert_label := %AlertLabel
 
+@onready var quota_end_screen: Control = $CanvasLayer/QuotaEndScreen
+@onready var quota_title_label: Label = $CanvasLayer/QuotaEndScreen/TitleLabel
+@onready var quota_resources_found_label: Label = $CanvasLayer/QuotaEndScreen/ResourcesFoundLabel
+
+@onready var day_end_screen: Control = $CanvasLayer/DayEndScreen
+@onready var day_title_label: Label = $CanvasLayer/DayEndScreen/DayTitleLabel
+@onready var day_resources_found_label: Label = $CanvasLayer/DayEndScreen/DayResourcesFoundLabel
+
+
 signal upgrade_menu_opened
+signal end_screen_gone
 
 func _ready() -> void:
 	$CanvasLayer/BlackScreen.color = Color(0,0,0,1)
@@ -44,6 +54,7 @@ func update_stamina_bar(value):
 	arguments:
 		value: the stamina value the bar should update to
 	'
+	stamina_bar.max_value = Globals.max_stamina
 	create_tween().tween_property(stamina_bar,"value",value,0.075)
 
 func fade_out():
@@ -59,23 +70,26 @@ func fade_in():
 	%ScreenFader.play("fade_in")
 
 
-func alert(type : ):
+func alert(type : Globals.ItemType, amount = null):
 	'
 	shows an alert for an item being picked
 	
 	arguments:
 		type: the type of item being picked up
 	'
-	
-	match type:
-		Globals.ItemType.WATER: alert_label.text = "Found Water" 
-		Globals.ItemType.SCRAP_METAL: alert_label.text = "Found scrap metal"
-		Globals.ItemType.CO2_CANISTER: alert_label.text = "Found Co2 canister"
-		Globals.ItemType.LIGHT_CRYSTAL: alert_label.text = "Found Light Crystal"
-		Globals.ItemType.ELETRCICAL_SCRAP: alert_label.text = "Found Electrical Scrap"
-		Globals.ItemType.SOUL_ESSENCE: alert_label.text = "Found Soul essence"
-		true: alert_label.text = "Lost all on-hand resources"
-	
+	if amount == null:
+		match type:
+			Globals.ItemType.WATER: alert_label.text = "Found Water" 
+			Globals.ItemType.SCRAP_METAL: alert_label.text = "Found scrap metal"
+			Globals.ItemType.CO2_CANISTER: alert_label.text = "Found Co2 canister"
+			Globals.ItemType.ELETRCICAL_SCRAP: alert_label.text = "Found Electrical Scrap"
+			true: alert_label.text = "Lost all on-hand resources"
+	else:
+		match type:
+			Globals.ItemType.WATER: alert_label.text = "Found "+str(amount)+ " Water" 
+			Globals.ItemType.SCRAP_METAL: alert_label.text = "Found "+str(amount)+" scrap metal"
+			Globals.ItemType.CO2_CANISTER: alert_label.text = "Found "+str(amount)+" Co2 canister"
+			Globals.ItemType.ELETRCICAL_SCRAP: alert_label.text = "Found "+str(amount)+" Electrical Scrap"
 	anim.play("alert")
 
 
@@ -87,8 +101,8 @@ func show_screen(type : Gui.ScreenType):
 	arguments: 
 		type: the screen to show
 	'
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	menus.visible = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	crosshair.visible = false
 	get_tree().paused = true
 	match type:
@@ -96,6 +110,7 @@ func show_screen(type : Gui.ScreenType):
 			pause_menu.visible = true
 			current_screen = pause_menu
 		Gui.ScreenType.UPGRADE: 
+			await end_screen_gone
 			upgrade_menu_opened.emit()
 			upgrade_menu.visible = true
 			current_screen = upgrade_menu
@@ -128,3 +143,32 @@ func quit() -> void:
 	quits the game
 	'
 	get_tree().quit()
+
+func show_day_end_screen():
+	day_end_screen.visible = true
+	get_tree().paused = true
+	day_title_label.text = "Day "+str(Globals.day)+ " End"
+	day_resources_found_label.text = str(Globals.total_resources)+" / "+str(Globals.quota_requirement)+" Resource Found"
+	
+	await get_tree().create_timer(2).timeout
+	day_end_screen.visible = false
+	
+	end_screen_gone.emit()
+
+func show_quota_end_screen():
+	quota_end_screen.visible = true
+	get_tree().paused = true
+	if Globals.quota_requirement <= Globals.total_resources:
+		quota_title_label.text = "Quota "+str(Globals.quota_num)+ " Completed"
+	else:
+		quota_title_label.text = "Quota "+str(Globals.quota_num)+ " Failed"
+	quota_resources_found_label.text = str(Globals.total_resources)+" / "+str(Globals.quota_requirement)+" Resource Found"
+	
+	await get_tree().create_timer(2).timeout
+	quota_end_screen.visible = false
+	
+	end_screen_gone.emit()
+	
+	if not Globals.quota_requirement <= Globals.total_resources:
+		get_tree().paused = false
+		Globals.switch_level(Globals.LevelID.MAIN_MENU, false)

@@ -13,11 +13,11 @@ enum Effects{
 
 const EffectAttributes = {
 	"POISON":{
-		"icon":preload("res://Assets/Textures/GUI/spr_TimerProgressBar.png"), # TODO ADD REAL ICONS!
+		"icon":preload("res://Assets/Textures/GUI/effect-poison-icon.png"),
 		"type":EffectTypes.ALTERING
 	},
 	"SLOW":{
-		"icon":preload("res://Assets/Textures/GUI/spr_TimerProgressBar.png"),
+		"icon":preload("res://Assets/Textures/GUI/effect-slow-icon.png"),
 		"type":EffectTypes.ALTERING
 	}
 }
@@ -49,10 +49,11 @@ func _process(_delta: float) -> void:
 		is_slowed = true
 	else:
 		is_slowed = false
+	
 
 func scene_switched():
 	active_effects.clear()
 	effects_manager = get_tree().get_first_node_in_group("effects_manager")
 
 func apply_effect(effect : Effects, time:int):
-	effects_manager.apply_effect(effect,time)
+	effects_manager.apply_effect(effect,time-Globals.status_effects_shorten)

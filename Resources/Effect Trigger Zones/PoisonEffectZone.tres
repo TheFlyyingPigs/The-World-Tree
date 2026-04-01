@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EffectZoneSettings" load_steps=2 format=3 uid="uid://pngc4uflig8n"]
+
+[ext_resource type="Script" uid="uid://8umtn7qov3bu" path="res://Scripts/Effects/effect_zone_settings.gd" id="1_h5sqy"]
+
+[resource]
+script = ExtResource("1_h5sqy")
+time = 23
+metadata/_custom_type_script = "uid://8umtn7qov3bu"

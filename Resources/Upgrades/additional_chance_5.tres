@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UpgradeType" load_steps=3 format=3 uid="uid://dyh22fxfeqosn"]
+
+[ext_resource type="Texture2D" uid="uid://ckhjp6llo6b66" path="res://Assets/Textures/GUI/chance.png" id="1_hdtto"]
+[ext_resource type="Script" uid="uid://dckfs4nkavx01" path="res://Scripts/Upgrades/upgrade_type.gd" id="2_v765b"]
+
+[resource]
+script = ExtResource("2_v765b")
+icon = ExtResource("1_hdtto")
+display_name = "Chance"
+description = "Level: 5
+Increases chance for double resources"
+upgrade = 39
+prerequisites = Array[int]([38])
+cost_1_type = 1
+cost_1 = 10
+second_cost = true
+cost_2 = 5
+metadata/_custom_type_script = "uid://dckfs4nkavx01"

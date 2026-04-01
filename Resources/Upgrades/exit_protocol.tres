@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeType" load_steps=3 format=3 uid="uid://ybcsoyge3tyb"]
+
+[ext_resource type="Texture2D" uid="uid://b3aka42ldi2ns" path="res://Assets/Textures/GUI/null.png" id="1_qo0s2"]
+[ext_resource type="Script" uid="uid://dckfs4nkavx01" path="res://Scripts/Upgrades/upgrade_type.gd" id="2_v2ro0"]
+
+[resource]
+script = ExtResource("2_v2ro0")
+icon = ExtResource("1_qo0s2")
+display_name = "Exit protocol"
+description = "Fix the world.
+WARNING: initiating the exit
+ protocol will end the game"
+upgrade = 21
+second_cost = true
+metadata/_custom_type_script = "uid://dckfs4nkavx01"

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://mpg1gu3qv74u"]
+
+[ext_resource type="PackedScene" uid="uid://df6cmmyprvyqf" path="res://Scenes/effect_trigger_zone.tscn" id="1_rdyvh"]
+[ext_resource type="Resource" uid="uid://bkwqjt73u7kaa" path="res://Resources/Effect Trigger Zones/MudEffectZone.tres" id="2_8uaml"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lx0n4"]
+top_radius = 1.9
+bottom_radius = 2.0
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_as0nk"]
+albedo_color = Color(0.31863502, 0.17119569, 7.219613e-08, 1)
+metallic = 0.75
+metallic_specular = 0.45
+
+[node name="SlowHazard" type="Node3D"]
+
+[node name="EffectTriggerZone" parent="." instance=ExtResource("1_rdyvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+zone_settings = ExtResource("2_8uaml")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_lx0n4")
+surface_material_override/0 = SubResource("StandardMaterial3D_as0nk")

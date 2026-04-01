@@ -1,17 +1,14 @@
 extends Node
 
-# TODO ADD ACTUAL RESOURCE TYPES!
+
 enum ItemType { # CONTAINS ALL TYPES OF RESOURCES
 	WATER,
 	SCRAP_METAL,
 	CO2_CANISTER,
-	LIGHT_CRYSTAL,
 	ELETRCICAL_SCRAP,
-	SOUL_ESSENCE
 }
-# TODO ADD ACTUAL COMMON RESOURCES
-const common_item_types := [ItemType.WATER, ItemType.SCRAP_METAL, ItemType.CO2_CANISTER]
-const rare_item_types := [ItemType.LIGHT_CRYSTAL,ItemType.ELETRCICAL_SCRAP,ItemType.SOUL_ESSENCE]
+
+const common_item_types := [ItemType.WATER, ItemType.SCRAP_METAL, ItemType.CO2_CANISTER, ItemType.ELETRCICAL_SCRAP]
 
 const ItemTypeAttributes = { # ATTRIBUTES FOR THE ITEMTYPE ENUM
 	"WATER":{
@@ -26,17 +23,9 @@ const ItemTypeAttributes = { # ATTRIBUTES FOR THE ITEMTYPE ENUM
 		'total'='total_co2',
 		'current'='current_co2'
 	},
-	"LIGHT_CRYSTAL":{
-		'total'='total_light',
-		'current'='current_light'
-	},
 	"ELETRCICAL_SCRAP":{
 		'total'='total_electric',
 		'current'='current_electric'
-	},
-	"SOUL_ESSENCE":{
-		'total'='total_soul',
-		'current'='current_soul'
 	},
 }
 
@@ -50,17 +39,19 @@ var inventory := { # CONTAINS NUMBER OF ALL ITEMS
 	'total_co2':99,
 	'current_co2':0,
 	
-	'total_light':99,
-	'current_light':0,
-	
 	'total_electric':99,
 	'current_electric':0,
-	
-	'total_soul':99,
-	'current_soul':0,
 } 
 
+var total_resources := 0
+
 var found_upgrades := []
+var tree_stage := 1
+const tree_stages := {
+	"stage_1" : preload("res://Assets/Models/Tree/exterior_stage_1.res"),
+	"stage_2" : preload("res://Assets/Models/Tree/exterior_stage_2.res"),
+	"stage_3" : preload("res://Assets/Models/Tree/exterior_stage_3.res")
+}
 
 # SCENE CHANGE IDENTIFIERS
 var current_scene = null
@@ -94,26 +85,95 @@ enum Upgrades{
 	LONGER_TIMER_4,
 	LONGER_TIMER_5,
 	
-	#TODO ADD LESS HAZARDS AND MORE RESOURCES UPGRADES!
-	
 	BRIGHTER_SUN_1,
 	BRIGHTER_SUN_2,
 	BRIGHTER_SUN_3,
 	BRIGHTER_SUN_4,
 	BRIGHTER_SUN_5,
 	
-	MORE_BREAD_CRUMBS_1, # TODO CHANGE BREAD CRUMB TO REAL NAME
+	MORE_BREAD_CRUMBS_1, 
 	MORE_BREAD_CRUMBS_2,
 	MORE_BREAD_CRUMBS_3,
 	MORE_BREAD_CRUMBS_4,
 	MORE_BREAD_CRUMBS_5,
 	
+	MORE_STAMINA_1,
+	MORE_STAMINA_2,
+	MORE_STAMINA_3,
+	MORE_STAMINA_4,
+	MORE_STAMINA_5,
+	
+	BEACON_STRENGTH_1,
+	BEACON_STRENGTH_2,
+	BEACON_STRENGTH_3,
+	BEACON_STRENGTH_4,
+	BEACON_STRENGTH_5,
+	
+	SHORTER_EFFECTS_1,
+	SHORTER_EFFECTS_2,
+	SHORTER_EFFECTS_3,
+	SHORTER_EFFECTS_4,
+	SHORTER_EFFECTS_5,
+	
+	ADDITONAL_RESOURCES_1,
+	ADDITONAL_RESOURCES_2,
+	ADDITONAL_RESOURCES_3,
+	ADDITONAL_RESOURCES_4,
+	ADDITONAL_RESOURCES_5,
+	
+	
+	NULL_UPGRADE,
+	
+	EXIT_PROTOCOL,
 }
 
 # UPGRADEABLE VARIABLES
-var fog_density := 0.4
-var sunlight := 0.3
+var fog_density := 0.3
+var sunlight := 30
 var max_bread_crumbs := 15
+var beacon_strength := -1
+var max_stamina := 75
+var additonal_chance := 0.0
+var status_effects_shorten := 0
+
+
+# QUOTA VARIABLES
+var day := 0
+var quota_num := 1
+var quota_requirement := 10
+var days_per_quota := 3
+var quota_day := 0
+
+func day_end():
+	day += 1
+	quota_day += 1
+	quota_requirement = ceili((quota_num**1.3) * 5 + 5)
+	if quota_day % (days_per_quota+1) == 0:
+		if not total_resources >= quota_requirement:
+			failed_quota()
+			Gui.show_quota_end_screen()
+		else:
+			Gui.show_quota_end_screen()
+			quota_num += 1
+			quota_day = 0
+	else:
+		Gui.show_day_end_screen()
+
+func failed_quota():
+	quota_num = 1
+	quota_requirement = 10
+	day = 0
+	fog_density = 0.3
+	sunlight = 0.3
+	max_bread_crumbs = 15
+	found_upgrades = []
+	tree_stage = 1
+	
+	for item in ItemType:
+		inventory[ItemTypeAttributes[item]["total"]] = 0
+	
+	just_opened_game = true
+	
 
 func add_item(type : ItemType):
 	'
@@ -124,7 +184,7 @@ func add_item(type : ItemType):
 	'
 	
 	inventory[ItemTypeAttributes[ItemType.keys()[type]]["current"]] += 1
-	
+	total_resources += 1
 	
 
 func update_inventory(didDie):
@@ -137,6 +197,7 @@ func update_inventory(didDie):
 	if didDie:
 		for i in ItemType:
 			
+			total_resources -= inventory[ItemTypeAttributes[i]["current"]]
 			inventory[ItemTypeAttributes[i]["current"]] = 0
 			
 	else:
@@ -174,7 +235,8 @@ func _deferred_switch_scene(id):
 	Arguments:
 		id: the id of the level being switched to
 	'
-	current_scene.free()
+	if not current_scene == null:
+		current_scene.free()
 	var new_scene
 	match id:
 		LevelID.INSIDE: 
@@ -184,9 +246,11 @@ func _deferred_switch_scene(id):
 			new_scene = load("res://Scenes/outside_world.tscn")
 			outside_timer_run()
 			current_scene_id = LevelID.OUTSIDE
+			just_opened_game = false
 		LevelID.MAIN_MENU:
 			new_scene = load("res://Scenes/main_menu.tscn")
 			current_scene_id = LevelID.MAIN_MENU
+			just_opened_game = true
 	
 	current_scene = new_scene.instantiate()
 	current_scene.ready.connect(scene_initialized)
@@ -205,10 +269,12 @@ func scene_initialized():
 	Gui.fade_in()
 	if current_scene_id == LevelID.INSIDE && not just_opened_game && not died:
 		Gui.show_screen(Gui.ScreenType.UPGRADE)
+	if current_scene_id == LevelID.INSIDE && not just_opened_game:
+		day_end()
 	if died:
 		Gui.alert(true)
 		died = false
-	just_opened_game = false
+	
 
 
 func outside_timer_run():

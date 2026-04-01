@@ -13,6 +13,7 @@ extends CharacterBody3D
 @onready var camera_bob_component := $CameraBobComponent
 @onready var upgrade_handler := $UpgradeHandler
 @onready var spawning_component:= $SpawningComponent
+@onready var omni_light_3d: OmniLight3D = $OmniLight3D
 
 # VARIABLES
 var can_interact := true
@@ -97,3 +98,10 @@ func _on_throw() -> void:
 
 func _on_upgraded() -> void:
 	amount_bread_crumbs = Globals.max_bread_crumbs
+
+func _ready() -> void:
+	if Globals.current_scene_id == Globals.LevelID.INSIDE:
+		omni_light_3d.visible = false
+	else:
+		omni_light_3d.visible = true
+		omni_light_3d.omni_range = Globals.sunlight

@@ -1,23 +1,20 @@
-[gd_scene load_steps=20 format=3 uid="uid://bwxxn76xj3ic0"]
+[gd_scene load_steps=22 format=3 uid="uid://bwxxn76xj3ic0"]
 
 [ext_resource type="Script" uid="uid://dwsao5hvj6lcw" path="res://Scripts/Visuals/gui.gd" id="1_qyd3e"]
 [ext_resource type="PackedScene" uid="uid://c00u7rkv4v020" path="res://Scenes/effects_manager.tscn" id="2_bf1fa"]
-[ext_resource type="Texture2D" uid="uid://dock0603xykxm" path="res://Assets/Textures/GUI/spr_TimerProgressBar.png" id="2_bm56d"]
 [ext_resource type="FontFile" uid="uid://c3236q4ho1mhn" path="res://Assets/Textures/GUI/KdamThmorPro-Regular.ttf" id="3_8kag3"]
+[ext_resource type="Texture2D" uid="uid://c0q1otpdqmnmq" path="res://Assets/Textures/GUI/spr_crumbs_display.png" id="3_c5g4q"]
 [ext_resource type="Shader" uid="uid://5g32sl1r6jse" path="res://Assets/VFX/vhs.gdshader" id="3_n5m23"]
 [ext_resource type="PackedScene" uid="uid://bsy0ey7gtptga" path="res://Scenes/upgrade_option.tscn" id="4_3w84o"]
+[ext_resource type="Texture2D" uid="uid://c5q7snyyulhqv" path="res://Assets/Textures/GUI/spr_stamina_under.png" id="4_c5g4q"]
 [ext_resource type="Texture2D" uid="uid://b1jgva0bxvgik" path="res://Assets/Textures/GUI/spr_visor_overlay.png" id="4_m6o0h"]
 [ext_resource type="Script" uid="uid://ugx0bv7qppso" path="res://Scripts/Upgrades/upgrade_menu.gd" id="4_xnb2j"]
+[ext_resource type="Texture2D" uid="uid://dlob80c6uu0lo" path="res://Assets/Textures/GUI/spr_stamina_progress.png" id="5_s7psx"]
 [ext_resource type="Resource" uid="uid://d4tc6js8k2by" path="res://Resources/Upgrades/null_upgrade_type.tres" id="6_gnd4w"]
+[ext_resource type="StyleBox" uid="uid://cvq4b5k58xjup" path="res://Assets/Textures/GUI/button.tres" id="7_s7psx"]
 
-[sub_resource type="Gradient" id="Gradient_n5m23"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.2901961, 0.61960787, 0.08235294, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_m6o0h"]
-gradient = SubResource("Gradient_n5m23")
-width = 479
-height = 15
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s7psx"]
+load_path = "res://.godot/imported/spr_TimerProgressBar.png-a4b2c517edfcf754f6e954a014a8d8f5.ctex"
 
 [sub_resource type="Gradient" id="Gradient_bm56d"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -148,35 +145,36 @@ process_mode = 3
 follow_viewport_enabled = true
 
 [node name="EffectsManager" parent="CanvasLayer" instance=ExtResource("2_bf1fa")]
-anchors_preset = 15
 offset_left = 1176.0
 offset_top = 156.0
 offset_right = -26.0
 offset_bottom = -485.0
 
-[node name="CrumbsRect" type="ColorRect" parent="CanvasLayer"]
-z_index = 2
-anchors_preset = -1
-anchor_left = 0.87700003
-anchor_top = 0.20600002
-anchor_right = 0.938
-anchor_bottom = 0.261
-offset_left = -520.56006
-offset_top = 499.68
-offset_right = -520.64
-offset_bottom = 500.08002
-color = Color(0.28954616, 0.6210417, 0.08270558, 1)
+[node name="CrumbsRect" type="TextureRect" parent="CanvasLayer"]
+z_index = -1
+offset_left = 609.0
+offset_top = 626.0
+offset_right = 649.0
+offset_bottom = 666.0
+scale = Vector2(1.777035, 1)
+texture = ExtResource("3_c5g4q")
 
 [node name="CrumbsLabel" type="Label" parent="CanvasLayer/CrumbsRect"]
 unique_name_in_owner = true
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 6.1900983
+offset_top = -3.0
+offset_right = -3.8098984
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.932469, 1.175)
 theme_override_colors/font_color = Color(0.08235294, 0.3529412, 0.050980393, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "15x"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -194,7 +192,7 @@ scale = Vector2(1.6172758, 1.6172758)
 max_value = 360.0
 value = 360.0
 fill_mode = 5
-texture_progress = ExtResource("2_bm56d")
+texture_progress = SubResource("CompressedTexture2D_s7psx")
 
 [node name="StaminaProgress" type="TextureProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -204,16 +202,18 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -240.0
-offset_top = -25.0
-offset_right = 239.0
-offset_bottom = 39.0
+offset_left = -290.0
+offset_top = -43.0
+offset_right = -120.0
+offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(3.485, 2.568)
 max_value = 50.0
 value = 50.0
 fill_mode = 6
-texture_progress = SubResource("GradientTexture2D_m6o0h")
+texture_under = ExtResource("4_c5g4q")
+texture_progress = ExtResource("5_s7psx")
 
 [node name="AlertLabel" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -304,11 +304,19 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PauseResume" type="Button" parent="CanvasLayer/Menus/PauseMenu/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = ExtResource("7_s7psx")
+theme_override_styles/pressed = ExtResource("7_s7psx")
+theme_override_styles/hover = ExtResource("7_s7psx")
+theme_override_styles/focus = ExtResource("7_s7psx")
 text = "Resume
 "
 
 [node name="PauseQuit" type="Button" parent="CanvasLayer/Menus/PauseMenu/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = ExtResource("7_s7psx")
+theme_override_styles/pressed = ExtResource("7_s7psx")
+theme_override_styles/hover = ExtResource("7_s7psx")
+theme_override_styles/focus = ExtResource("7_s7psx")
 text = "Quit
 "
 
@@ -365,28 +373,35 @@ upgrade = ExtResource("6_gnd4w")
 [node name="UpgradeRefresh" type="Button" parent="CanvasLayer/Menus/UpgradeMenu"]
 layout_mode = 0
 offset_left = 686.0
-offset_top = 549.0
+offset_top = 540.0
 offset_right = 812.0
-offset_bottom = 583.0
+offset_bottom = 590.0
+theme_override_styles/normal = ExtResource("7_s7psx")
+theme_override_styles/pressed = ExtResource("7_s7psx")
+theme_override_styles/hover = ExtResource("7_s7psx")
+theme_override_styles/focus = ExtResource("7_s7psx")
 text = "Refresh"
 
 [node name="UpgradeSkip" type="Button" parent="CanvasLayer/Menus/UpgradeMenu"]
 layout_mode = 0
-offset_left = 469.0
-offset_top = 548.0
-offset_right = 595.0
-offset_bottom = 582.0
+offset_left = 468.0
+offset_top = 540.0
+offset_right = 594.0
+offset_bottom = 590.0
+theme_override_styles/normal = ExtResource("7_s7psx")
+theme_override_styles/pressed = ExtResource("7_s7psx")
+theme_override_styles/hover = ExtResource("7_s7psx")
+theme_override_styles/focus = ExtResource("7_s7psx")
 text = "Skip
 "
 
 [node name="UpgradeInventory" type="Label" parent="CanvasLayer/Menus/UpgradeMenu"]
 layout_mode = 0
 offset_left = 199.0
-offset_top = 89.0
+offset_top = 112.0
 offset_right = 1081.0
-offset_bottom = 144.0
-text = "WATER: 2x    Metal scrap: 1x    co2 canister: 0x    
-light crystal: 0x    electrical scrap: 1x    soul essence: 2x"
+offset_bottom = 167.0
+text = "WATER: 2x    Metal scrap: 1x    co2 canister: 0x    electrical scrap: 1x"
 horizontal_alignment = 1
 uppercase = true
 
@@ -424,10 +439,104 @@ color = Color(0.535984, 1, 0.5114435, 0.08235294)
 [node name="VisorOverlay" type="TextureRect" parent="CanvasLayer"]
 modulate = Color(0.8732979, 0.8732986, 0.87329817, 0.27450982)
 z_index = 1
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1280.0
+offset_bottom = 720.0
 mouse_filter = 2
 texture = ExtResource("4_m6o0h")
+
+[node name="QuotaEndScreen" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+z_index = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/QuotaEndScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/QuotaEndScreen"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 147.0
+offset_right = 1279.0
+offset_bottom = 230.0
+theme_override_font_sizes/font_size = 55
+text = "Quota 1 End"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ResourcesFoundLabel" type="Label" parent="CanvasLayer/QuotaEndScreen"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 330.0
+offset_right = 1268.0
+offset_bottom = 391.0
+theme_override_font_sizes/font_size = 26
+text = "14/10 Resources Found"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="DayEndScreen" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+z_index = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/DayEndScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="DayTitleLabel" type="Label" parent="CanvasLayer/DayEndScreen"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 147.0
+offset_right = 1279.0
+offset_bottom = 230.0
+theme_override_font_sizes/font_size = 55
+text = "Day 1 End"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="DayResourcesFoundLabel" type="Label" parent="CanvasLayer/DayEndScreen"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 330.0
+offset_right = 1268.0
+offset_bottom = 391.0
+theme_override_font_sizes/font_size = 26
+text = "14/10 Resources Found"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [connection signal="upgrade_menu_opened" from="." to="CanvasLayer/Menus/UpgradeMenu" method="open_screen"]
 [connection signal="pressed" from="CanvasLayer/Menus/PauseMenu/VBoxContainer/PauseResume" to="." method="resume"]

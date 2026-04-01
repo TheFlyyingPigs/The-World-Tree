@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UpgradeType" load_steps=3 format=3 uid="uid://0wi8yehoiwa"]
+
+[ext_resource type="Texture2D" uid="uid://1tscnr4ob3wi" path="res://Assets/Textures/GUI/stamina.png" id="1_vk6ku"]
+[ext_resource type="Script" uid="uid://dckfs4nkavx01" path="res://Scripts/Upgrades/upgrade_type.gd" id="2_07fbm"]
+
+[resource]
+script = ExtResource("2_07fbm")
+icon = ExtResource("1_vk6ku")
+display_name = "Max Stamina"
+description = "Level: 5
+Increases max stamina"
+upgrade = 24
+prerequisites = Array[int]([23])
+cost_1_type = 2
+cost_1 = 7
+second_cost = true
+cost_2 = 3
+metadata/_custom_type_script = "uid://dckfs4nkavx01"

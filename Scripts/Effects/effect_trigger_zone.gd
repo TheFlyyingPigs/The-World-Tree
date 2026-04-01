@@ -4,9 +4,6 @@ class_name EffectTriggerZone extends Area3D
 
 @onready var collision: CollisionShape3D = $CollisionShape3D
 
-func _ready() -> void:
-	collision.shape = zone_settings.collison_shape
-
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:

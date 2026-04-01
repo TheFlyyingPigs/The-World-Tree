@@ -231,6 +231,14 @@ process_mode = 1
 collision_layer = 5
 script = ExtResource("1_cvnsp")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4257963, 0)
+light_energy = 0.75
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 20.0
+omni_attenuation = 0.75
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06738281, 0)
 shape = SubResource("CapsuleShape3D_f60y1")
@@ -278,7 +286,6 @@ walking_speed = 225.0
 sprinting_speed = 330.0
 air_control = 4.0
 timer = NodePath("../StaminaTimer")
-metadata/_custom_type_script = "uid://bshe62toj41q8"
 
 [node name="CameraComponent" type="Node" parent="." node_paths=PackedStringArray("body", "camera_pivot", "camera") groups=["camera_comp"]]
 unique_name_in_owner = true

@@ -8,6 +8,10 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="The World Tree"
@@ -32,6 +36,10 @@ window/size/viewport_height=720
 window/size/mode=4
 window/size/resizable=false
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/asset_placer/plugin.cfg")
 
 [global_group]
 
@@ -99,3 +107,7 @@ throw={
 [physics]
 
 3d/default_gravity=500.0
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
