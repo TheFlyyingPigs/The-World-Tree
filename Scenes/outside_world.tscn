@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cklblqchlc32c"]
+[gd_scene load_steps=20 format=3 uid="uid://cklblqchlc32c"]
 
 [ext_resource type="PackedScene" uid="uid://bftqq2syj7664" path="res://Scenes/player.tscn" id="1_l60d6"]
 [ext_resource type="Script" uid="uid://yf7hr01yjqdx" path="res://Scripts/outside_world.gd" id="1_patlc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bdkp8v3kk11lc" path="res://Scripts/Resource_Deposits/deposit_spawner.gd" id="3_l60d6"]
 [ext_resource type="Resource" uid="uid://vf1uyivxts6x" path="res://Resources/Resource Deposits/CloseSpawner.tres" id="4_cjcjx"]
 [ext_resource type="PackedScene" uid="uid://csoau7mpja14x" path="res://Scenes/level_transitioner.tscn" id="5_cjcjx"]
+[ext_resource type="AudioStream" uid="uid://dbthgjj4nntm1" path="res://Assets/Music/World Tree 2 loop.wav" id="5_neogm"]
 [ext_resource type="PackedScene" uid="uid://df6cmmyprvyqf" path="res://Scenes/effect_trigger_zone.tscn" id="8_22iqp"]
 [ext_resource type="Resource" uid="uid://bkwqjt73u7kaa" path="res://Resources/Effect Trigger Zones/MudEffectZone.tres" id="9_neogm"]
 
@@ -27,6 +28,54 @@ fog_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 volumetric_fog_albedo = Color(0.45471716, 0.3537043, 0.29561317, 1)
+
+[sub_resource type="Animation" id="Animation_neogm"]
+resource_name = "music fade in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OutsideMusicPlayer:volume_db")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-37.0, -12.05]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AmbienceSounds:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-37.0, -20.0]
+}
+
+[sub_resource type="Animation" id="Animation_fgo3i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OutsideMusicPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-12.05]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v2qg1"]
+_data = {
+&"RESET": SubResource("Animation_fgo3i"),
+&"music fade in": SubResource("Animation_neogm")
+}
 
 [sub_resource type="BoxMesh" id="BoxMesh_neogm"]
 size = Vector3(150, 1, 150)
@@ -57,12 +106,27 @@ material = ExtResource("2_g4qxf")
 [node name="Player" parent="." instance=ExtResource("1_l60d6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6582623)
 
+[node name="MusicTransitioner" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+&"": SubResource("AnimationLibrary_v2qg1")
+}
+autoplay = "music fade in"
+
 [node name="AmbienceSounds" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("2_cjcjx")
-volume_db = -17.05
+volume_db = -20.0
 autoplay = true
 bus = &"Ambience"
 parameters/looping = true
+
+[node name="OutsideMusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_neogm")
+volume_db = -12.05
+autoplay = true
+bus = &"Ambience"
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3156095, 0)
