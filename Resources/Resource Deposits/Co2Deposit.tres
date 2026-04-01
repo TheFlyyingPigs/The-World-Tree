@@ -1,13 +1,10 @@
 [gd_resource type="Resource" script_class="DepositType" load_steps=5 format=3 uid="uid://bycdskaubyofn"]
 
+[ext_resource type="ArrayMesh" uid="uid://duqp2c1xyjgew" path="res://Assets/Models/co2_canister_Mesh.res" id="1_eatta"]
 [ext_resource type="Script" uid="uid://drfc2dahc1go0" path="res://Scripts/Resource_Deposits/deposit_type.gd" id="1_qiuba"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qiuba"]
 radius = 0.35
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_8k8sv"]
-radius = 0.3
-height = 1.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3fxcb"]
 albedo_color = Color(0.581033, 0.58103293, 0.5810329, 1)
@@ -15,7 +12,7 @@ metallic = 0.5
 
 [resource]
 script = ExtResource("1_qiuba")
-mesh = SubResource("CapsuleMesh_8k8sv")
+mesh = ExtResource("1_eatta")
 mesh_material = SubResource("StandardMaterial3D_3fxcb")
 collision_shape = SubResource("CapsuleShape3D_qiuba")
 resource_type = 2
