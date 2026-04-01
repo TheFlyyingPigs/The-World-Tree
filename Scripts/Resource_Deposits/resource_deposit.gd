@@ -13,6 +13,8 @@ func _ready() -> void:
 	%MeshInstance3D.set_surface_override_material(0, deposit_type.mesh_material)
 	%CollisionShape3D.shape = deposit_type.collision_shape
 	
+	if deposit_type.resource_type == Globals.ItemType.WATER:
+		%MeshInstance3D.global_position.y -= 2
 	
 
 func interact():

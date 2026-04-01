@@ -18,4 +18,5 @@ func _ready() -> void:
 	placed_resource.global_position = self.global_position
 	placed_resource.rotation.y = rng.randi_range(-180,180)
 	
+	
 	queue_free()
